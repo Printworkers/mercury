@@ -30,59 +30,95 @@
 
         // create an admin application
         var admin = nga.application('Semper LLC Administrator')
-        	.baseApiUrl('http://api.thebasicsapp.com/'); 
+        	.baseApiUrl('http://semperllc.herokuapp.com/'); 
 
-	    // create a user entity
-	    // the API endpoint for this entity will be 'http://jsonplaceholder.typicode.com/users/:id
-	    var user = nga.entity('user').identifier(nga.field('_id'));
-	    // set the fields of the user entity list view
-	    user.listView().fields([
-	        nga.field('name'),
+	    var user = nga.entity('users').identifier(nga.field('id'));
+
+	    user.listView()
+	    .fields([
+	        nga.field('firstname'),
 	        nga.field('username'),
 	        nga.field('email'),
 	        nga.field('type'),
-	        nga.field('phone_number')
-	    ]);
+	        nga.field('phone')
+	    ]).listActions(['edit', 'delete'])
+	    .filters([
+	    	nga.field('q', 'template')
+                .label('')
+                .pinned(true)
+                .template('<div class="input-group"><input type="text" ng-model="value" placeholder="Search" class="form-control"></input><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span></div>'),
+            nga.field('type').label('Type'),
+            nga.field('username', 'string').label('Username'),	
+            nga.field('email', 'string').label('email'),
+            nga.field('city', 'string').label('City'),
+            nga.field('state', 'string').label('State')
+        ])
+
+	    user.creationView()
+	        .title('Create new User')
+	        .fields([
+	            nga.field('firstname').validation({required: true }).cssClasses('col-sm-4'),
+	            nga.field('lastname').validation({required: true }).cssClasses('col-sm-4'),
+	            nga.field('username').validation({required: true }).cssClasses('col-sm-4'),
+	            nga.field('password').validation({required: true }).cssClasses('col-sm-4'),
+	            nga.field('email').validation({required: true }).cssClasses('col-sm-4'),
+	            nga.field('city').validation({required: true }).cssClasses('col-sm-4'),
+	            nga.field('state').validation({required: true }).cssClasses('col-sm-4'),
+	            nga.field('zip').validation({required: true }).cssClasses('col-sm-4'),
+	            nga.field('shortProfile', 'wysiwyg').validation({required: true })
+	        ]);
+
+	    user.editionView().fields(user.creationView().fields());
+
 	    admin.addEntity(user);
 
-	    var product = nga.entity('product').identifier(nga.field('_id'));
-	    // set the fields of the user entity list view
-	    product.listView().fields([
-	    	nga.field('photoUrl')
-	    		.template('<img src="{{ entry.values.photoUrl }}" class="img thumbnail" />'),
-	        nga.field('name'),
-	        nga.field('category')
-	    ]);
-	    admin.addEntity(product);
+	    /* Job */
+	    var job = nga.entity('jobs').identifier(nga.field('_id'));
+	    job.label('Jobs');
 
-	    var userproduct = nga.entity('userproduct').identifier(nga.field('_id'));
-	    // set the fields of the user entity list view
-	    userproduct.listView().fields([
+	    job.listView().fields([
 	        nga.field('name')
 	    ]);
 
-	    admin.addEntity(userproduct);
+	    job.creationView()
+	        .title('Create new Job')
+	        .fields([
+	            nga.field('name').validation({required: true }).cssClasses('col-sm-8'),
+	            nga.field('city').validation({required: true }).cssClasses('col-sm-4'),
+	            nga.field('state').validation({required: true }).cssClasses('col-sm-4'),
+	            nga.field('description', 'wysiwyg').validation({required: true })
+	        ]);
 
-	    var tender = nga.entity('tender').identifier(nga.field('_id'));
-	   	tender.listView().fields([
-	        nga.field('last4'),
-	        nga.field('brand'),
-	        nga.field('User.name')
+	    job.editionView().fields(job.creationView().fields());
+
+	    admin.addEntity(job);
+
+	    /* Agent */
+	    var agent = nga.entity('agents').identifier(nga.field('id'));
+	    agent.listView().fields([
+	        nga.field('name'),
+	        nga.field('city'),
+	        nga.field('state'),
+	        nga.field('description')
 	    ]);
+	    admin.addEntity(agent);
 
-	    admin.addEntity(tender);
-
-	   	var order = nga.entity('order').identifier(nga.field('_id'));
-	    // set the fields of the user entity list view
-	    order.listView().fields([
-	        nga.field('createdAt')
+	    /* HomeOffice */
+	    var homeoffice = nga.entity('homeoffice').identifier(nga.field('id'));
+	    homeoffice.listView().fields([
+	        nga.field('name'),
+	        nga.field('city'),
+	        nga.field('state')
 	    ]);
+	    admin.addEntity(homeoffice);
 
-	    admin.addEntity(order);
+	    /* Application */
+	    var application = nga.entity('application').identifier(nga.field('_id'));
+	    application.listView().fields([
+	        nga.field('name')
+	    ]);
+	    admin.addEntity(application);
 
-        // more configuration here later
-        // ...
-        // attach the admin application to the DOM and run it
         nga.configure(admin);
     }]);
     </script>
