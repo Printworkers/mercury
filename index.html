@@ -3,6 +3,7 @@
   <head>
     <title>Semper Administrator</title>
     <link rel="stylesheet" href="node_modules/ng-admin/build/ng-admin.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   </head>
   <body ng-app="myApp">
 
@@ -16,6 +17,12 @@
     myApp.directive('header', function() {
 	    return {
 	        templateUrl: 'header.html'
+	    };
+	});
+
+    myApp.directive('dashboard', function() {
+	    return {
+	        templateUrl: 'dashboard.html'
 	    };
 	});
 
@@ -285,6 +292,80 @@
 
 	    admin.addEntity(application);
 
+	    /* Resumes */
+	    var resume = nga.entity('resume').identifier(nga.field('_id'));
+	    resume.listView().fields([
+	        nga.field('name')
+	    ]).listActions(['edit', 'delete'])
+	    .filters([
+	    	nga.field('q', 'template')
+                .label('')
+                .pinned(true)
+                .template('<div class="input-group"><input type="text" ng-model="value" placeholder="Search" class="form-control"></input><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span></div>')
+        ]);
+
+	   	resume.creationView()
+	        .title('Create new Resume')
+	        .fields([
+	            nga.field('name').validation({required: true }).cssClasses('col-sm-4'),
+	            nga.field('type').validation({required: true }).cssClasses('col-sm-4'),
+	        ]);
+
+	    resume.editionView().fields(resume.creationView().fields());
+
+	    admin.addEntity(resume);
+
+	    /* Order */
+	    var order = nga.entity('order').identifier(nga.field('_id'));
+	    order.listView().fields([
+	        nga.field('name')
+	    ]).listActions(['edit', 'delete'])
+	    .filters([
+	    	nga.field('q', 'template')
+                .label('')
+                .pinned(true)
+                .template('<div class="input-group"><input type="text" ng-model="value" placeholder="Search" class="form-control"></input><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span></div>')
+        ]);
+
+	   	order.creationView()
+	        .title('Create new Order')
+	        .fields([
+	            nga.field('name').validation({required: true }).cssClasses('col-sm-4'),
+	            nga.field('type').validation({required: true }).cssClasses('col-sm-4'),
+	        ]);
+
+	    order.editionView().fields(order.creationView().fields());
+
+	    admin.addEntity(order);
+
+	    /* Dashboard */
+	    admin.dashboard(nga.dashboard()
+	    	.template('<div dashboard></div>')
+		    // .addCollection(nga.collection(job)
+		    //     .name('recent_jobs')
+		    //     .title('Recent Job Posts')
+		    //     .perPage(5) // limit the panel to the 5 latest posts
+		    //     .fields([
+		    //         nga.field('name', 'string').label('Title'),
+		    //     ])
+		    //     .sortField('published_at')
+		    //     .sortDir('DESC')
+		    //     .order(1)
+		    // )
+		    // .addCollection(nga.collection(user)
+		    //     .name('Recent Users')
+		    //     .title('Recent Users')
+		    //     .perPage(5) // limit the panel to the 5 latest posts
+		    //     .fields([
+		    //         nga.field('firstname', 'string').label('Title'),
+		    //     ])
+		    //     .sortField('published_at')
+		    //     .sortDir('DESC')
+		    //     .order(1)
+		    // )
+		);
+
+		/* Header */
 	    admin.header('<div header></div>');
 
         nga.configure(admin);
