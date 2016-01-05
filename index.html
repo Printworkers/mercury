@@ -52,7 +52,7 @@
         RestangularProvider.setResponseInterceptor(function(response, operation, route, url) {
     	  var data;
     	  if (operation === 'getList') {
-    	    data = response.data ? response.data : response;
+    	    data = response.data.docs ? response.data.docs : response;
     	  } else {
     	    data = response;
     	  }
@@ -61,9 +61,10 @@
 
         // create an admin application
         var admin = nga.application('Semper LLC Administrator')
-        	.baseApiUrl('http://semperllc.herokuapp.com/'); 
+        	// .baseApiUrl('http://semperllc.herokuapp.com/'); 
+        	.baseApiUrl('http://localhost:7001/');
 
-	    var user = nga.entity('users').identifier(nga.field('id'));
+	    var user = nga.entity('user').identifier(nga.field('_id'));
 
 	    user.listView()
 	    .fields([
@@ -109,7 +110,7 @@
 	    admin.addEntity(user);
 
 	    /* Lookups */
-	    var lookup = nga.entity('lookups').identifier(nga.field('id'));
+	    var lookup = nga.entity('lookup').identifier(nga.field('_id'));
 
 	    lookup.listView()
 	    .fields([
@@ -157,11 +158,14 @@
 	    admin.addEntity(lookup);
 
 	    /* Job */
-	    var job = nga.entity('jobs').identifier(nga.field('_id'));
+	    var job = nga.entity('job').identifier(nga.field('_id'));
 	    job.label('Jobs');
 
 	    job.listView().fields([
-	        nga.field('name')
+	        nga.field('name'),
+	        nga.field('city'),
+	        nga.field('state'),
+	        nga.field('User.company').label('Company')
 	    ]).listActions(['edit', 'delete'])
 	    .filters([
 	    	nga.field('q', 'template')
@@ -189,9 +193,9 @@
 	    admin.addEntity(job);
 
 	    /* Agent */
-	    var agent = nga.entity('agents').identifier(nga.field('AgentID'));
+	    var agent = nga.entity('agent').identifier(nga.field('_id'));
 	    agent.listView().fields([
-	        nga.field('AgentName'),
+	        nga.field('name'),
 	        nga.field('city'),
 	        nga.field('state'),
 	        nga.field('type'),
@@ -202,7 +206,7 @@
                 .label('')
                 .pinned(true)
                 .template('<div class="input-group"><input type="text" ng-model="value" placeholder="Search" class="form-control"></input><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span></div>'),
-            nga.field('Type').label('Type'),
+            nga.field('type').label('Type'),
             nga.field('username', 'string').label('Username'),	
             nga.field('email', 'string').label('email'),
             nga.field('city', 'string').label('City'),
@@ -212,22 +216,25 @@
 	    agent.creationView()
 	        .title('Create new Agent')
 	        .fields([
-	            nga.field('AgentName')
+	            nga.field('name')
 	            	.validation({ required: true })
 	            	.cssClasses('col-sm-8'),
-	            nga.field('Type', 'choice')
+	            nga.field('type', 'choice')
 	            	.choices([ { value: 'job', label: 'Job' }, { value: 'staff', label: 'Staff' } ])
 	        		.validation( {required: true } )
 	        		.cssClasses('col-sm-4'),
+	        	nga.field('User', 'reference')
+        			.targetEntity(user) 
+        			.targetField(nga.field('firstname')),
 	        	// No Required Fields.
-	        	nga.field('CityID').validation({ required: false }).cssClasses('col-sm-4'),
-	        	nga.field('CountyID').validation({ required: false }).cssClasses('col-sm-4'),
+	        	nga.field('city').validation({ required: false }).cssClasses('col-sm-4'),
+	        	nga.field('country').validation({ required: false }).cssClasses('col-sm-4'),
 	        	nga.field('ExpirationDate').validation({ required: false }).cssClasses('col-sm-4'),
-	        	nga.field('SalaryID').validation({ required: false }).cssClasses('col-sm-4'),
-	        	nga.field('SkillID').validation({ required: false }).cssClasses('col-sm-4'),
-	        	nga.field('WorkTypeID').validation({ required: false }).cssClasses('col-sm-4'),
-	        	nga.field('StateID').validation({ required: false }).cssClasses('col-sm-4'),
-	        	nga.field('ShiftID').validation({ required: false }).cssClasses('col-sm-4')
+	        	nga.field('salary').validation({ required: false }).cssClasses('col-sm-4'),
+	        	nga.field('skill').validation({ required: false }).cssClasses('col-sm-4'),
+	        	nga.field('worktype').validation({ required: false }).cssClasses('col-sm-4'),
+	        	nga.field('state').validation({ required: false }).cssClasses('col-sm-4'),
+	        	nga.field('shift').validation({ required: false }).cssClasses('col-sm-4')
 	        ]);
 
 	    agent.editionView().fields(agent.creationView().fields());
@@ -235,7 +242,10 @@
 	    admin.addEntity(agent);
 
 	    /* HomeOffice */
-	    var homeoffice = nga.entity('homeoffice').identifier(nga.field('id'));
+	    var homeoffice = nga.entity('homeoffice').identifier(nga.field('_id'));
+
+	    homeoffice.label('Home Offices');
+	    
 	    homeoffice.listView().fields([
 	        nga.field('name'),
 	        nga.field('city'),
@@ -256,18 +266,54 @@
 	   	homeoffice.creationView()
 	        .title('Create new Home Office')
 	        .fields([
-	            nga.field('name').validation({required: true }).cssClasses('col-sm-4'),
-	            nga.field('type').validation({required: true }).cssClasses('col-sm-4'),
+	            nga.field('name').validation({required: true }).cssClasses('col-sm-8'),
+	            nga.field('city').validation({required: true }).cssClasses('col-sm-4'),
+	            nga.field('state').validation({required: true }).cssClasses('col-sm-4'),
+	            nga.field('zip').validation({required: true }).cssClasses('col-sm-4'),
+	            nga.field('emailAddress1').validation({required: false }).cssClasses('col-sm-4'),
+	            nga.field('emailAddress2').validation({required: false }).cssClasses('col-sm-4'),
+	            nga.field('phone').validation({required: false }).cssClasses('col-sm-4'),
 	        ]);
 
 	    homeoffice.editionView().fields(homeoffice.creationView().fields());
 
 	    admin.addEntity(homeoffice);
 
+	    /* Order */
+	    var order = nga.entity('order').identifier(nga.field('_id'));
+	    order.listView().fields([
+	        nga.field('name'),
+	        nga.field('type'),
+	        nga.field('User.company')
+	    ]).listActions(['edit', 'delete'])
+	    .filters([
+	    	nga.field('q', 'template')
+                .label('')
+                .pinned(true)
+                .template('<div class="input-group"><input type="text" ng-model="value" placeholder="Search" class="form-control"></input><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span></div>')
+        ]);
+
+	   	order.creationView()
+	        .title('Create new Order')
+	        .fields([
+	            nga.field('name').validation({required: true }).cssClasses('col-sm-4'),
+	            nga.field('type').validation({required: true }).cssClasses('col-sm-4'),
+	            nga.field('User', 'reference')
+        			.targetEntity(user) 
+        			.targetField(nga.field('firstname'))
+	        ]);
+
+	    order.editionView().fields(order.creationView().fields());
+
+	    admin.addEntity(order);
+	    
 	    /* Application */
 	    var application = nga.entity('application').identifier(nga.field('_id'));
 	    application.listView().fields([
-	        nga.field('name')
+	        nga.field('title'),
+	        nga.field('User.username').label('Owner'),
+	        nga.field('Order.name').label('Job Order'),
+	        nga.field('status').label('Status')
 	    ]).listActions(['edit', 'delete'])
 	    .filters([
 	    	nga.field('q', 'template')
@@ -284,8 +330,14 @@
 	   	application.creationView()
 	        .title('Create new Job Application')
 	        .fields([
-	            nga.field('name').validation({required: true }).cssClasses('col-sm-4'),
-	            nga.field('type').validation({required: true }).cssClasses('col-sm-4'),
+	            nga.field('title').validation({required: true }).cssClasses('col-sm-4'),
+	            nga.field('User', 'reference')
+        			.targetEntity(user) 
+        			.targetField(nga.field('firstname')),
+        		nga.field('Order', 'reference')
+        			.targetEntity(order) 
+        			.targetField(nga.field('name')),
+        		 nga.field('description').validation({ required: false }).cssClasses('col-sm-8'),
 	        ]);
 
 	    application.editionView().fields(application.creationView().fields());
@@ -308,35 +360,14 @@
 	        .title('Create new Resume')
 	        .fields([
 	            nga.field('name').validation({required: true }).cssClasses('col-sm-4'),
-	            nga.field('type').validation({required: true }).cssClasses('col-sm-4'),
+	            nga.field('User', 'reference')
+        			.targetEntity(user) 
+        			.targetField(nga.field('firstname')),
 	        ]);
 
 	    resume.editionView().fields(resume.creationView().fields());
 
 	    admin.addEntity(resume);
-
-	    /* Order */
-	    var order = nga.entity('order').identifier(nga.field('_id'));
-	    order.listView().fields([
-	        nga.field('name')
-	    ]).listActions(['edit', 'delete'])
-	    .filters([
-	    	nga.field('q', 'template')
-                .label('')
-                .pinned(true)
-                .template('<div class="input-group"><input type="text" ng-model="value" placeholder="Search" class="form-control"></input><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span></div>')
-        ]);
-
-	   	order.creationView()
-	        .title('Create new Order')
-	        .fields([
-	            nga.field('name').validation({required: true }).cssClasses('col-sm-4'),
-	            nga.field('type').validation({required: true }).cssClasses('col-sm-4'),
-	        ]);
-
-	    order.editionView().fields(order.creationView().fields());
-
-	    admin.addEntity(order);
 
 	    /* Dashboard */
 	    admin.dashboard(nga.dashboard()
