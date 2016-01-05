@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Semper Administrator</title>
+    <link rel="stylesheet" href="node_modules/ng-admin/build/ng-admin.min.css">
+  </head>
+  <body ng-app="myApp">
+
+    <div ui-view></div>
+
+    <script src="node_modules/ng-admin/build/ng-admin.min.js"></script>
+
+    <script type="text/javascript">
+    var myApp = angular.module('myApp', ['ng-admin']);
+    myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', function(NgAdminConfigurationProvider, RestangularProvider) {
+        var nga = NgAdminConfigurationProvider;
+
+        RestangularProvider.setDefaultHeaders({'x-access-token': 'test' });
+        RestangularProvider.setRestangularFields({ id: '_id' });
+
+        RestangularProvider.setResponseInterceptor(function(response, operation, route, url) {
+    	  var data;
+    	  if (operation === 'getList') {
+    	    data = response.data ? response.data : response;
+    	  } else {
+    	    data = response;
+    	  }
+    	  return data;
+    	});
+
+        // create an admin application
+        var admin = nga.application('Semper LLC Administrator')
+        	.baseApiUrl('http://api.thebasicsapp.com/'); 
+
+	    // create a user entity
+	    // the API endpoint for this entity will be 'http://jsonplaceholder.typicode.com/users/:id
+	    var user = nga.entity('user').identifier(nga.field('_id'));
+	    // set the fields of the user entity list view
+	    user.listView().fields([
+	        nga.field('name'),
+	        nga.field('username'),
+	        nga.field('email'),
+	        nga.field('type'),
+	        nga.field('phone_number')
+	    ]);
+	    admin.addEntity(user);
+
+	    var product = nga.entity('product').identifier(nga.field('_id'));
+	    // set the fields of the user entity list view
+	    product.listView().fields([
+	    	nga.field('photoUrl')
+	    		.template('<img src="{{ entry.values.photoUrl }}" class="img thumbnail" />'),
+	        nga.field('name'),
+	        nga.field('category')
+	    ]);
+	    admin.addEntity(product);
+
+	    var userproduct = nga.entity('userproduct').identifier(nga.field('_id'));
+	    // set the fields of the user entity list view
+	    userproduct.listView().fields([
+	        nga.field('name')
+	    ]);
+
+	    admin.addEntity(userproduct);
+
+	    var tender = nga.entity('tender').identifier(nga.field('_id'));
+	   	tender.listView().fields([
+	        nga.field('last4'),
+	        nga.field('brand'),
+	        nga.field('User.name')
+	    ]);
+
+	    admin.addEntity(tender);
+
+	   	var order = nga.entity('order').identifier(nga.field('_id'));
+	    // set the fields of the user entity list view
+	    order.listView().fields([
+	        nga.field('createdAt')
+	    ]);
+
+	    admin.addEntity(order);
+
+        // more configuration here later
+        // ...
+        // attach the admin application to the DOM and run it
+        nga.configure(admin);
+    }]);
+    </script>
+
+  </body>
+</html>
