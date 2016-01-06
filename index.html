@@ -59,14 +59,13 @@
     	  return data;
     	});
 
-        // create an admin application
-        var admin = nga.application('Semper LLC Administrator')
-        	.baseApiUrl('http://semperllc.herokuapp.com/'); 
-        	// .baseApiUrl('http://localhost:7001/');
+        var apiUrl = (window.location.origin.indexOf('localhost') == -1) ? 'http://semperllc.herokuapp.com/' : 'http://localhost:7001/';
 
-	    var user = nga.entity('user').identifier(nga.field('_id'));
+        /* create an admin application. */
+        var admin = nga.application('Semper LLC Administrator').baseApiUrl(apiUrl); var user = nga.entity('user').identifier(nga.field('_id'));
 
 	    user.listView()
+	    .title('Users')
 	    .fields([
 	        nga.field('firstname'),
 	        nga.field('username'),
@@ -113,6 +112,7 @@
 	    var lookup = nga.entity('lookup').identifier(nga.field('_id'));
 
 	    lookup.listView()
+	    .title('Lookup Options')
 	    .fields([
 	        nga.field('value'),
 	        nga.field('label'),
@@ -161,7 +161,9 @@
 	    var job = nga.entity('job').identifier(nga.field('_id'));
 	    job.label('Jobs');
 
-	    job.listView().fields([
+	    job.listView()
+	    .title('Jobs')
+	    .fields([
 	        nga.field('name'),
 	        nga.field('city'),
 	        nga.field('state'),
@@ -194,7 +196,9 @@
 
 	    /* Agent */
 	    var agent = nga.entity('agent').identifier(nga.field('_id'));
-	    agent.listView().fields([
+	    agent.listView()
+	    .title('Staff & Job Agents')
+	    .fields([
 	        nga.field('name'),
 	        nga.field('city'),
 	        nga.field('state'),
@@ -246,7 +250,9 @@
 
 	    homeoffice.label('Home Offices');
 	    
-	    homeoffice.listView().fields([
+	    homeoffice.listView()
+	    .title('Home Offices')
+	    .fields([
 	        nga.field('name'),
 	        nga.field('city'),
 	        nga.field('state')
@@ -281,7 +287,9 @@
 
 	    /* Order */
 	    var order = nga.entity('order').identifier(nga.field('_id'));
-	    order.listView().fields([
+	    order.listView()
+	    .title('Orders')
+	    .fields([
 	        nga.field('name'),
 	        nga.field('type'),
 	        nga.field('User.company')
@@ -309,7 +317,9 @@
 	    
 	    /* Application */
 	    var application = nga.entity('application').identifier(nga.field('_id'));
-	    application.listView().fields([
+	    application.listView()
+	    .title('Job Applications')
+	    .fields([
 	        nga.field('title'),
 	        nga.field('User.username').label('Owner'),
 	        nga.field('Order.name').label('Job Order'),
@@ -346,7 +356,9 @@
 
 	    /* Resumes */
 	    var resume = nga.entity('resume').identifier(nga.field('_id'));
-	    resume.listView().fields([
+	    resume.listView()
+	    .title('Resumes')
+	    .fields([
 	        nga.field('name')
 	    ]).listActions(['edit', 'delete'])
 	    .filters([
