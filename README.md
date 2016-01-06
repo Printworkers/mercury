@@ -1,4 +1,6 @@
 #### Semper LLC Administrator UI
+This is a simple page CRUD Admin UI for the semper LLC API. Its still in development. Security
+has been turned off until its ready for real data and production.
 
     http://semper-admin.herokuapp.com
 
