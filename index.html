@@ -354,19 +354,16 @@
 
 	    admin.addEntity(application);
 
+	    /* -------------------------------------------------------- */
 	    /* Resumes */
+
 	    var resume = nga.entity('resume').identifier(nga.field('_id'));
 	    resume.listView()
 	    .title('Resumes')
 	    .fields([
-	        nga.field('name')
-	    ]).listActions(['edit', 'delete'])
-	    .filters([
-	    	nga.field('q', 'template')
-                .label('')
-                .pinned(true)
-                .template('<div class="input-group"><input type="text" ng-model="value" placeholder="Search" class="form-control"></input><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span></div>')
-        ]);
+	    	nga.field('name').label('Name'),
+	        nga.field('User.username').label('Owner')
+	    ]).listActions(['edit', 'delete']);
 
 	   	resume.creationView()
 	        .title('Create new Resume')
@@ -374,7 +371,7 @@
 	            nga.field('name').validation({required: true }).cssClasses('col-sm-4'),
 	            nga.field('User', 'reference')
         			.targetEntity(user) 
-        			.targetField(nga.field('firstname')),
+        			.targetField(nga.field('firstname'))
 	        ]);
 
 	    resume.editionView().fields(resume.creationView().fields());
