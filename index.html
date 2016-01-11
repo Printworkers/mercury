@@ -361,17 +361,20 @@
 	    resume.listView()
 	    .title('Resumes')
 	    .fields([
-	    	nga.field('name').label('Name'),
-	        nga.field('User.username').label('Owner')
+	        nga.field('User.username').label('Owner'),
+	        nga.field('createdAt').label('Created'),
+	        nga.field('publish').label('Published')
 	    ]).listActions(['edit', 'delete']);
 
 	   	resume.creationView()
 	        .title('Create new Resume')
 	        .fields([
-	            nga.field('name').validation({required: true }).cssClasses('col-sm-4'),
 	            nga.field('User', 'reference')
         			.targetEntity(user) 
-        			.targetField(nga.field('firstname'))
+        			.targetField(nga.field('firstname')),
+        		nga.field('career_obj', 'wysiwyg').validation({ required: false }),
+        		nga.field('special_skills', 'wysiwyg').validation({ required: false }),
+        		nga.field('textResume', 'wysiwyg').validation({ required: false })
 	        ]);
 
 	    resume.editionView().fields(resume.creationView().fields());
