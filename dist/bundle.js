@@ -46,7 +46,9 @@ var myApp = angular.module('myApp', ['ng-admin']);
     	  return data;
     	});
 
-        var apiUrl = (window.location.origin.indexOf('localhost') == -1) ? 'http://semperllc.herokuapp.com/' : 'http://localhost:7001/';
+        // var apiUrl = (window.location.origin.indexOf('localhost') == -1) ? 'http://semperllc.herokuapp.com/' : 'http://localhost:7001/';
+
+        var apiUrl = 'http://semperllc.herokuapp.com/'
 
         /* create an admin application. */
         var admin = nga.application('Semper LLC Administrator').baseApiUrl(apiUrl); 
