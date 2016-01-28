@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ng-admin', 'angularBasicAuth']);
+var myApp = angular.module('myApp', ['ng-admin']);
 
 myApp.directive('header', function() {
     return {
@@ -16,6 +16,43 @@ myApp.directive('dashboard', function() {
 myApp.controller('username', ['$scope', '$window', function($scope, $window) { // used in header.html
     $scope.username =  $window.localStorage.getItem('posters_galore_login');
 }]);
+
+var loginControllerTemplate =
+        '<div class="row"><div class="col-lg-12">' +
+            '<ma-view-actions><ma-back-button></ma-back-button></ma-view-actions>' +
+            '<div class="page-header">' +
+                '<h1>Login</h1>' +
+                '<p class="lead"></p>' +
+            '</div>' +
+        '</div></div>' +
+        '<div class="row">' +
+            '<div class="col-lg-5"><input type="text" size="10" ng-model="controller.email" class="form-control" placeholder="name@example.com"/></div>' +
+            '<div class="col-lg-5"><input type="password" size="10" ng-model="controller.password" class="form-control" /></div>' +
+            '<div class="col-lg-5"><a class="btn btn-default" ng-click="controller.login()">Send</a></div>' +
+        '</div>';
+
+myApp.config(['$stateProvider', function ($stateProvider) {
+    $stateProvider.state('send-post', {
+        url: '/login',
+        controller: loginController,
+        controllerAs: 'controller',
+        template: loginControllerTemplate
+    });
+}]);
+
+function loginController($http, notification) {
+    // notification is the service used to display notifications on the top of the screen
+    this.notification = notification;
+};
+loginController.inject = ['$http', 'notification'];
+loginController.prototype.login = function() {
+	$http.post('http://semperllc.herokuapp.com/user/authenticate', {
+		username:
+	})
+    this.notification.log('Email successfully sent to ' + this.email);
+};
+
+
 
 myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', function(NgAdminConfigurationProvider, RestangularProvider) {
     var nga = NgAdminConfigurationProvider;
