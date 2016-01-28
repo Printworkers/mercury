@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="page-header">
-            <h1>Dashboard</h1>
+            <h3>Dashboard</h3>
         </div>
     </div>
 </div>
@@ -16,25 +16,220 @@
 
 <div class="row">
     <div class="col-lg-3">
-        <div class="panel panel-primary">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-3">
-                        <i class="fa fa-usd fa-5x"></i>
+
+                        <i class="fa fa-users fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">300</div>
-                        <div>Total Jobs</div>
+                        <div class="huge">120</div>
+                        <div>Total Active Job Seekers</div>
                     </div>
                 </div>
             </div>
-            <a ui-sref="list({entity:'jobs'})">
+            <a ui-sref="list({entity:'applications',search:{ has_ordered:true }})">
                 <div class="panel-footer">
                     <span class="pull-left">View Details</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                     <div class="clearfix"></div>
                 </div>
             </a>
+
+			<table class="table table-striped table-hover table-border">
+				<tr>
+					<td width="80%">Today</td>
+					<td width="20%">10</td>
+				</tr>
+				<tr>
+					<td>This Week</td>
+					<td>10</td>
+				</tr>
+			    <tr>
+					<td>This Month</td>
+					<td>10</td>
+				</tr>
+				<tr>
+					<td>This Year</td>
+					<td>10</td>
+				</tr>
+	    	</table>
+
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+
+                        <i class="fa fa-building-o fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">120</div>
+                        <div>Total Active Employers</div>
+                    </div>
+                </div>
+            </div>
+            <a ui-sref="list({entity:'applications',search:{ has_ordered:true }})">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+
+			<table class="table table-striped table-hover table-border">
+				<tr>
+					<td width="80%">Today</td>
+					<td width="20%">10</td>
+				</tr>
+				<tr>
+					<td>This Week</td>
+					<td>10</td>
+				</tr>
+			    <tr>
+					<td>This Month</td>
+					<td>10</td>
+				</tr>
+				<tr>
+					<td>This Year</td>
+					<td>10</td>
+				</tr>
+	    	</table>
+
+        </div>
+    </div>
+    <div class="col-lg-3">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+
+                        <i class="fa fa-heartbeat fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">120</div>
+                        <div>Total On Site</div>
+                    </div>
+                </div>
+            </div>
+            <a ui-sref="list({entity:'applications',search:{ has_ordered:true }})">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+
+			<table class="table table-striped table-hover table-border">
+				<tr>
+					<td width="80%">Today</td>
+					<td width="20%">10</td>
+				</tr>
+				<tr>
+					<td>This Week</td>
+					<td>10</td>
+				</tr>
+			    <tr>
+					<td>This Month</td>
+					<td>10</td>
+				</tr>
+				<tr>
+					<td>This Year</td>
+					<td>10</td>
+				</tr>
+	    	</table>
+
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+
+                        <i class="fa fa-shopping-basket fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">400</div>
+                        <div>Total Active Orders</div>
+                    </div>
+                </div>
+            </div>
+            <a ui-sref="list({entity:'applications',search:{ has_ordered:true }})">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+
+			<table class="table table-striped table-hover table-border">
+				<tr>
+					<td width="80%">Today</td>
+					<td width="20%">10</td>
+				</tr>
+				<tr>
+					<td>This Week</td>
+					<td>10</td>
+				</tr>
+			    <tr>
+					<td>This Month</td>
+					<td>10</td>
+				</tr>
+				<tr>
+					<td>This Year</td>
+					<td>10</td>
+				</tr>
+	    	</table>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-user-plus fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">10</div>
+                        <div>Total Active Applications</div>
+                    </div>
+                </div>
+            </div>
+            <a ui-sref="list({entity:'applications'})">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+
+            <table class="table table-striped table-hover table-border">
+				<tr>
+					<td width="80%">Today</td>
+					<td width="20%">10</td>
+				</tr>
+				<tr>
+					<td>This Week</td>
+					<td>10</td>
+				</tr>
+			    <tr>
+					<td>This Month</td>
+					<td>10</td>
+				</tr>
+				<tr>
+					<td>This Year</td>
+					<td>10</td>
+				</tr>
+	    	</table>
 
         </div>
     </div>
@@ -43,21 +238,40 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-3">
-                        <i class="fa fa-shopping-cart fa-5x"></i>
+                        <i class="fa fa-comments fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">230</div>
-                        <div>Total Job Orders</div>
+                        <div class="huge">30</div>
+                        <div>Total Job Agents</div>
                     </div>
                 </div>
             </div>
-            <a ui-sref="list({entity:'order',search:{}})">
+            <a ui-sref="list({entity:'applications',search:{}})">
                 <div class="panel-footer">
                     <span class="pull-left">View Details</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                     <div class="clearfix"></div>
                 </div>
             </a>
+
+            <table class="table table-striped table-hover table-border">
+				<tr>
+					<td width="80%">Today</td>
+					<td width="20%">10</td>
+				</tr>
+				<tr>
+					<td>This Week</td>
+					<td>10</td>
+				</tr>
+			    <tr>
+					<td>This Month</td>
+					<td>10</td>
+				</tr>
+				<tr>
+					<td>This Year</td>
+					<td>10</td>
+				</tr>
+	    	</table>
         </div>
     </div>
     <div class="col-lg-3">
@@ -69,17 +283,118 @@
                     </div>
                     <div class="col-xs-9 text-right">
                         <div class="huge">343</div>
-                        <div>Total New Users</div>
+                        <div>Total Staff Agents</div>
                     </div>
                 </div>
             </div>
-            <a ui-sref="list({entity:'users', search: { }})">
+            <a ui-sref="list({entity:'applications', search: { }})">
                 <div class="panel-footer">
                     <span class="pull-left">View Details</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                     <div class="clearfix"></div>
                 </div>
             </a>
+
+			<table class="table table-striped table-hover table-border">
+				<tr>
+					<td width="80%">Today</td>
+					<td width="20%">10</td>
+				</tr>
+				<tr>
+					<td>This Week</td>
+					<td>10</td>
+				</tr>
+			    <tr>
+					<td>This Month</td>
+					<td>10</td>
+				</tr>
+				<tr>
+					<td>This Year</td>
+					<td>10</td>
+				</tr>
+			</table>
+
+        </div>
+    </div>
+    <div class="col-lg-3">
+
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+
+                        <i class="fa fa-certificate fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">120</div>
+                        <div>Total Resumes</div>
+                    </div>
+                </div>
+            </div>
+            <a ui-sref="list({entity:'applications',search:{ has_ordered:true }})">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+
+			<table class="table table-striped table-hover table-border">
+				<tr>
+					<td width="80%">Today</td>
+					<td width="20%">10</td>
+				</tr>
+				<tr>
+					<td>This Week</td>
+					<td>10</td>
+				</tr>
+			    <tr>
+					<td>This Month</td>
+					<td>10</td>
+				</tr>
+				<tr>
+					<td>This Year</td>
+					<td>10</td>
+				</tr>
+	    	</table>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-3">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-user-plus fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">10</div>
+                        <div>Total Active Remote Apps</div>
+                    </div>
+                </div>
+            </div>
+            <a ui-sref="list({entity:'applications'})">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+
+            <table class="table table-striped table-hover table-border">
+				<tr>
+					<td width="80%">In Progress</td>
+					<td width="20%">10</td>
+				</tr>
+				<tr>
+					<td>Pending Document</td>
+					<td>10</td>
+				</tr>
+	    	</table>
+
         </div>
     </div>
     <div class="col-lg-3">
@@ -87,22 +402,36 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-3">
-
-                        <i class="fa fa-user-plus fa-5x"></i>
+                        <i class="fa fa-send fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">120</div>
-                        <div>New Resumes</div>
+                        <div class="huge">30</div>
+                        <div>Total Time Cards</div>
                     </div>
                 </div>
             </div>
-            <a ui-sref="list({entity:'resume',search:{ has_ordered:true }})">
+            <a ui-sref="list({entity:'applications',search:{}})">
                 <div class="panel-footer">
                     <span class="pull-left">View Details</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                     <div class="clearfix"></div>
                 </div>
             </a>
+
+            <table class="table table-striped table-hover table-border">
+				<tr>
+					<td width="80%">Active Jobs</td>
+					<td width="20%">10</td>
+				</tr>
+			    <tr>
+					<td>Pending Employer Review</td>
+					<td>10</td>
+				</tr>
+				<tr>
+					<td>Rejected</td>
+					<td>10</td>
+				</tr>
+	    	</table>
         </div>
     </div>
 </div>

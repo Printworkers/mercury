@@ -47,7 +47,9 @@ function loginController($http, notification) {
 };
 loginController.inject = ['$http', 'notification'];
 loginController.prototype.login = function() {
-	$http.post('http://semperllc.herokuapp.com/')
+	// $http.post('http://semperllc.herokuapp.com/user/authenticate', {
+
+	// })
     this.notification.log('Email successfully sent to ' + this.email);
 };
 
