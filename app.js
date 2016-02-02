@@ -1,6 +1,9 @@
+var _ = require('lodash')
 var myApp = angular.module('myApp', ['ng-admin']);
 
 var apiUrl = 'http://semperllc.herokuapp.com/'
+
+var updateHeader;
 
 myApp.directive('header', function() {
     return {
@@ -55,12 +58,14 @@ myApp.config(['$stateProvider', function ($stateProvider) {
 function loginController($http, notification) {
     // notification is the service used to display notifications on the top of the screen
     this.notification = notification;
+    this.$http = $http;
 };
 loginController.inject = ['$http', 'notification'];
 loginController.prototype.login = function() {
 	// $http.post('http://semperllc.herokuapp.com/user/authenticate', {
 
 	// })
+	updateHeader()
     this.notification.log('Email successfully sent to ' + this.email);
 };
 
@@ -69,7 +74,11 @@ loginController.prototype.login = function() {
 myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', function(NgAdminConfigurationProvider, RestangularProvider) {
     var nga = NgAdminConfigurationProvider;
 
-    RestangularProvider.setDefaultHeaders({'x-access-token': 'test' });
+    updateHeader = function() {
+      console.log('here')
+      RestangularProvider.setDefaultHeaders({'x-access-token': 'test' }); 	
+    }
+
     RestangularProvider.setRestangularFields({ id: 'id' });
 	RestangularProvider.addFullRequestInterceptor(function(element, operation, what, url, headers, params, httpConfig) {
 
@@ -82,6 +91,22 @@ myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', function(Ng
             }
         }
         return { params: params };
+    });
+
+     RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
+      var extractedData = {};
+      // .. to look for getList operations
+      if (operation === "getList") {
+      	_.defaults(extractedData, data)
+        // .. and handle the data and meta data
+        extractedData = data.data.docs;
+      }
+      else {
+      	extractedData = data;
+      }
+
+
+      return extractedData;
     });
 
 
