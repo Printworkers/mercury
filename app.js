@@ -1,5 +1,7 @@
 var myApp = angular.module('myApp', ['ng-admin']);
 
+var apiUrl = 'http://semperllc.herokuapp.com/'
+
 myApp.directive('header', function() {
     return {
         templateUrl: 'header.html'
@@ -14,8 +16,18 @@ myApp.directive('dashboard', function() {
 
 // custom controllers
 myApp.controller('username', ['$scope', '$window', function($scope, $window) { // used in header.html
-    $scope.username =  $window.localStorage.getItem('posters_galore_login');
+    $scope.username =  'test';
 }]);
+
+myApp.controller('totalActiveApps', ['$scope', '$window', '$http', function($scope, $window, $http) { // used in header.html
+    $http.get(apiUrl + 'application', {headers: {'x-access-token': 'test' }}).then(function (response) {
+    	$scope.today = response.data.total
+    })
+}]);
+
+// myApp.controller('dashboard', ['scope', '$http', function($scope, $html){
+// 	$scope.appCount = 123
+// }]);
 
 var loginControllerTemplate =
         '<div class="row"><div class="col-lg-12">' +
@@ -72,19 +84,10 @@ myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', function(Ng
         return { params: params };
     });
 
-    RestangularProvider.setResponseInterceptor(function(response, operation, route, url) {
-	  var data;
-	  if (operation === 'getList') {
-	    data = response.data.docs ? response.data.docs : response;
-	  } else {
-	    data = response;
-	  }
-	  return data;
-	});
 
     // var apiUrl = (window.location.origin.indexOf('localhost') == -1) ? 'http://semperllc.herokuapp.com/' : 'http://localhost:7001/';
 
-    var apiUrl = 'http://semperllc.herokuapp.com/'
+    
 
     /* create an admin application. */
     var admin = nga.application('Semper LLC Administrator').baseApiUrl(apiUrl); 
@@ -92,6 +95,7 @@ myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', function(Ng
     var agent = require('./entities/agent')(nga, user)
     var lookup = require('./entities/lookup')(nga)
     var job = require('./entities/job')(nga)
+    var template = require('./entities/template')(nga)
     var homeoffice = require('./entities/homeoffice')(nga)
     var order = require('./entities/order')(nga, user)
     var application = require('./entities/application')(nga, user, order)
@@ -100,6 +104,7 @@ myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', function(Ng
     admin.addEntity(user);
     admin.addEntity(lookup);
     admin.addEntity(job);
+    admin.addEntity(template);
     admin.addEntity(agent);
     admin.addEntity(homeoffice);
     admin.addEntity(order);

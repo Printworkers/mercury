@@ -190,8 +190,8 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-lg-3">
+<div class="row" ng-controller="totalActiveApps">
+    <div class="col-lg-3" >
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <div class="row">
@@ -215,7 +215,7 @@
             <table class="table table-striped table-hover table-border">
 				<tr>
 					<td width="80%">Today</td>
-					<td width="20%">10</td>
+					<td width="20%">{{ today }}</td>
 				</tr>
 				<tr>
 					<td>This Week</td>

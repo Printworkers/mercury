@@ -1,6 +1,8 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var myApp = angular.module('myApp', ['ng-admin']);
 
+var apiUrl = 'http://semperllc.herokuapp.com/'
+
 myApp.directive('header', function() {
     return {
         templateUrl: 'header.html'
@@ -15,8 +17,18 @@ myApp.directive('dashboard', function() {
 
 // custom controllers
 myApp.controller('username', ['$scope', '$window', function($scope, $window) { // used in header.html
-    $scope.username =  $window.localStorage.getItem('posters_galore_login');
+    $scope.username =  'test';
 }]);
+
+myApp.controller('totalActiveApps', ['$scope', '$window', '$http', function($scope, $window, $http) { // used in header.html
+    $http.get(apiUrl + 'application', {headers: {'x-access-token': 'test' }}).then(function (response) {
+    	$scope.today = response.data.total
+    })
+}]);
+
+// myApp.controller('dashboard', ['scope', '$http', function($scope, $html){
+// 	$scope.appCount = 123
+// }]);
 
 var loginControllerTemplate =
         '<div class="row"><div class="col-lg-12">' +
@@ -73,19 +85,10 @@ myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', function(Ng
         return { params: params };
     });
 
-    RestangularProvider.setResponseInterceptor(function(response, operation, route, url) {
-	  var data;
-	  if (operation === 'getList') {
-	    data = response.data.docs ? response.data.docs : response;
-	  } else {
-	    data = response;
-	  }
-	  return data;
-	});
 
     // var apiUrl = (window.location.origin.indexOf('localhost') == -1) ? 'http://semperllc.herokuapp.com/' : 'http://localhost:7001/';
 
-    var apiUrl = 'http://semperllc.herokuapp.com/'
+    
 
     /* create an admin application. */
     var admin = nga.application('Semper LLC Administrator').baseApiUrl(apiUrl); 
@@ -93,6 +96,7 @@ myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', function(Ng
     var agent = require('./entities/agent')(nga, user)
     var lookup = require('./entities/lookup')(nga)
     var job = require('./entities/job')(nga)
+    var template = require('./entities/template')(nga)
     var homeoffice = require('./entities/homeoffice')(nga)
     var order = require('./entities/order')(nga, user)
     var application = require('./entities/application')(nga, user, order)
@@ -101,6 +105,7 @@ myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', function(Ng
     admin.addEntity(user);
     admin.addEntity(lookup);
     admin.addEntity(job);
+    admin.addEntity(template);
     admin.addEntity(agent);
     admin.addEntity(homeoffice);
     admin.addEntity(order);
@@ -139,7 +144,7 @@ myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', function(Ng
 
     nga.configure(admin);
 }]);
-},{"./entities/agent":2,"./entities/application":3,"./entities/homeoffice":4,"./entities/job":5,"./entities/lookup":6,"./entities/order":7,"./entities/resume":8,"./entities/user":9}],2:[function(require,module,exports){
+},{"./entities/agent":2,"./entities/application":3,"./entities/homeoffice":4,"./entities/job":5,"./entities/lookup":6,"./entities/order":7,"./entities/resume":8,"./entities/template":9,"./entities/user":10}],2:[function(require,module,exports){
 module.exports = function (nga, user) {
         /* Agent */
     var agent = nga.entity('agent').identifier(nga.field('_id'));
@@ -431,6 +436,42 @@ module.exports = function (nga, user) {
 };
 
 },{}],9:[function(require,module,exports){
+module.exports = function (nga) {
+	/* emailTemplate */
+    var template = nga.entity('Template').identifier(nga.field('_id'));
+    template.label('Templates');
+
+    template.listView()
+    .title('Templates')
+    .fields([
+        nga.field('name'),
+        nga.field('html'),
+        nga.field('text'),
+        nga.field('type'),
+        nga.field('createdAt'),
+        nga.field('updatedAt'),
+    ]).listActions(['edit', 'delete'])
+    .filters([
+    	nga.field('q', 'template')
+            .label('')
+            .pinned(true)
+            .template('<div class="input-group"><input type="text" ng-model="value" placeholder="Search" class="form-control"></input><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span></div>'),
+        nga.field('name').label('Type'),
+    ]);
+
+    template.creationView()
+        .title('Create new Email Template')
+        .fields([
+            nga.field('name').validation({required: true }).cssClasses('col-sm-8'),
+            nga.field('html', 'wysiwyg').validation({required: true }),
+            nga.field('type').validation({ required: true }).cssClasses('col-sm-4')
+        ]);
+
+    template.editionView().fields(template.creationView().fields());
+
+    return template;
+};
+},{}],10:[function(require,module,exports){
 module.exports = function (nga) {
 	var user = nga.entity('user').identifier(nga.field('_id'));
 
