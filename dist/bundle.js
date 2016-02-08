@@ -2,7 +2,7 @@
 var _ = require('lodash')
 var myApp = angular.module('myApp', ['ng-admin']);
 
-var apiUrl = 'http://semperllc.herokuapp.com/'
+var apiUrl = (window.location.origin.indexOf('localhost') == -1) ? 'http://semperllc.herokuapp.com/' : 'http://localhost:7001/';
 
 var updateHeader;
 
@@ -23,9 +23,10 @@ myApp.controller('username', ['$scope', '$window', function($scope, $window) { /
     $scope.username =  'test';
 }]);
 
-myApp.controller('totalActiveApps', ['$scope', '$window', '$http', function($scope, $window, $http) { // used in header.html
-    $http.get(apiUrl + 'application', {headers: {'x-access-token': 'test' }}).then(function (response) {
-    	$scope.today = response.data.total
+myApp.controller('totalActiveAgents', ['$scope', '$window', '$http', function($scope, $window, $http) { // used in header.html
+    $http.get(apiUrl + 'agent', {headers: {'x-access-token': 'test' }}).then(function (response) {
+        console.log(response)
+    	$scope.today = response.data.data.length
     })
 }]);
 
@@ -56,19 +57,33 @@ myApp.config(['$stateProvider', function ($stateProvider) {
     });
 }]);
 
-function loginController($http, notification) {
+function loginController($http, notification, $location) {
     // notification is the service used to display notifications on the top of the screen
     this.notification = notification;
     this.$http = $http;
+    this.$location = $location
 };
-loginController.inject = ['$http', 'notification'];
+loginController.inject = ['$http', 'notification', '$location'];
 loginController.prototype.login = function() {
 	// $http.post('http://semperllc.herokuapp.com/user/authenticate', {
 
 	// })
 	updateHeader()
-    this.notification.log('Email successfully sent to ' + this.email);
+    this.$location.path('/dashboard');
+    this.notification.log('Successfully logged in as ' + this.email);
 };
+
+myApp.run(['Restangular', '$location', function(Restangular, $location){
+        // ==== CODE TO DO 401 NOT LOGGED IN CHECKING
+        //This code will intercept 401 unauthorized errors returned from web requests.
+        //On default any 401 will make the app think it is not logged in.
+        Restangular.setErrorInterceptor(function(response, deferred, responseHandler) {
+            if(response.status === 403){
+                $location.path('/login');
+                return false;
+            }
+        });
+    }]);
 
 
 
@@ -100,18 +115,14 @@ myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', function(Ng
       if (operation === "getList") {
       	_.defaults(extractedData, data)
         // .. and handle the data and meta data
-        extractedData = data.data.docs;
+        extractedData = data.data;
       }
       else {
       	extractedData = data;
       }
 
-
       return extractedData;
     });
-
-
-    // var apiUrl = (window.location.origin.indexOf('localhost') == -1) ? 'http://semperllc.herokuapp.com/' : 'http://localhost:7001/';
 
     
 
