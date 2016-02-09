@@ -1,4 +1,6 @@
-var myApp = angular.module('myApp', ['ng-admin', 'angularBasicAuth']);
+var myApp = angular.module('myApp', ['ng-admin', 'angularBasicAuth', 'angular-keenio' ]);
+
+// 'angularBasicAuth'
 
 myApp.directive('header', function() {
     return {
