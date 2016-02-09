@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.13.3",
+    "lodash": "~3.10.0",
     "ng-admin": "^0.9.1",
     "require": "^2.4.20"
   },
