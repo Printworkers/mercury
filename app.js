@@ -1,25 +1,14 @@
-<<<<<<< HEAD
-var myApp = angular.module('myApp', ['ng-admin', 'angularBasicAuth', 'angular-keenio' ]);
 
-// 'angularBasicAuth'
-=======
 var _ = require('lodash')
-var myApp = angular.module('myApp', ['ng-admin']);
+var myApp = angular.module('myApp', ['ng-admin', 'angular-keenio']);
 
 var apiUrl = (window.location.origin.indexOf('localhost') == -1) ? 'http://semperllc.herokuapp.com/' : 'http://localhost:7001/';
 
 var updateHeader;
->>>>>>> d91fcef8df756aa95e678fed319cbac71b0b143f
 
 myApp.directive('header', function() {
     return {
         templateUrl: 'header.html'
-    };
-});
-
-myApp.directive('dashboard', function() {
-    return {
-        templateUrl: 'dashboard.html'
     };
 });
 
@@ -62,6 +51,21 @@ myApp.config(['$stateProvider', function ($stateProvider) {
     });
 }]);
 
+myApp.config(['tbkKeenConfigProvider', function(tbkKeenConfigProvider) {
+  var config = {
+    projectId: "56ba2de259949a03c0080726",
+    readKey: "0e0c7398282ccd8ff1f24e9822e038a2180560c2867890cd099ee10517c5279be8febb3c2de2700ea904b44281bc72b1c92e2a3b305c4d58c088d43f7426b2949dd146bf00d562739d252ed54c0e5c35d08586d051fad4d4b1fd2a19ac85b124"
+  };
+
+  tbkKeenConfigProvider.projectId(config.projectId).readKey(config.readKey);
+}]);
+
+myApp.directive('dashboard', function() {
+    return {
+       templateUrl: 'dashboard.html'
+    };
+});
+
 function loginController($http, notification, $location) {
     // notification is the service used to display notifications on the top of the screen
     this.notification = notification;
@@ -79,18 +83,16 @@ loginController.prototype.login = function() {
 };
 
 myApp.run(['Restangular', '$location', function(Restangular, $location){
-        // ==== CODE TO DO 401 NOT LOGGED IN CHECKING
-        //This code will intercept 401 unauthorized errors returned from web requests.
-        //On default any 401 will make the app think it is not logged in.
-        Restangular.setErrorInterceptor(function(response, deferred, responseHandler) {
-            if(response.status === 403){
-                $location.path('/login');
-                return false;
-            }
-        });
-    }]);
-
-
+    // ==== CODE TO DO 401 NOT LOGGED IN CHECKING
+    //This code will intercept 401 unauthorized errors returned from web requests.
+    //On default any 401 will make the app think it is not logged in.
+    Restangular.setErrorInterceptor(function(response, deferred, responseHandler) {
+        if(response.status === 403){
+            $location.path('/login');
+            return false;
+        }
+    });
+}]);
 
 myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', function(NgAdminConfigurationProvider, RestangularProvider) {
     var nga = NgAdminConfigurationProvider;
