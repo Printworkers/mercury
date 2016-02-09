@@ -2,7 +2,7 @@
 var _ = require('lodash')
 var myApp = angular.module('myApp', ['ng-admin', 'angular-keenio']);
 
-var apiUrl = (window.location.origin.indexOf('localhost') == -1) ? 'https://semperllc.herokuapp.com/' : 'http://localhost:7001/';
+var apiUrl = (window.location.origin.indexOf('localhost') == -1) ? 'https://api.semperllc.com/' : 'http://localhost:7001/';
 
 var updateHeader;
 
