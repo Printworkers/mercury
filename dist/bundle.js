@@ -3,192 +3,177 @@
 var _ = require('lodash')
 var myApp = angular.module('myApp', ['ng-admin', 'angular-keenio']);
 
-var apiUrl = (window.location.origin.indexOf('localhost') == -1) ? 'https://semperllc.herokuapp.com/' : 'http://localhost:7001/';
+var apiUrl = (window.location.origin.indexOf('localhost') == -1) ? 'https://api.semperllc.com/' : 'http://localhost:7001/';
+
+apiUrl = 'https://api.semperllc.com/';
 
 var updateHeader;
 
 myApp.directive('header', function() {
-    return {
-        templateUrl: 'header.html'
-    };
+	return {
+		templateUrl: 'header.html'
+	};
 });
 
 // custom controllers
 myApp.controller('username', ['$scope', '$window', function($scope, $window) { // used in header.html
-    $scope.username =  'test';
+	$scope.username =	'test';
 }]);
 
 myApp.controller('totalActiveAgents', ['$scope', '$window', '$http', function($scope, $window, $http) { // used in header.html
-    $http.get(apiUrl + 'agent', {headers: {'x-access-token': 'test' }}).then(function (response) {
-        console.log(response)
-    	$scope.today = response.data.data.length
-    })
+	// localStorage.getItem('basics-admin-token')
+	$http.get(apiUrl + 'agent', {headers: {'x-access-token': 'test' }}).then(function (response) {
+		console.log(response)
+		$scope.today = response.data.data.length
+	})
 }]);
 
 // myApp.controller('dashboard', ['scope', '$http', function($scope, $html){
 // 	$scope.appCount = 123
 // }]);
 
-var loginControllerTemplate =
-        '<div class="row"><div class="col-lg-12">' +
-            '<ma-view-actions><ma-back-button></ma-back-button></ma-view-actions>' +
-            '<div class="page-header">' +
-                '<h1>Login</h1>' +
-                '<p class="lead"></p>' +
-            '</div>' +
-        '</div></div>' +
-        '<div class="row">' +
-            '<div class="col-lg-5"><input type="text" size="10" ng-model="controller.email" class="form-control" placeholder="name@example.com"/></div>' +
-            '<div class="col-lg-5"><input type="password" size="10" ng-model="controller.password" class="form-control" /></div>' +
-            '<div class="col-lg-5"><a class="btn btn-default" ng-click="controller.login()">Send</a></div>' +
-        '</div>';
+// var loginControllerTemplate =
+// 		'<div class="row"><div class="col-lg-12">' +
+// 			'<ma-view-actions><ma-back-button></ma-back-button></ma-view-actions>' +
+// 			'<div class="page-header">' +
+// 				'<h1>Login</h1>' +
+// 				'<p class="lead"></p>' +
+// 			'</div>' +
+// 		'</div></div>' +
+// 		'<div class="row">' +
+// 			'<div class="col-lg-5"><input type="text" size="10" ng-model="controller.email" class="form-control" placeholder="name@example.com"/></div>' +
+// 			'<div class="col-lg-5"><input type="password" size="10" ng-model="controller.password" class="form-control" /></div>' +
+// 			'<div class="col-lg-5"><a class="btn btn-default" ng-click="controller.login()">Send</a></div>' +
+// 		'</div>';
 
-myApp.config(['$stateProvider', function ($stateProvider) {
-    $stateProvider.state('send-post', {
-        url: '/login',
-        controller: loginController,
-        controllerAs: 'controller',
-        template: loginControllerTemplate
-    });
-}]);
+// myApp.config(['$stateProvider', function ($stateProvider) {
+// 	$stateProvider.state('send-post', {
+// 		url: '/login',
+// 		controller: loginController,
+// 		controllerAs: 'controller',
+// 		template: loginControllerTemplate
+// 	});
+// }]);
 
 myApp.config(['tbkKeenConfigProvider', function(tbkKeenConfigProvider) {
-  var config = {
-    projectId: "56ba2de259949a03c0080726",
-    readKey: "0e0c7398282ccd8ff1f24e9822e038a2180560c2867890cd099ee10517c5279be8febb3c2de2700ea904b44281bc72b1c92e2a3b305c4d58c088d43f7426b2949dd146bf00d562739d252ed54c0e5c35d08586d051fad4d4b1fd2a19ac85b124"
-  };
+	var config = {
+		projectId: "56ba2de259949a03c0080726",
+		readKey: "0e0c7398282ccd8ff1f24e9822e038a2180560c2867890cd099ee10517c5279be8febb3c2de2700ea904b44281bc72b1c92e2a3b305c4d58c088d43f7426b2949dd146bf00d562739d252ed54c0e5c35d08586d051fad4d4b1fd2a19ac85b124"
+	};
 
-  tbkKeenConfigProvider.projectId(config.projectId).readKey(config.readKey);
+	tbkKeenConfigProvider.projectId(config.projectId).readKey(config.readKey);
 }]);
 
 myApp.directive('dashboard', function() {
-    return {
-       templateUrl: 'dashboard.html'
-    };
+	return {
+		templateUrl: 'dashboard.html'
+	};
 });
 
-function loginController($http, notification, $location) {
-    // notification is the service used to display notifications on the top of the screen
-    this.notification = notification;
-    this.$http = $http;
-    this.$location = $location
-};
-loginController.inject = ['$http', 'notification', '$location'];
-loginController.prototype.login = function() {
-	// $http.post('http://semperllc.herokuapp.com/user/authenticate', {
+// function loginController($http, notification, $location) {
+// 	// notification is the service used to display notifications on the top of the screen
+// 	this.notification = notification;
+// 	this.$http = $http;
+// 	this.$location = $location
+// };
 
-	// })
-	updateHeader()
-    this.$location.path('/dashboard');
-    this.notification.log('Successfully logged in as ' + this.email);
-};
+// loginController.inject = ['$http', 'notification', '$location'];
+// loginController.prototype.login = function() {
+// 	// $http.post('http://semperllc.herokuapp.com/user/authenticate', {
+
+// 	// })
+// 	updateHeader()
+// 	this.$location.path('/dashboard');
+// 	this.notification.log('Successfully logged in as ' + this.email);
+// };
 
 myApp.run(['Restangular', '$location', function(Restangular, $location){
-    // ==== CODE TO DO 401 NOT LOGGED IN CHECKING
-    //This code will intercept 401 unauthorized errors returned from web requests.
-    //On default any 401 will make the app think it is not logged in.
-    Restangular.setErrorInterceptor(function(response, deferred, responseHandler) {
-        if(response.status === 403){
-            $location.path('/login');
-            return false;
-        }
-    });
+	// ==== CODE TO DO 401 NOT LOGGED IN CHECKING
+	//This code will intercept 401 unauthorized errors returned from web requests.
+	//On default any 401 will make the app think it is not logged in.
+	// Restangular.setErrorInterceptor(function(response, deferred, responseHandler) {
+	// 	if(response.status === 403){
+	// 		$location.path('/login');
+	// 		return false;
+	// 	}
+	// });
 }]);
 
 myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', function(NgAdminConfigurationProvider, RestangularProvider) {
-    var nga = NgAdminConfigurationProvider;
+	var nga = NgAdminConfigurationProvider;
 
-    updateHeader = function() {
-      console.log('here')
-      RestangularProvider.setDefaultHeaders({'x-access-token': 'test' }); 	
-    }
+	// localStorage.getItem('basics-admin-token')
+	RestangularProvider.setDefaultHeaders({'x-access-token': 'test' }); 	
 
-    RestangularProvider.setRestangularFields({ id: 'id' });
+	// updateHeader = function() {
+	// 	// localStorage.getItem('basics-admin-token') 
+	// 	RestangularProvider.setDefaultHeaders({'x-access-token': 'test'}); 	
+	// }
+
+	RestangularProvider.setRestangularFields({ id: 'id' });
 	RestangularProvider.addFullRequestInterceptor(function(element, operation, what, url, headers, params, httpConfig) {
 
-        if (operation == 'getList' && what == 'entityName') {
-            if (params._filters) {
-                for (var filter in params._filters) {
-                    params[filter] = params._filters[filter];
-                }
-                delete params._filters;
-            }
-        }
-        return { params: params };
-    });
+		if (operation == 'getList' && what == 'entityName') {
+			if (params._filters) {
+				for (var filter in params._filters) {
+					params[filter] = params._filters[filter];
+				}
+				delete params._filters;
+			}
+		}
+		return { params: params };
+	});
 
-     RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
-      var extractedData = {};
-      // .. to look for getList operations
-      if (operation === "getList") {
-      	_.defaults(extractedData, data)
-        // .. and handle the data and meta data
-        extractedData = data.data;
-      }
-      else {
-      	extractedData = data;
-      }
+	 RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
+		var extractedData = {};
+		// .. to look for getList operations
+		if (operation === "getList") {
+			_.defaults(extractedData, data)
+		// .. and handle the data and meta data
+		extractedData = data.data;
+		}
+		else {
+			extractedData = data;
+		}
 
-      return extractedData;
-    });
+		return extractedData;
+	});
 
-    
+	var lookups = require('./lookups');
 
-    /* create an admin application. */
-    var admin = nga.application('Semper LLC Administrator').baseApiUrl(apiUrl); 
-    var user = require('./entities/user')(nga)
-    var agent = require('./entities/agent')(nga, user)
-    var lookup = require('./entities/lookup')(nga)
-    var job = require('./entities/job')(nga)
-    var template = require('./entities/template')(nga)
-    var homeoffice = require('./entities/homeoffice')(nga)
-    var order = require('./entities/order')(nga, user)
-    var application = require('./entities/application')(nga, user, order)
-    var resume = require('./entities/resume')(nga, user)
+	/* create an admin application. */
+	var admin = nga.application('Semper LLC Administrator').baseApiUrl(apiUrl); 
+	var user = require('./entities/user')(nga, lookups)
+	var agent = require('./entities/agent')(nga, user)
+	var lookup = require('./entities/lookup')(nga)
+	var job = require('./entities/job')(nga)
+	var template = require('./entities/template')(nga)
+	var homeoffice = require('./entities/homeoffice')(nga)
+	var order = require('./entities/order')(nga, user)
+	var application = require('./entities/application')(nga, user, order)
+	var resume = require('./entities/resume')(nga, user)
 
-    admin.addEntity(user);
-    admin.addEntity(lookup);
-    admin.addEntity(job);
-    admin.addEntity(template);
-    admin.addEntity(agent);
-    admin.addEntity(homeoffice);
-    admin.addEntity(order);
-    admin.addEntity(application);
-    admin.addEntity(resume);
+	admin.addEntity(user);
+	admin.addEntity(lookup);
+	admin.addEntity(job);
+	admin.addEntity(template);
+	admin.addEntity(agent);
+	admin.addEntity(homeoffice);
+	admin.addEntity(order);
+	admin.addEntity(application);
+	admin.addEntity(resume);
 
-    /* Dashboard */
-    admin.dashboard(nga.dashboard()
-    	.template('<div dashboard></div>')
-	    // .addCollection(nga.collection(job)
-	    //     .name('recent_jobs')
-	    //     .title('Recent Job Posts')
-	    //     .perPage(5) // limit the panel to the 5 latest posts
-	    //     .fields([
-	    //         nga.field('name', 'string').label('Title'),
-	    //     ])
-	    //     .sortField('published_at')
-	    //     .sortDir('DESC')
-	    //     .order(1)
-	    // )
-	    // .addCollection(nga.collection(user)
-	    //     .name('Recent Users')
-	    //     .title('Recent Users')
-	    //     .perPage(5) // limit the panel to the 5 latest posts
-	    //     .fields([
-	    //         nga.field('firstname', 'string').label('Title'),
-	    //     ])
-	    //     .sortField('published_at')
-	    //     .sortDir('DESC')
-	    //     .order(1)
-	    // )
+	/* Dashboard */
+	admin.dashboard(nga.dashboard()
+		.template('<div dashboard></div>')
 	);
 
 	/* Header */
-    admin.header('<div header></div>');
+	admin.header('<div header></div>');
 
-    nga.configure(admin);
+	nga.configure(admin);
 }]);
-},{"./entities/agent":2,"./entities/application":3,"./entities/homeoffice":4,"./entities/job":5,"./entities/lookup":6,"./entities/order":7,"./entities/resume":8,"./entities/template":9,"./entities/user":10,"lodash":11}],2:[function(require,module,exports){
+},{"./entities/agent":2,"./entities/application":3,"./entities/homeoffice":4,"./entities/job":5,"./entities/lookup":6,"./entities/order":7,"./entities/resume":8,"./entities/template":9,"./entities/user":10,"./lookups":11,"lodash":13}],2:[function(require,module,exports){
 module.exports = function (nga, user) {
         /* Agent */
     var agent = nga.entity('agent').identifier(nga.field('_id'));
@@ -516,55 +501,156 @@ module.exports = function (nga) {
     return template;
 };
 },{}],10:[function(require,module,exports){
-module.exports = function (nga) {
+module.exports = function (nga, lookups) {
 	var user = nga.entity('user').identifier(nga.field('_id'));
 
-    user.listView()
-    .title('Users')
-    .fields([
-        nga.field('firstname'),
-        nga.field('username'),
-        nga.field('email'),
-        nga.field('type'),
-        nga.field('phone')
-    ]).listActions(['edit', 'delete'])
-    .filters([
-    	nga.field('q', 'template')
-            .label('')
-            .pinned(true)
-            .template('<div class="input-group"><input type="text" ng-model="value" placeholder="Search" class="form-control"></input><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span></div>'),
-        nga.field('type').label('Type'),
-        nga.field('username', 'string').label('Username'),	
-        nga.field('email', 'string').label('email'),
-        nga.field('city', 'string').label('City'),
-        nga.field('state', 'string').label('State')
-    ]);
+	user.listView()
+	.title('Users')
+	.fields([
+		nga.field('firstname'),
+		nga.field('username'),
+		nga.field('email'),
+		nga.field('type'),
+		nga.field('phone')
+	]).listActions(['edit', 'delete'])
+	.filters([
+		nga.field('q', 'template')
+			.label('')
+			.pinned(true)
+			.template('<div class="input-group"><input type="text" ng-model="value" placeholder="Search" class="form-control"></input><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span></div>'),
+		nga.field('type').label('Type'),
+		nga.field('username', 'string').label('Username'),	
+		nga.field('email', 'string').label('email'),
+		nga.field('city', 'string').label('City'),
+		nga.field('state', 'string').label('State')
+	]);
 
-    user.creationView()
-        .title('Create new User')
-        .fields([
-        	nga.field('type', 'choice')
-        		.choices([ { value: 'employer', label: 'Employer' }, { value: 'job seeker', label: 'Job Seeker' } ])
-        		.validation({required: true })
-        		.cssClasses('col-sm-4'),
-            nga.field('firstname').validation({required: true }).cssClasses('col-sm-4'),
-            nga.field('lastname').validation({required: true }).cssClasses('col-sm-4'),
-            nga.field('username').validation({required: true }).cssClasses('col-sm-4'),
-            nga.field('password').validation({required: true }).cssClasses('col-sm-4'),
-            nga.field('address1').validation({required: true }).cssClasses('col-sm-4'),
-            nga.field('email').validation({required: true }).cssClasses('col-sm-4'),
-            nga.field('city').validation({required: false }).cssClasses('col-sm-4'),
-            nga.field('state').validation({required: false }).cssClasses('col-sm-4'),
-            nga.field('zip').validation({required: false }).cssClasses('col-sm-4'),
-            nga.field('shortProfile', 'wysiwyg').validation({required: false })
-        ]);
+	user.creationView()
+		.title('Create new User Account')
+		.description('Use this to create a new account. While you can create a job seeker or employer, their required fields can cause validation issues.')
+		.fields([
+			nga.field('type', 'choice')
+				.defaultValue('job seeker')
+				.attributes({ placeholder: 'Select the user account type.' })
+				.choices([ { value: 'employer', label: 'Employer' }, { value: 'job seeker', label: 'Job Seeker' }, { value: 'administrator', label: 'Site Administrator' } ])
+				.validation({required: true })
+				.cssClasses('col-sm-4'),
+			nga.field('firstname')
+				.validation({required: true })
+				.attributes({ placeholder: 'Enter first name' })
+				.cssClasses('col-sm-4'),
+			nga.field('lastname')
+				.validation({required: true })
+				.attributes({ placeholder: 'Select last name' })
+				.cssClasses('col-sm-4'),
+			nga.field('phone')
+				.validation({required: true })
+				.attributes({ placeholder: 'Enter Phone Number' })
+				.cssClasses('col-sm-4'),
+			nga.field('username')
+				.validation({required: true })
+				.attributes({ placeholder: 'Select username', autocomplete: "false" })
+				.cssClasses('col-sm-4'),
+			nga.field('password', 'password')
+				.validation({required: true })
+				.attributes({ placeholder: 'Select a password' })
+				.cssClasses('col-sm-4'),
+			nga.field('address1')
+				.validation({required: true })
+				.attributes({ placeholder: 'Select Street Address' })
+				.cssClasses('col-sm-4'),
+			nga.field('email')
+				.validation({required: true })
+				.attributes({ placeholder: 'Select Email Address' })
+				.cssClasses('col-sm-4'),
+			nga.field('city')
+				.validation({required: false })
+				.attributes({ placeholder: 'Enter Address City' })
+				.cssClasses('col-sm-4'),
+			nga.field('state', 'choice')
+				.validation({required: false })
+				.attributes({ placeholder: 'Select a State' })
+				.choices(lookups.states)
+				.cssClasses('col-sm-4'),
+			nga.field('zip')
+				.validation({required: false })
+				.attributes({ placeholder: 'Select a zip code' })
+				.cssClasses('col-sm-4'),
+			nga.field('shortProfile', 'wysiwyg')
+				.validation({required: false })
+				.attributes({ placeholder: 'Select the user account type.' })
+		]);
 
-    user.editionView().fields(user.creationView().fields());
+	user.editionView().fields(user.creationView().fields());
 	
 	return user;
 };
 
 },{}],11:[function(require,module,exports){
+exports.states = require('./states.json')
+},{"./states.json":12}],12:[function(require,module,exports){
+module.exports=[
+	{"value":"AL","label":"Alabama"}, 
+	{"value":"AK","label":"Alaska"}, 
+	{"value":"AS","label":"American Samoa"}, 
+	{"value":"AZ","label":"Arizona"}, 
+	{"value":"AR","label":"Arkansas"}, 
+	{"value":"CA","label":"California"}, 
+	{"value":"CO","label":"Colorado"}, 
+	{"value":"CT","label":"Connecticut"}, 
+	{"value":"DE","label":"Delaware"}, 
+	{"value":"DC","label":"District Of Columbia"}, 
+	{"value":"FM","label":"Federated States Of Micronesia"}, 
+	{"value":"FL","label":"Florida"}, 
+	{"value":"GA","label":"Georgia"}, 
+	{"value":"GU","label":"Guam"}, 
+	{"value":"HI","label":"Hawaii"}, 
+	{"value":"ID","label":"Idaho"}, 
+	{"value":"IL","label":"Illinois"}, 
+	{"value":"IN","label":"Indiana"}, 
+	{"value":"IA","label":"Iowa"}, 
+	{"value":"KS","label":"Kansas"}, 
+	{"value":"KY","label":"Kentucky"}, 
+	{"value":"LA","label":"Louisiana"}, 
+	{"value":"ME","label":"Maine"}, 
+	{"value":"MH","label":"Marshall Islands"}, 
+	{"value":"MD","label":"Maryland"}, 
+	{"value":"MA","label":"Massachusetts"}, 
+	{"value":"MI","label":"Michigan"}, 
+	{"value":"MN","label":"Minnesota"}, 
+	{"value":"MS","label":"Mississippi"}, 
+	{"value":"MO","label":"Missouri"}, 
+	{"value":"MT","label":"Montana"}, 
+	{"value":"NE","label":"Nebraska"}, 
+	{"value":"NV","label":"Nevada"}, 
+	{"value":"NH","label":"New Hampshire"}, 
+	{"value":"NJ","label":"New Jersey"}, 
+	{"value":"NM","label":"New Mexico"}, 
+	{"value":"NY","label":"New York"}, 
+	{"value":"NC","label":"North Carolina"}, 
+	{"value":"ND","label":"North Dakota"}, 
+	{"value":"MP","label":"Northern Mariana Islands"}, 
+	{"value":"OH","label":"Ohio"}, 
+	{"value":"OK","label":"Oklahoma"}, 
+	{"value":"OR","label":"Oregon"}, 
+	{"value":"PW","label":"Palau"}, 
+	{"value":"PA","label":"Pennsylvania"}, 
+	{"value":"PR","label":"Puerto Rico"}, 
+	{"value":"RI","label":"Rhode Island"}, 
+	{"value":"SC","label":"South Carolina"}, 
+	{"value":"SD","label":"South Dakota"}, 
+	{"value":"TN","label":"Tennessee"}, 
+	{"value":"TX","label":"Texas"}, 
+	{"value":"UT","label":"Utah"}, 
+	{"value":"VT","label":"Vermont"}, 
+	{"value":"VI","label":"Virgin Islands"}, 
+	{"value":"VA","label":"Virginia"}, 
+	{"value":"WA","label":"Washington"}, 
+	{"value":"WV","label":"West Virginia"}, 
+	{"value":"WI","label":"Wisconsin"}, 
+	{"value":"WY","label":"Wyoming"}
+]
+},{}],13:[function(require,module,exports){
 (function (global){
 /**
  * @license
