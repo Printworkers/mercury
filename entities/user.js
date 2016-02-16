@@ -44,6 +44,10 @@ module.exports = function (nga, lookups) {
 				.validation({required: true })
 				.attributes({ placeholder: 'Enter Phone Number' })
 				.cssClasses('col-sm-4'),
+			nga.field('company')
+				.validation({required: true })
+				.attributes({ placeholder: 'Enter Company Name' })
+				.cssClasses('col-sm-4'),
 			nga.field('username')
 				.validation({required: true })
 				.attributes({ placeholder: 'Select username', autocomplete: "false" })
@@ -52,7 +56,7 @@ module.exports = function (nga, lookups) {
 				.validation({required: true })
 				.attributes({ placeholder: 'Select a password' })
 				.cssClasses('col-sm-4'),
-			nga.field('address1')
+			nga.field('address_line1')
 				.validation({required: true })
 				.attributes({ placeholder: 'Select Street Address' })
 				.cssClasses('col-sm-4'),

@@ -13,7 +13,9 @@
     "express-sslify": "^1.0.1",
     "lodash": "~3.10.0",
     "ng-admin": "^0.9.1",
-    "require": "^2.4.20"
+    "require": "^2.4.20",
+    "stringify": "^4.0.1",
+    "vinyl-source-stream": "^1.1.0"
   },
   "devDependencies": {
     "browserify": "^13.0.0",

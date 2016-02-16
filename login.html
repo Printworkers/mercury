@@ -44,8 +44,8 @@
 			success: function(data) {
 
 			if (data.token) {
-				localStorage.setItem('basics-admin-token', data.token);
-				window.location.href = "./index.html";
+				localStorage.setItem('semper-admin-token', data.token);
+				window.location.href = './index.html';
 			}
 			},
 			error: function(err) {

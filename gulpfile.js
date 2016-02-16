@@ -16,6 +16,9 @@ var gutil = require('gulp-util');
 var sourcemaps = require('gulp-sourcemaps');
 var assign = require('lodash.assign');
 
+var source = require('vinyl-source-stream');
+var stringify = require('stringify');
+
 // Lint Task
 gulp.task('lint', function() {
     return gulp.src(['*/*.js', '!bundle/*.js'])
@@ -58,6 +61,10 @@ var customOpts = {
 var opts = assign({}, watchify.args, customOpts);
 var b = watchify(browserify(opts)); 
 
+b.transform(stringify({
+    extensions: ['.html'], minify: true
+}))
+
 gulp.task('js', bundle); // so you can run `gulp js` to build the file
 b.on('update', bundle); // on any dep update, runs the bundler
 b.on('log', gutil.log); // output build logs to terminal
@@ -71,6 +78,7 @@ function bundle() {
     .pipe(buffer())
     // optional, remove if you dont want sourcemaps
     .pipe(sourcemaps.init({loadMaps: true})) // loads map from browserify file
+    .pipe(uglify({ mangle: false }).on('error', gutil.log))
        // Add transformation tasks to the pipeline here.
     .pipe(sourcemaps.write('./')) // writes .map file
     .pipe(gulp.dest('./dist'));

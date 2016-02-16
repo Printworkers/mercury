@@ -2,27 +2,83 @@
 var _ = require('lodash')
 var myApp = angular.module('myApp', ['ng-admin', 'angular-keenio']);
 
-var apiUrl = (window.location.origin.indexOf('localhost') == -1) ? 'https://api.semperllc.com/' : 'http://localhost:7001/';
+myApp.constant('apiUrl', function() {
+	var apiUrl = (window.location.origin.indexOf('localhost') == -1) ? 'https://api.semperllc.com/' : 'http://localhost:7001/';
 
-apiUrl = 'https://api.semperllc.com/';
+	/* Comment this to make it look at the localhost. */
+	apiUrl = 'https://api.semperllc.com/';
+
+	return apiUrl;
+}());
+
+myApp.config(function(RestangularProvider, apiUrl) {
+
+	RestangularProvider.setBaseUrl(apiUrl);
+	RestangularProvider.setDefaultHeaders({'x-access-token': localStorage.getItem('semper-admin-token') }); 	
+	RestangularProvider.setRestangularFields({ id: 'id' });
+
+	RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response) {
+		if (operation == "getList") {
+			response.totalCount = data.total;
+		}
+		return data;
+	});
+	
+	RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
+		var extractedData = {};
+		// .. to look for getList operations
+		if (operation === "getList") {
+			_.defaults(extractedData, data)
+			// .. and handle the data and meta data
+			extractedData = data.data;
+		}
+		else {
+			extractedData = data;
+		}
+
+		return extractedData;
+	});
+
+	RestangularProvider.addFullRequestInterceptor(function(element, operation, what, url, headers, params, httpConfig) {
+        if (operation == 'getList' ) {
+            if (params._filters) {
+                for (var filter in params._filters) {
+                    params[filter] = params._filters[filter];
+                }
+                delete params._filters;
+            }
+
+            if (params._page)
+            	params.page = params._page;
+
+            if (params._perPage)
+            	params.limit = params._perPage;
+
+            if (params._sortField)
+            	params.sortField = params._sortField;
+
+           	if (params._sortDir)
+           		params.sortDir = params._sortDir;
+
+            delete params._page;
+            delete params._perPage;
+        }
+
+        return { params: params, headers: headers };
+    });
+
+});
 
 var updateHeader;
 
-myApp.directive('header', function() {
-	return {
-		templateUrl: 'header.html'
-	};
-});
-
 // custom controllers
 myApp.controller('username', ['$scope', '$window', function($scope, $window) { // used in header.html
+
 	$scope.username =	'test';
 }]);
 
-myApp.controller('totalActiveAgents', ['$scope', '$window', '$http', function($scope, $window, $http) { // used in header.html
-	// localStorage.getItem('basics-admin-token')
-	$http.get(apiUrl + 'agent', {headers: {'x-access-token': 'test' }}).then(function (response) {
-		console.log(response)
+myApp.controller('totalActiveAgents', ['$scope', '$window', '$http', function($scope, $window, $http, apiUrl) { // used in header.html
+	$http.get(apiUrl + 'agent', {headers: {'x-access-token': localStorage.getItem('semper-admin-token') }}).then(function (response) {
 		$scope.today = response.data.data.length
 	})
 }]);
@@ -86,7 +142,7 @@ myApp.directive('dashboard', function() {
 // 	this.notification.log('Successfully logged in as ' + this.email);
 // };
 
-myApp.run(['Restangular', '$location', function(Restangular, $location){
+// myApp.run(['Restangular', '$location', function(Restangular, $location){
 	// ==== CODE TO DO 401 NOT LOGGED IN CHECKING
 	//This code will intercept 401 unauthorized errors returned from web requests.
 	//On default any 401 will make the app think it is not logged in.
@@ -96,48 +152,11 @@ myApp.run(['Restangular', '$location', function(Restangular, $location){
 	// 		return false;
 	// 	}
 	// });
-}]);
+// }]);
 
-myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', function(NgAdminConfigurationProvider, RestangularProvider) {
+myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', 'apiUrl', function(NgAdminConfigurationProvider, RestangularProvider, apiUrl) {
+	
 	var nga = NgAdminConfigurationProvider;
-
-	// localStorage.getItem('basics-admin-token')
-	RestangularProvider.setDefaultHeaders({'x-access-token': 'test' }); 	
-
-	// updateHeader = function() {
-	// 	// localStorage.getItem('basics-admin-token') 
-	// 	RestangularProvider.setDefaultHeaders({'x-access-token': 'test'}); 	
-	// }
-
-	RestangularProvider.setRestangularFields({ id: 'id' });
-	RestangularProvider.addFullRequestInterceptor(function(element, operation, what, url, headers, params, httpConfig) {
-
-		if (operation == 'getList' && what == 'entityName') {
-			if (params._filters) {
-				for (var filter in params._filters) {
-					params[filter] = params._filters[filter];
-				}
-				delete params._filters;
-			}
-		}
-		return { params: params };
-	});
-
-	 RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
-		var extractedData = {};
-		// .. to look for getList operations
-		if (operation === "getList") {
-			_.defaults(extractedData, data)
-		// .. and handle the data and meta data
-		extractedData = data.data;
-		}
-		else {
-			extractedData = data;
-		}
-
-		return extractedData;
-	});
-
 	var lookups = require('./lookups');
 
 	/* create an admin application. */
@@ -146,7 +165,7 @@ myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', function(Ng
 	var agent = require('./entities/agent')(nga, user)
 	var lookup = require('./entities/lookup')(nga)
 	var job = require('./entities/job')(nga)
-	var template = require('./entities/template')(nga)
+	var template = require('./entities/template')(nga, user)
 	var homeoffice = require('./entities/homeoffice')(nga)
 	var order = require('./entities/order')(nga, user)
 	var application = require('./entities/application')(nga, user, order)
@@ -172,3 +191,57 @@ myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', function(Ng
 
 	nga.configure(admin);
 }]);
+
+myApp.directive('header', function() {
+	return {
+		templateUrl: 'header.html',
+		controller: function($scope, Restangular) {
+			Restangular.all('user').customGET('current').then(function(data) {
+				$scope.user = data.data;
+			});
+
+			$scope.logout = function() {
+				if (confirm('Do you want to logout?')) {
+					localStorage.removeItem('semper-admin-token');
+					window.location = './index.html'
+				}
+			}
+		}
+	};
+});
+
+myApp.directive('sendEmail', ['$location', function ($location) {
+    return {
+        restrict: 'E',
+        scope: { post: '&' },
+        link: function (scope, nga) {
+        	console.log(scope)
+            scope.send = function () {
+                $location.path('/sendPost/' + scope.post().values.id);
+            };
+        },
+        template: '<a class="btn btn-default btn-xs" ng-click="send()"> <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Send Test</a>'
+    };
+}]);
+
+function sendPostController($stateParams) {
+    this.postId = $stateParams.id;
+    // notification is the service used to display notifications on the top of the screen
+    // this.notification = notification;
+};
+
+sendPostController.inject = ['$stateParams'];
+sendPostController.prototype.sendEmail = function() {
+    this.notification.log('Email successfully sent to ' + this.email);
+};
+
+myApp.config(function ($stateProvider) {
+    $stateProvider.state('send-post', {
+        parent: 'main',
+        url: '/sendPost/:id',
+        params: { id: null },
+        controller: sendPostController,
+        controllerAs: 'controller',
+        templateUrl: 'templates/sendEmail.html',
+    });
+});

@@ -1,0 +1,38 @@
+<div class="row"><div class="col-lg-12">
+	<ma-view-actions><ma-back-button></ma-back-button></ma-view-actions>
+		<div class="page-header">
+			<h2>Send Test Email #{{ controller.postId }} by email</h2>
+
+
+		</div>
+
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-5">
+		<p>This provides the ability to send a test email message. Select the user you want to use for the template.</p>
+	</div>
+</div>
+
+
+<div class="row">
+	 <label for="reference" class="col-sm-4 control-label">To Email&nbsp;*&nbsp;</label>
+	<div class="col-lg-5">
+		<input type="text" size="10" ng-model="controller.email" class="form-control" placeholder="name@example.com"/>
+	</div>
+</div>
+
+<br>
+
+<div class="row">
+	 <label for="reference" class="col-sm-4 control-label">Select User&nbsp;*&nbsp;</label>
+	<div class="col-lg-5">
+		<input type="text" size="10" ng-model="controller.email" class="form-control" placeholder="name@example.com"/>
+	</div>
+</div>
+
+<br>
+
+<div class="row">
+	<div class="col-lg-5"><a class="btn btn-default" ng-click="controller.sendEmail()">Send Test Email</a></div>
+</div>
