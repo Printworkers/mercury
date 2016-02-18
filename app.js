@@ -163,13 +163,14 @@ myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', 'apiUrl', f
 	var admin = nga.application('Semper LLC Administrator').baseApiUrl(apiUrl); 
 	var user = require('./entities/user')(nga, lookups)
 	var agent = require('./entities/agent')(nga, user)
-	var lookup = require('./entities/lookup')(nga)
-	var job = require('./entities/job')(nga)
-	var template = require('./entities/template')(nga, user)
-	var homeoffice = require('./entities/homeoffice')(nga)
-	var order = require('./entities/order')(nga, user)
-	var application = require('./entities/application')(nga, user, order)
-	var resume = require('./entities/resume')(nga, user)
+	var lookup = require('./entities/lookup')(nga);
+	var job = require('./entities/job')(nga);
+	var template = require('./entities/template')(nga, user);
+	var homeoffice = require('./entities/homeoffice')(nga);
+	var order = require('./entities/order')(nga, user);
+	var application = require('./entities/application')(nga, user, order);
+	// var resume = require('./entities/resume')(nga, user);
+	var skill = require('./entities/skill')(nga);
 
 	admin.addEntity(user);
 	admin.addEntity(lookup);
@@ -179,7 +180,8 @@ myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', 'apiUrl', f
 	admin.addEntity(homeoffice);
 	admin.addEntity(order);
 	admin.addEntity(application);
-	admin.addEntity(resume);
+	admin.addEntity(skill);
+	// admin.addEntity(resume);
 
 	/* Dashboard */
 	admin.dashboard(nga.dashboard()
@@ -244,4 +246,40 @@ myApp.config(function ($stateProvider) {
         controllerAs: 'controller',
         templateUrl: 'templates/sendEmail.html',
     });
+});
+
+myApp.directive('loginAsUser', function(Restangular, $q, notification, $state) {
+    'use strict';
+
+    return {
+        restrict: 'E',
+        scope: {
+            selection: '=',
+            type: '@'
+        },
+        link: function(scope, element, attrs) {
+        	scope.login = function() {
+        		window.alert('asdfasdf')
+        	}
+        },
+        template: '<button class="btn btn-success btn-xs" ng-click="login()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Login as</button>'
+    };
+});
+
+myApp.directive('previewJob', function(Restangular, $q, notification, $state) {
+    'use strict';
+
+    return {
+        restrict: 'E',
+        scope: {
+            selection: '=',
+            type: '@'
+        },
+        link: function(scope, element, attrs) {
+        	scope.showJob = function() {
+        		window.alert('asdfasdf')
+        	}
+        },
+        template: '<button class="btn btn-success btn-xs" ng-click="showJob()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Live Preview</button>'
+    };
 });

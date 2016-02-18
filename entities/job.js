@@ -9,8 +9,15 @@ module.exports = function (nga) {
         nga.field('name'),
         nga.field('city'),
         nga.field('state'),
+        nga.field('status')
+        	.label('Job Status'),
+        nga.field('fmId')
+        	.label('FM Id'),
         nga.field('User.company').label('Company')
-    ]).listActions(['edit', 'delete'])
+    ]).listActions([
+    	'edit', 
+    	'delete',
+    	'<preview-job item="{{entry}}"></preview-job>'])
     .filters([
     	nga.field('q', 'template')
             .label('')

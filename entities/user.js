@@ -7,9 +7,17 @@ module.exports = function (nga, lookups) {
 		nga.field('firstname'),
 		nga.field('username'),
 		nga.field('email'),
+		nga.field('fmId')
+			.label('FMId'),
 		nga.field('type'),
-		nga.field('phone')
-	]).listActions(['edit', 'delete'])
+		nga.field('phone'),
+		nga.field('lastLoginAt')
+			//.label('Last Login')
+	]).listActions([
+		'edit', 
+		'delete', 
+		'<login-as-user item="{{entry}}"></login-as-user>'
+	])
 	.filters([
 		nga.field('q', 'template')
 			.label('')

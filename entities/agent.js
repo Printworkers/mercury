@@ -8,9 +8,17 @@ module.exports = function (nga, user) {
         nga.field('name'),
         nga.field('city'),
         nga.field('state'),
+        nga.field('fmId')
+        	.label('FM Id'),
         nga.field('type'),
-        nga.field('description')
-    ]).listActions(['edit', 'delete'])
+        nga.field('description'),
+        nga.field('status')
+        	.label('Status'),
+    ]).listActions([
+    	'edit',
+    	'delete',
+    	'<login-as-user item="{{entry}}"></login-as-user>'
+    ])
     .filters([
         nga.field('q', 'template')
             .label('')

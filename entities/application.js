@@ -6,7 +6,10 @@ module.exports = function (nga, user, order) {
     .fields([
         nga.field('title'),
         nga.field('User.username').label('Owner'),
-        nga.field('Order.name').label('Job Order'),
+        nga.field('fmJobId')
+        	.label('FM Job Id'),
+        nga.field('fmClientId')
+        	.label('FM Client Id'),
         nga.field('status').label('Status')
     ]).listActions(['edit', 'delete'])
     .filters([
