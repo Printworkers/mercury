@@ -25,15 +25,15 @@ module.exports = function (nga, user) {
 			.addChild(nga.menu()
 				.title('Talent')
 				.link('/user/list?search={"type":"job seeker"}')
-				.icon('<span class="fa fa-list fa-fw"></span>')) // no active() function => will never appear active
+				.icon('<span class="fa fa-users fa-fw"></span>')) // no active() function => will never appear active
 			.addChild(nga.menu()
 				.title('Clients')
 				.link('/user/list?search={"type":"employer"}')
-				.icon('<span class="fa fa-list fa-fw"></span>'))
+				.icon('<span class="fa fa-users fa-fw"></span>'))
 			.addChild(nga.menu()
 				.title('Administrator')
 				.link('/user/list?search={"type":"administrator"}')
-				.icon('<span class="fa fa-map-marker fa-fw"></span>')) // no active() function => will never appear active
+				.icon('<span class="fa fa-users fa-fw"></span>')) // no active() function => will never appear active
 		)
 		.addChild(nga.menu()
 			.title('Jobs')
@@ -52,18 +52,18 @@ module.exports = function (nga, user) {
 		)
 		.addChild(nga.menu()
 			.title('Agents')
-			.icon('<span class="fa fa-users fa-fw"></span>')
+			.icon('<span class="fa fa-search-plus fa-fw"></span>')
 			.active(function(path) {
 				return path.indexOf('/agent') === 0;
 			})
 			.addChild(nga.menu()
 				.title('Job Agents')
 				.link('/agent/list?search={"type":"job"}')
-				.icon('<span class="fa fa-list fa-fw"></span>')) // no active() function => will never appear active
+				.icon('<span class="fa fa-clone fa-fw"></span>')) // no active() function => will never appear active
 			.addChild(nga.menu()
 				.title('Staff Agents')
 				.link('/agent/list?search={"type":"staff"}')
-				.icon('<span class="fa fa-list fa-fw"></span>'))
+				.icon('<span class="fa fa-clone fa-fw"></span>'))
 		)
 		.addChild(nga.menu()
 			.title('Site')
@@ -74,19 +74,19 @@ module.exports = function (nga, user) {
 			.addChild(nga.menu()
 				.title('Home Offices')
 				.link('/homeoffice/list')
-				.icon('<span class="fa fa-credit-card fa-fw"></span>'))
+				.icon('<span class="fa fa-building fa-fw"></span>'))
 			.addChild(nga.menu()
 				.title('Lookups')
 				.link('/lookup/list')
-				.icon('<span class="fa fa-usd fa-fw"></span>'))
+				.icon('<span class="fa fa-list-ul fa-fw"></span>'))
 			.addChild(nga.menu()
 				.title('Skills')
 				.link('/skill/list')
-				.icon('<span class="fa fa-cubes fa-fw"></span>'))
+				.icon('<span class="fa fa-briefcase fa-fw"></span>'))
 			.addChild(nga.menu()
 				.title('Email Templates')
 				.link('/template/list')
-				.icon('<span class="fa fa-cubes fa-fw"></span>'))
+				.icon('<span class="fa fa-envelope fa-fw"></span>'))
 		)
 	;
 }

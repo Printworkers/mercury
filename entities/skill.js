@@ -5,7 +5,7 @@ module.exports = function (nga, user) {
 	skill.listView()
 	.title('Job Skills')
 	.fields([
-		nga.field('name'),
+		nga.field('department'),
 		nga.field('primary')
 			.label('Primary Skill'),
 		nga.field('secondary')
@@ -20,12 +20,25 @@ module.exports = function (nga, user) {
 
 	skill.creationView()
 		.title('Create new Skill')
+		.description('This provides a way to create a new job skill.')
 		.fields([
-			nga.field('primary').validation({ required: true }).cssClasses('col-sm-4'),
-			nga.field('secondary').validation({ required: true }).cssClasses('col-sm-4'),
+			nga.field('department')
+				.validation({ required: true })
+				.attributes({ placeholder: 'Enter Department' })
+				.cssClasses('col-sm-4'),
+			nga.field('primary')
+				.validation({ required: true })
+				.attributes({ placeholder: 'Enter Primary Skill' })
+				.cssClasses('col-sm-4'),
+			nga.field('secondary')
+				.validation({ required: true })
+				.attributes({ placeholder: 'Enter Secondary Skill' })
+				.cssClasses('col-sm-4'),
 		]);
 
-	skill.editionView().fields(skill.creationView().fields());
+	skill.editionView()
+		.description('This provides a way to edit a job skill.')
+		.fields(skill.creationView().fields());
 
 	return skill;
 };
