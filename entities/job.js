@@ -44,6 +44,7 @@ module.exports = function (nga) {
             	.cssClasses('col-sm-4'),
             nga.field('description', 'wysiwyg').validation({required: true }),
 
+            // New Fields.
             nga.field('calc_region')
             	.validation({required: true })
             	.cssClasses('col-sm-4'),
@@ -121,34 +122,7 @@ module.exports = function (nga) {
             	.cssClasses('col-sm-4')
            ]);
 
-	// calc_region					: { type : String, default: '' },
-	// calc_size_descripts			: { type : String, default: '' },
-	// calc_web_description		: { type : String, default: '' },
-	// calc_work_type				: { type : String, default: '' },
-	// date_web					: { type : String, default: '' },
-	// dept_code					: { type : String, default: '' },
-	// dept_code_name				: { type : String, default: '' },
-	// dept_code_name_duplicate	: { type : String, default: '' },
-	// duration					: { type : String, default: '' },
-	// flag_full_time				: { type : String, default: '' },
-	// // id_client					: { type : String, default: '' },
-	// id_employee_recruiter		: { type : String, default: '' },
-	// // id_job						: { type : String, default: '' },
-	// // id_office					: { type : String, default: '' },
-	// rate_range					: { type : String, default: '' },
-	// region						: { type : String, default: '' },
-	// salary_range				: { type : String, default: '' },
-	// shifts						: { type : String, default: '' },
-	// shifts_WorkType				: { type : String, default: '' },
-	// skills						: { type : String, default: '' },
-	// staff_recruiter				: { type : String, default: '' },
-	// state						: { type : String, default: '' },
-	// web_description				: { type : String, default: '' },
-	// web_office					: { type : String, default: '' },
-	// web_other_city				: { type : String, default: '' },
-
     job.showView().fields(job.editionView().fields());
-    // job.editionView().fields(job.creationView().fields());
 
     return job;
 };

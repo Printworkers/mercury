@@ -191,6 +191,8 @@ myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', 'apiUrl', f
 	/* Header */
 	admin.header('<div header></div>');
 
+ 	admin.menu(require('./menu')(nga, admin));
+
 	nga.configure(admin);
 }]);
 
