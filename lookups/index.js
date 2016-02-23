@@ -1,1 +1,1 @@
-exports.states = require('./states.json')
+exports.states = require('./states.json');

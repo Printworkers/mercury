@@ -19,9 +19,11 @@ var assign = require('lodash.assign');
 var source = require('vinyl-source-stream');
 var stringify = require('stringify');
 
+var nodemon = require('gulp-nodemon');
+
 // Lint Task
 gulp.task('lint', function() {
-    return gulp.src(['*/*.js', '!bundle/*.js'])
+    return gulp.src(['*/*.js', '!dist/*.js'])
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
 });
@@ -35,7 +37,7 @@ gulp.task('sass', function() {
 
 // Concatenate & Minify JS
 gulp.task('scripts', function() {
-    return gulp.src('js/*.js')
+    return gulp.src(['*/*.js', '!dist/*.js'])
         .pipe(concat('all.js'))
         .pipe(gulp.dest('dist'))
         .pipe(rename('all.min.js'))
@@ -43,14 +45,22 @@ gulp.task('scripts', function() {
         .pipe(gulp.dest('dist'));
 });
 
+gulp.task('start', function () {
+  nodemon({
+    script: 'server.js'
+  , ext: 'js html'
+  , env: { 'NODE_ENV': 'development' }
+  })
+})
+
 // Watch Files For Changes
 gulp.task('watch', function() {
-    gulp.watch('js/*.js', ['lint', 'scripts']);
+    gulp.watch(['*/*.js', '!dist/*.js'], ['lint', 'scripts']);
     gulp.watch('scss/*.scss', ['sass']);
 });
 
 // Default Task
-gulp.task('default', ['lint', 'sass', 'scripts', 'watch']);
+gulp.task('default', ['lint', 'sass', 'scripts','js', 'watch', 'start']);
 
 
 // add custom browserify options here

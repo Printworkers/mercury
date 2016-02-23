@@ -10,10 +10,10 @@ module.exports = function(myApp) {
             },
             link: function(scope, element, attrs) {
             	scope.login = function() {
-            		window.alert('Feature Coming Soon')
-            	}
+            		window.alert('Feature Coming Soon');
+            	};
             },
             template: '<button class="btn btn-success btn-xs" ng-click="login()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Login as</button>'
         };
     });
-}
+};

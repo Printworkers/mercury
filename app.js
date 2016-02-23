@@ -73,6 +73,12 @@ myApp.config(function(RestangularProvider, apiUrl) {
 var username = require('./controllers/usernameCtrl')(myApp)
 var totalActiveAgents = require('./controllers/totalActiveAgentsCtrl')(myApp)
 
+// instantialize directives
+var dashboard = require('./directives/dashboard')(myApp)
+var loginAsUser = require('./directives/loginAsUser')(myApp)
+var previewJob = require('./directives/previewJob')(myApp)
+var header = require('./directives/header')(myApp)
+var sendEmail = require('./directives/sendEmail')(myApp)
 
 
 myApp.config(['tbkKeenConfigProvider', function(tbkKeenConfigProvider) {
@@ -128,12 +134,6 @@ myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', 'apiUrl', f
 	nga.configure(admin);
 }]);
 
-// instantialize directives
-var dashboard = require('./directives/dashboard')(myApp)
-var loginAsUser = require('./directives/loginAsUser')(myApp)
-var previewJob = require('./directives/previewJob')(myApp)
-var header = require('./directives/header')(myApp)
-var sendEmail = require('./directives/sendEmail')(myApp)
 
 function sendPostController($stateParams) {
     this.postId = $stateParams.id;
@@ -156,5 +156,6 @@ myApp.config(function ($stateProvider) {
         templateUrl: 'templates/sendEmail.html',
     });
 });
+
 
 

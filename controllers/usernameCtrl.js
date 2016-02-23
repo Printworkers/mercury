@@ -4,4 +4,4 @@ module.exports = function(myApp) {
 
 		$scope.username =	'test';
 	}]);
-}
+};

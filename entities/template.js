@@ -3,7 +3,7 @@
 module.exports = function (nga, user) {
 
 	/* emailTemplate */
-	var template = nga.entity('Template').identifier(nga.field('_id'));
+	var template = nga.entity('template').identifier(nga.field('_id'));
 	template.label('Templates');
 
 	template.listView()
