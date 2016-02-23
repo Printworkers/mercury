@@ -69,46 +69,11 @@ myApp.config(function(RestangularProvider, apiUrl) {
 
 });
 
-var updateHeader;
-
 // custom controllers
-myApp.controller('username', ['$scope', '$window', function($scope, $window) { // used in header.html
+var username = require('./controllers/usernameCtrl')(myApp)
+var totalActiveAgents = require('./controllers/totalActiveAgentsCtrl')(myApp)
 
-	$scope.username =	'test';
-}]);
 
-myApp.controller('totalActiveAgents', ['$scope', '$window', '$http', function($scope, $window, $http, apiUrl) { // used in header.html
-	$http.get(apiUrl + 'agent', {headers: {'x-access-token': localStorage.getItem('semper-admin-token') }}).then(function (response) {
-		$scope.today = response.data.data.length
-	})
-}]);
-
-// myApp.controller('dashboard', ['scope', '$http', function($scope, $html){
-// 	$scope.appCount = 123
-// }]);
-
-// var loginControllerTemplate =
-// 		'<div class="row"><div class="col-lg-12">' +
-// 			'<ma-view-actions><ma-back-button></ma-back-button></ma-view-actions>' +
-// 			'<div class="page-header">' +
-// 				'<h1>Login</h1>' +
-// 				'<p class="lead"></p>' +
-// 			'</div>' +
-// 		'</div></div>' +
-// 		'<div class="row">' +
-// 			'<div class="col-lg-5"><input type="text" size="10" ng-model="controller.email" class="form-control" placeholder="name@example.com"/></div>' +
-// 			'<div class="col-lg-5"><input type="password" size="10" ng-model="controller.password" class="form-control" /></div>' +
-// 			'<div class="col-lg-5"><a class="btn btn-default" ng-click="controller.login()">Send</a></div>' +
-// 		'</div>';
-
-// myApp.config(['$stateProvider', function ($stateProvider) {
-// 	$stateProvider.state('send-post', {
-// 		url: '/login',
-// 		controller: loginController,
-// 		controllerAs: 'controller',
-// 		template: loginControllerTemplate
-// 	});
-// }]);
 
 myApp.config(['tbkKeenConfigProvider', function(tbkKeenConfigProvider) {
 	var config = {
@@ -119,40 +84,7 @@ myApp.config(['tbkKeenConfigProvider', function(tbkKeenConfigProvider) {
 	tbkKeenConfigProvider.projectId(config.projectId).readKey(config.readKey);
 }]);
 
-myApp.directive('dashboard', function() {
-	return {
-		templateUrl: 'dashboard.html'
-	};
-});
 
-// function loginController($http, notification, $location) {
-// 	// notification is the service used to display notifications on the top of the screen
-// 	this.notification = notification;
-// 	this.$http = $http;
-// 	this.$location = $location
-// };
-
-// loginController.inject = ['$http', 'notification', '$location'];
-// loginController.prototype.login = function() {
-// 	// $http.post('http://semperllc.herokuapp.com/user/authenticate', {
-
-// 	// })
-// 	updateHeader()
-// 	this.$location.path('/dashboard');
-// 	this.notification.log('Successfully logged in as ' + this.email);
-// };
-
-// myApp.run(['Restangular', '$location', function(Restangular, $location){
-	// ==== CODE TO DO 401 NOT LOGGED IN CHECKING
-	//This code will intercept 401 unauthorized errors returned from web requests.
-	//On default any 401 will make the app think it is not logged in.
-	// Restangular.setErrorInterceptor(function(response, deferred, responseHandler) {
-	// 	if(response.status === 403){
-	// 		$location.path('/login');
-	// 		return false;
-	// 	}
-	// });
-// }]);
 
 myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', 'apiUrl', function(NgAdminConfigurationProvider, RestangularProvider, apiUrl) {
 	
@@ -196,37 +128,12 @@ myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', 'apiUrl', f
 	nga.configure(admin);
 }]);
 
-myApp.directive('header', function() {
-	return {
-		templateUrl: 'header.html',
-		controller: function($scope, Restangular) {
-			Restangular.all('user').customGET('current').then(function(data) {
-				$scope.user = data.data;
-			});
-
-			$scope.logout = function() {
-				if (confirm('Do you want to logout?')) {
-					localStorage.removeItem('semper-admin-token');
-					window.location = './index.html'
-				}
-			}
-		}
-	};
-});
-
-myApp.directive('sendEmail', ['$location', function ($location) {
-    return {
-        restrict: 'E',
-        scope: { post: '&' },
-        link: function (scope, nga) {
-        	console.log(scope)
-            scope.send = function () {
-                $location.path('/sendPost/' + scope.post().values.id);
-            };
-        },
-        template: '<a class="btn btn-default btn-xs" ng-click="send()"> <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Send Test</a>'
-    };
-}]);
+// instantialize directives
+var dashboard = require('./directives/dashboard')(myApp)
+var loginAsUser = require('./directives/loginAsUser')(myApp)
+var previewJob = require('./directives/previewJob')(myApp)
+var header = require('./directives/header')(myApp)
+var sendEmail = require('./directives/sendEmail')(myApp)
 
 function sendPostController($stateParams) {
     this.postId = $stateParams.id;
@@ -250,38 +157,4 @@ myApp.config(function ($stateProvider) {
     });
 });
 
-myApp.directive('loginAsUser', function(Restangular, $q, notification, $state) {
-    'use strict';
 
-    return {
-        restrict: 'E',
-        scope: {
-            selection: '=',
-            type: '@'
-        },
-        link: function(scope, element, attrs) {
-        	scope.login = function() {
-        		window.alert('asdfasdf')
-        	}
-        },
-        template: '<button class="btn btn-success btn-xs" ng-click="login()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Login as</button>'
-    };
-});
-
-myApp.directive('previewJob', function(Restangular, $q, notification, $state) {
-    'use strict';
-
-    return {
-        restrict: 'E',
-        scope: {
-            selection: '=',
-            type: '@'
-        },
-        link: function(scope, element, attrs) {
-        	scope.showJob = function() {
-        		window.alert('asdfasdf')
-        	}
-        },
-        template: '<button class="btn btn-success btn-xs" ng-click="showJob()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Live Preview</button>'
-    };
-});
