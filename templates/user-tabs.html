@@ -1,0 +1,75 @@
+<script>
+$(function(){
+  var hash = window.location.hash;
+  // hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+
+  $('.nav-tabs a').click(function (e) {
+  	e.preventDefault()
+
+    // $(this).tab('show');
+    // var scrollmem = $('body').scrollTop();
+    // // window.location.hash = this.hash;
+    // $('html,body').scrollTop(scrollmem);
+  });
+});
+</script>
+
+<div class="row">
+	<div class="col-md-12">
+	<h2>User Details</h2>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-4"> 
+		<b>Name</b>: {{user.name || 'NA'}}<br>
+		<b>Phone</b>: {{user.phone || 'NA'}}<br>
+		<b>Id</b>: {{user._id || 'NA'}}
+	</div>
+	<div class="col-md-4"> 
+		<b>Status</b>: {{user.status || 'NA'}}<br>
+		<b>Created:</b> {{user.createdAt | date: 'medium' }}
+	</div>
+	<div class="col-md-3"> 
+		<a href="#/user/list" class="btn btn-default btn-xs pull-right">
+			<span class="glyphicon glyphicon-list" aria-hidden="true"></span>&nbsp;
+			List
+		</a>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<!-- Nav tabs -->
+		<ul class="nav nav-tabs" role="tablist">
+			<li role="presentation" ng-class="{ 'active': tab == 'details'}">
+				<a href="#details" aria-controls="details" role="tab" data-toggle="tab">
+					Details
+				</a>
+			</li>
+			<li role="presentation" ng-class="{ 'active': tab == 'agents'}">
+				<a href="#agents" class="tab" aria-controls="agents" role="tab" data-toggle="tab">
+					Agents
+				</a>
+			</li>
+			<li role="presentation" ng-class="{ 'active': tab == 'filemaker'}">
+				<a href="#filemaker" aria-controls="filemaker" role="tab" data-toggle="tab">
+					FileMaker Details
+				</a>
+			</li>
+		</ul>
+
+		<!-- Tab panes -->
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane" ng-class="{ 'active': tab == 'details'}" id="details">
+				<user-details user="user"></user-details>
+			</div>
+			<div role="tabpanel" class="tab-pane" ng-class="{ 'active': tab == 'agents'}" id="agents">
+				<user-agents-table user="user"></user-agents-table>
+			</div>
+			<div role="tabpanel" class="tab-pane" ng-class="{ 'active': tab == 'filemaker'}" id="filemaker">
+				<user-filemaker-details user="user"></user-filemaker-details>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,20 +1,15 @@
 module.exports = function (nga, user) {
 
-	// user
-	// lookup
-	// job
-	// template
-	// agent
-	// homeoffice
-	// order 
-	// application
-	// skill
-
 	return nga.menu()
 		.addChild(nga.menu()
 			.title('Dashboards')
 			.link('/dashboard')
 			.icon('<span class="fa fa-desktop fa-fw"></span>')
+		)
+		.addChild(nga.menu()
+			.title('FileMaker ')
+			.link('/filemaker')
+			.icon('<span class="fa fa-download fa-fw"></span>')
 		)
 		.addChild(nga.menu()
 			.title('Users')

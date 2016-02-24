@@ -4,19 +4,22 @@ module.exports = function (nga, lookups) {
 	user.listView()
 	.title('Users')
 	.fields([
-		nga.field('firstname'),
+		nga.field('firstname')
+			.label('Name'),
 		nga.field('username'),
 		nga.field('email'),
 		nga.field('fmId')
 			.label('FMId'),
 		nga.field('type'),
 		nga.field('phone'),
-		nga.field('lastLoginAt')
+		nga.field('lastLoginAt', 'date')
+			.format('MM/dd/yyyy')
 			//.label('Last Login')
 	]).listActions([
-		'edit', 
-		'delete', 
-		'<login-as-user item="{{entry}}"></login-as-user>'
+		'edit',
+		'<user-manage user="entry"></user-manage>',
+		'<login-as-user item="entry"></login-as-user>',
+		'<fm-sync-job job="{{entry}}"></fm-sync-job>'
 	])
 	.filters([
 		nga.field('q', 'template')

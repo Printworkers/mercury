@@ -1,0 +1,50 @@
+<h4>
+	Job/Staff Agents
+</h4>
+
+<p>
+	The following is a list of agnets for this user.
+</p>
+
+<p>
+	<add-address user="user"></add-address>
+</p>
+
+<table class="table table-striped">
+	<tr>
+		<th>
+			Created
+		</th>
+		<th>
+			Name
+		</th>
+		<th>
+			Address
+		</th>
+		<th>
+			City, State, Zip
+		</th>
+		<th>
+			Details
+		</th>
+	</tr>
+	<tr ng-if="addresses.length == 0">
+		<td class="warning" colspan="5" align="center">
+			<br><br>
+			<br>
+			There are no records available.
+			<br><br>
+			<br><br>
+		</td>
+	</tr>
+	<tr ng-repeat="address in addresses">
+		<td>{{address.createdAt | date:'medium'}}</td>
+		<td>{{address.first_name}} {{address.last_name}}</td>
+		<td>{{address.address_line1}}</td>
+		<td>{{address.city}}, {{address.state}} {{address.zip_code}}</td>
+		<td>
+			<json-viewer entry="address"></json-viewer>
+			<edit-address address="address"></edit-address>
+		</td>
+	</tr>
+</table>

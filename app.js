@@ -90,8 +90,6 @@ myApp.config(['tbkKeenConfigProvider', function(tbkKeenConfigProvider) {
 	tbkKeenConfigProvider.projectId(config.projectId).readKey(config.readKey);
 }]);
 
-
-
 myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', 'apiUrl', function(NgAdminConfigurationProvider, RestangularProvider, apiUrl) {
 	
 	var nga = NgAdminConfigurationProvider;
@@ -134,6 +132,9 @@ myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', 'apiUrl', f
 	nga.configure(admin);
 }]);
 
+require('./extras/user-manage.js')(myApp);
+require('./extras/job-manage.js')(myApp);
+require('./extras/filemaker.js')(myApp);
 
 function sendPostController($stateParams) {
     this.postId = $stateParams.id;

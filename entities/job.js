@@ -19,7 +19,9 @@ module.exports = function (nga) {
     	'edit', 
     	'show',
     	'delete',
-    	'<preview-job item="{{entry}}"></preview-job>'])
+    	'<preview-job item="{{entry}}"></preview-job>',
+    	'<fm-sync-job job="{{entry}}"></fm-sync-job>'
+    ])
     .filters([
     	nga.field('q', 'template')
             .label('')

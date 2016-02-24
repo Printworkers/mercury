@@ -8,6 +8,8 @@ module.exports = function (nga) {
     .title('Home Offices')
     .fields([
         nga.field('name'),
+        nga.field('fmOfficeId'),
+        nga.field('phone'),
         nga.field('city'),
         nga.field('state')
     ]).listActions(['edit', 'delete'])
