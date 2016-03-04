@@ -14,19 +14,19 @@ module.exports = function(myApp) {
 };
 var _ = require('lodash');
 
-module.exports = function(myApp, apiUrl) {
+module.exports = function(myApp) {
     myApp.directive('dashboard', function() {
         return {
             templateUrl: 'dashboard.html',
-     //        controller: function($scope, $http) {
-     //        	var stats = ['agent', 'application', 'homeOffice', 'job', 'order', 'work', 'education', 'document', 'user', 'lookup', 'template', 'skill'];
-     //        	_.map(stats, function(stat) {
-	    //             $http.get(apiUrl + "/" + stat + "/count", {headers: {'x-access-token': localStorage.getItem('semper-admin-token') }}).then(function (response) {
-					// 	$scope[stat] = response.count;
-					// });
-     //        	})
-     //        	console.log($scope)
-     //        }
+            controller: function($scope, apiUrl, $http) {
+            	var stats = ['agent', 'application', 'homeOffice', 'job', 'order', 'work', 'education', 'document', 'user', 'lookup', 'template', 'skill'];
+            	_.map(stats, function(stat) {
+	                $http.get(apiUrl + stat + "/count", {headers: {'x-access-token': localStorage.getItem('semper-admin-token') }}).then(function (response) {
+						$scope[stat] = response.data.count;
+					});
+            	})
+            	console.log($scope)
+            }
         };
     });
 };
@@ -720,6 +720,30 @@ module.exports = function (myApp) {
 			},
 			controllerAs: 'controller',
 			templateUrl: '/templates/filemaker.html'
+		});
+	});
+
+	myApp.config(function($stateProvider) {
+		$stateProvider.state('findAndLinkToFM', {
+			parent: 'main',
+			url: '/findAndLink',
+			controller: function(user, $scope) {
+				// TODO: Do we need any data.
+			},
+			controllerAs: 'controller',
+			templateUrl: '/templates/findAndLink.html'
+		});
+	});
+
+	myApp.config(function($stateProvider) {
+		$stateProvider.state('filemaker', {
+			parent: 'main',
+			url: '/compareWebToFm',
+			controller: function(user, $scope) {
+				// TODO: Do we need any data.
+			},
+			controllerAs: 'controller',
+			templateUrl: '/templates/compareWebToFm.html'
 		});
 	});
 
