@@ -15,7 +15,7 @@ myApp.config(function(RestangularProvider, apiUrl) {
 
 	RestangularProvider.setBaseUrl(apiUrl);
 	RestangularProvider.setDefaultHeaders({'x-access-token': localStorage.getItem('semper-admin-token') }); 	
-	RestangularProvider.setRestangularFields({ id: 'id' });
+	RestangularProvider.setRestangularFields({ id: '_id' });
 
 	RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response) {
 		if (operation == "getList") {
@@ -135,6 +135,9 @@ myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', 'apiUrl', f
 require('./extras/user-manage.js')(myApp);
 require('./extras/job-manage.js')(myApp);
 require('./extras/filemaker.js')(myApp);
+
+require('./filters/tel.js')(myApp);
+require('./filters/titlecase.js')(myApp);
 
 function sendPostController($stateParams) {
     this.postId = $stateParams.id;

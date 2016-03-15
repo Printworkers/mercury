@@ -1,29 +1,40 @@
 <script>
 $(function(){
   var hash = window.location.hash;
-  // hash && $('ul.nav a[href="' + hash + '"]').tab('show');
-
   $('.nav-tabs a').click(function (e) {
-  	e.preventDefault()
-
-    // $(this).tab('show');
-    // var scrollmem = $('body').scrollTop();
-    // // window.location.hash = this.hash;
-    // $('html,body').scrollTop(scrollmem);
+  	e.preventDefault();
+  	e.stopPropagation();
+  	var parts = window.location.hash.split('?');
+  	var hashBase = parts[0];
+  	var fragment = $(this).attr('href').replace('#', '');
+  	var hashEl = hashBase.split('/');
+  	if (hashEl.length == 4) {
+  		hashEl.push(fragment)
+  	} else if (hashEl.length == 5) {
+  		hashEl[4] = fragment;
+  	}
+  	window.location.hash = hashEl.join('/');
   });
 });
 </script>
 
 <div class="row">
 	<div class="col-md-12">
-	<h2>User Details</h2>
+	<h2>
+		User Details
+
+		<a href="#/user/list" class="btn btn-default btn-sm pull-right">
+			<span class="glyphicon glyphicon-list" aria-hidden="true"></span>&nbsp;
+			List
+		</a>
+	</h2>
 	</div>
 </div>
 
 <div class="row">
 	<div class="col-md-4"> 
 		<b>Name</b>: {{user.name || 'NA'}}<br>
-		<b>Phone</b>: {{user.phone || 'NA'}}<br>
+		<b>Phone</b>: {{user.phone || 'NA' | tel }}<br>
 		<b>Id</b>: {{user._id || 'NA'}}
 	</div>
 	<div class="col-md-4"> 
@@ -31,12 +42,11 @@ $(function(){
 		<b>Created:</b> {{user.createdAt | date: 'medium' }}
 	</div>
 	<div class="col-md-3"> 
-		<a href="#/user/list" class="btn btn-default btn-xs pull-right">
-			<span class="glyphicon glyphicon-list" aria-hidden="true"></span>&nbsp;
-			List
-		</a>
+		
 	</div>
 </div>
+
+<br>
 
 <div class="row">
 	<div class="col-md-12">
@@ -57,18 +67,68 @@ $(function(){
 					FileMaker Details
 				</a>
 			</li>
+			<li role="presentation" ng-class="{ 'active': tab == 'options'}">
+				<a href="#options" aria-controls="options" role="tab" data-toggle="tab">
+					Options
+				</a>
+			</li>
 		</ul>
 
 		<!-- Tab panes -->
 		<div class="tab-content">
+
 			<div role="tabpanel" class="tab-pane" ng-class="{ 'active': tab == 'details'}" id="details">
 				<user-details user="user"></user-details>
 			</div>
+
 			<div role="tabpanel" class="tab-pane" ng-class="{ 'active': tab == 'agents'}" id="agents">
 				<user-agents-table user="user"></user-agents-table>
 			</div>
+
 			<div role="tabpanel" class="tab-pane" ng-class="{ 'active': tab == 'filemaker'}" id="filemaker">
 				<user-filemaker-details user="user"></user-filemaker-details>
+			</div>
+
+			<div role="tabpanel" class="tab-pane" ng-class="{ 'active': tab == 'options'}" id="options">
+				
+					<h4>Account Options</h4>
+
+					<div ng-if="optionsSuccessMessage !==''" class="alert alert-success">
+						{{optionsSuccessMessage}}
+					</div>
+
+					<div ng-if="optionsErrorMessage !==''" class="alert alert-danger">
+						{{optionsErrorMessage}}
+					</div>
+
+					<div class="row">
+						<div class="col-md-3">
+							<button class="btn btn-success btn-block" ng-click="sendEmailPassCode()">Send Email Passcode</button>
+						</div>
+						<div class="col-md-3">
+							{{user.email || 'NA'}}
+						</div>
+						<div class="col-md-5">
+							This option provides the ability to send the user a Email Message containing
+							a single user passcode.
+						</div>
+					</div>
+
+					<hr>
+
+					<div class="row">
+						<div class="col-md-3">
+							<button class="btn btn-success btn-block" ng-click="sendSMSPassCode()">Send SMS Passcode</button>
+						</div>
+						<div class="col-md-3">
+							{{user.phone || 'NA' | tel }}
+						</div>
+						<div class="col-md-5">
+							This option provides the ability to send the user an SMS text messsage with
+							a single use passcode.
+						</div>
+					</div>
+
 			</div>
 		</div>
 	</div>
