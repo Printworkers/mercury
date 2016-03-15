@@ -12,10 +12,21 @@ module.exports = function(myApp) {
 		$scope.username =	'test';
 	}]);
 };
+var _ = require('lodash');
+
 module.exports = function(myApp) {
     myApp.directive('dashboard', function() {
         return {
-            templateUrl: 'dashboard.html'
+            templateUrl: 'dashboard.html',
+            controller: function($scope, apiUrl, $http) {
+            	var stats = ['agent', 'application', 'homeOffice', 'job', 'order', 'work', 'education', 'document', 'user', 'lookup', 'template', 'skill'];
+            	_.map(stats, function(stat) {
+	                $http.get(apiUrl + stat + "/count", {headers: {'x-access-token': localStorage.getItem('semper-admin-token') }}).then(function (response) {
+						$scope[stat] = response.data.count;
+					});
+            	})
+            	console.log($scope)
+            }
         };
     });
 };
@@ -210,6 +221,8 @@ module.exports = function (nga) {
     .title('Home Offices')
     .fields([
         nga.field('name'),
+        nga.field('fmOfficeId'),
+        nga.field('phone'),
         nga.field('city'),
         nga.field('state')
     ]).listActions(['edit', 'delete'])
@@ -262,7 +275,9 @@ module.exports = function (nga) {
     	'edit', 
     	'show',
     	'delete',
-    	'<preview-job item="{{entry}}"></preview-job>'])
+    	'<preview-job item="{{entry}}"></preview-job>',
+    	'<fm-sync-job job="{{entry}}"></fm-sync-job>'
+    ])
     .filters([
     	nga.field('q', 'template')
             .label('')
@@ -600,19 +615,22 @@ module.exports = function (nga, lookups) {
 	user.listView()
 	.title('Users')
 	.fields([
-		nga.field('firstname'),
+		nga.field('firstname')
+			.label('Name'),
 		nga.field('username'),
 		nga.field('email'),
 		nga.field('fmId')
 			.label('FMId'),
 		nga.field('type'),
 		nga.field('phone'),
-		nga.field('lastLoginAt')
+		nga.field('lastLoginAt', 'date')
+			.format('MM/dd/yyyy')
 			//.label('Last Login')
 	]).listActions([
-		'edit', 
-		'delete', 
-		'<login-as-user item="{{entry}}"></login-as-user>'
+		'edit',
+		'<user-manage user="entry"></user-manage>',
+		'<login-as-user item="entry"></login-as-user>',
+		'<fm-sync-job job="{{entry}}"></fm-sync-job>'
 	])
 	.filters([
 		nga.field('q', 'template')
@@ -691,4 +709,203 @@ module.exports = function (nga, lookups) {
 	return user;
 };
 
+module.exports = function (myApp) {
+
+	myApp.config(function($stateProvider) {
+		$stateProvider.state('filemaker', {
+			parent: 'main',
+			url: '/filemaker',
+			controller: function(user, $scope) {
+				// TODO: Do we need any data.
+			},
+			controllerAs: 'controller',
+			templateUrl: '/templates/filemaker.html'
+		});
+	});
+
+	myApp.config(function($stateProvider) {
+		$stateProvider.state('findAndLinkToFM', {
+			parent: 'main',
+			url: '/findAndLink',
+			controller: function(user, $scope) {
+				// TODO: Do we need any data.
+			},
+			controllerAs: 'controller',
+			templateUrl: '/templates/findAndLink.html'
+		});
+	});
+
+	myApp.config(function($stateProvider) {
+		$stateProvider.state('filemaker', {
+			parent: 'main',
+			url: '/compareWebToFm',
+			controller: function(user, $scope) {
+				// TODO: Do we need any data.
+			},
+			controllerAs: 'controller',
+			templateUrl: '/templates/compareWebToFm.html'
+		});
+	});
+
+}
+module.exports = function (myApp) {
+
+	myApp.directive('fmSyncJob', [ '$location', function ($location) {
+		return {
+			restrict: 'E',
+			scope: { 
+				user: '&' 
+			},
+			link: function (scope) {
+				// var id = scope.user().values._id;
+
+				// scope.open = function () {
+				// 	$location.path('/job/details/' + id);
+				// };
+			},
+			template: '<button class="btn btn-primary btn-xs" ng-click="open()"><i class="fa fa-download"></i>&nbsp;FM Sync</button>'
+		};
+	}]);
+
+}
+module.exports = function (myApp) {
+
+	myApp.config(function($stateProvider) {
+		$stateProvider.state('user-detail', {
+			parent: 'main',
+			url: '/user/details/:id',
+			params: { id: null },
+			resolve: {
+				user: function($stateParams, $q, Restangular) {
+					var deferred = $q.defer();
+					Restangular.all('user').get($stateParams.id).then(function(data) {
+						if (data.data) {
+							deferred.resolve(data.data);
+						} else {
+							deferred.resolve(data);
+						}
+					}, function(err) {
+						deferred.reject(err);
+					});
+					return deferred.promise;
+				}
+			},
+			controller: function(user, $scope) {
+				$scope.tab = 'details';
+				$scope.user = user;
+			},
+			controllerAs: 'controller',
+			templateUrl: '/templates/user-tabs.html'
+		});
+
+		$stateProvider.state('user-detail-tabs', {
+			parent: 'main',
+			url: '/user/details/:id/:tab',
+			params: { id: null, tab: null },
+			resolve: {
+				user: function($stateParams, $q, Restangular) {
+					var deferred = $q.defer();
+					Restangular.all('user').get($stateParams.id).then(function(data) {
+						if (data.data) {
+							deferred.resolve(data.data);
+						} else {
+							deferred.resolve(data);
+						}
+					}, function(err) {
+						deferred.reject(err);
+					});
+					return deferred.promise;
+				}
+			},
+			controller: function(user, $scope, $stateParams) {
+				$scope.tab = $stateParams.tab;
+				$scope.user = user;
+			},
+			controllerAs: 'controller',
+			templateUrl: '/templates/user-tabs.html'
+		});
+	});
+
+	myApp.directive('fmSyncUser', [ '$location', function ($location) {
+		return {
+			restrict: 'E',
+			scope: { 
+				user: '&' 
+			},
+			link: function (scope) {
+				// var id = scope.user().values._id;
+
+				// scope.open = function () {
+				// 	$location.path('/job/details/' + id);
+				// };
+			},
+			template: '<button class="btn btn-primary btn-xs" ng-click="open()"><i class="fa fa-download"></i>&nbsp;Sync</button>'
+		};
+	}]);
+
+	myApp.directive('userManage', [ '$location', function ($location) {
+		return {
+			restrict: 'E',
+			scope: { 
+				user: '&' 
+			},
+			link: function (scope) {
+				var id = scope.user().values._id;
+
+				scope.open = function () {
+					$location.path('/user/details/' + id);
+				};
+			},
+			template: '<button class="btn btn-success btn-xs" ng-click="open()">Manage</button>'
+		};
+	}]);
+
+	myApp.directive('userDetails', function(Restangular) {
+		'use strict';
+		return {
+			restrict: 'E',
+			scope: {
+				user: '='
+			},
+			controller: function($scope) {
+				$scope.user = $scope.user;
+			},
+			templateUrl: 'templates/user-details.html'
+		};
+	});
+
+	myApp.directive('userFilemakerDetails', function(Restangular) {
+		'use strict';
+		return {
+			restrict: 'E',
+			scope: {
+				user: '='
+			},
+			controller: function($scope, Restangular) {
+				// TODO: Add in the API Call to File Mker for this ID.
+			},
+			templateUrl: 'templates/user-filemaker-details.html'
+		};
+	});
+
+	myApp.directive('userAgentsTable', function(Restangular) {
+		'use strict';
+		return {
+			restrict: 'E',
+			scope: {
+				user: '='
+			},
+			controller: function($scope, Restangular) {
+				Restangular.all('agent').getList({ User: $scope.user._id }).then(function(data) {
+					if (data.data) {
+						$scope.events = data.data;
+					} else {
+						$scope.events = data;
+					}
+				});
+			},
+			templateUrl: 'templates/user-agents-table.html'
+		};
+	});
+}
 exports.states = require('./states.json');
