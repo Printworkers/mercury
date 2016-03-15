@@ -7,7 +7,8 @@ myApp.constant('apiUrl', function() {
 }());
 
 /* controllers */
-require('./controllers/totalActiveAgentsCtrl')(myApp)
+require('./controllers/totalActiveAgentsCtrl')(myApp);
+var username = require('./controllers/usernameCtrl')(myApp);
 
 // instantialize directives
 require('./directives/dashboard')(myApp);
