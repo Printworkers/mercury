@@ -11,7 +11,14 @@ module.exports = function (nga, lookups) {
 		nga.field('fmId')
 			.label('FMId'),
 		nga.field('type'),
-		nga.field('phone'),
+		nga.field('phone')
+			.template(function(entity) {
+				if (entity.values.phone) {
+					return '{{' + (entity.values.phone || "Missing") + ' | tel }}';
+				} else {
+					return '<span class="label label-warning">Not yet</span>';
+				}
+			}),
 		nga.field('lastLoginAt', 'date')
 			.format('MM/dd/yyyy')
 			//.label('Last Login')
@@ -22,7 +29,7 @@ module.exports = function (nga, lookups) {
 		'<fm-sync-job job="{{entry}}"></fm-sync-job>'
 	])
 	.filters([
-		nga.field('q', 'template')
+		nga.field('firstname', 'template')
 			.label('')
 			.pinned(true)
 			.template('<div class="input-group"><input type="text" ng-model="value" placeholder="Search" class="form-control"></input><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span></div>'),

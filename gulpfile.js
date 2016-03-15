@@ -7,7 +7,6 @@ var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
-
 var watchify = require('watchify');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
@@ -15,11 +14,10 @@ var buffer = require('vinyl-buffer');
 var gutil = require('gulp-util');
 var sourcemaps = require('gulp-sourcemaps');
 var assign = require('lodash.assign');
-
 var source = require('vinyl-source-stream');
 var stringify = require('stringify');
-
 var nodemon = require('gulp-nodemon');
+var browserSync = require('browser-sync').create();
 
 // Lint Task
 gulp.task('lint', function() {
@@ -47,10 +45,8 @@ gulp.task('scripts', function() {
 
 gulp.task('start', function () {
   nodemon({
-    script: 'server.js'
-  , ext: 'js html'
-  , env: { 'NODE_ENV': 'development' }
-  })
+    script: 'server.js', ext: 'js html', env: { 'NODE_ENV': 'development' }
+  });
 })
 
 // Watch Files For Changes
@@ -62,6 +58,25 @@ gulp.task('watch', function() {
 // Default Task
 gulp.task('default', ['lint', 'sass', 'scripts','js', 'watch', 'start']);
 
+// create a task that ensures the `js` task is complete before
+// reloading browsers
+gulp.task('js-watch', ['js'], browserSync.reload);
+
+// use default task to launch Browsersync and watch JS files
+gulp.task('serve', ['js'], function () {
+
+    // Serve files from the root of this project
+    browserSync.init({
+        server: {
+            baseDir: "./"
+        }
+    });
+
+    // add browserSync.reload to the tasks array to make
+    // all browsers reload after tasks are complete.
+
+    gulp.watch("dist/*.js", ['js-watch']);
+});
 
 // add custom browserify options here
 var customOpts = {

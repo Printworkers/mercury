@@ -124,20 +124,6 @@ module.exports = function (myApp) {
 		};
 	});
 
-	myApp.directive('userFilemakerDetails', function(Restangular) {
-		'use strict';
-		return {
-			restrict: 'E',
-			scope: {
-				user: '='
-			},
-			controller: function($scope, Restangular) {
-				// TODO: Add in the API Call to File Mker for this ID.
-			},
-			templateUrl: 'templates/user-filemaker-details.html'
-		};
-	});
-
 	myApp.directive('userAgentsTable', function(Restangular) {
 		'use strict';
 		return {
