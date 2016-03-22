@@ -14,24 +14,46 @@
 <div class="row">
 	<div class="col-md-4">
 
-		<select type="text" class="form-control" placeholder="Search for...">
-			<option value="email">By Email</option>
-			<option value="firstname">By First Name</option>
-			<option value="lastname">By Last Name</option>
-			<option value="phone">By Phone</option>
-		</select>
+		<select type="text" class="form-control" ng-options="item.value as item.label for item in seachFieldOpts" ng-model="searchField" name="searchField" placeholder="Search for..."></select>
 
 	</div>
 
 	<div class="col-md-6">
 		<div class="input-group">
-				<input type="text" class="form-control" value="@test.com" placeholder="Search for...">
+				<input type="text" class="form-control" ng-model="searchTerm" value="@test.com" placeholder="Search for...">
 				<span class="input-group-btn">
 					<button ng-click="search()" class="btn btn-default" type="button">Go!</button>
 				</span>
 			</div>
 		</div>
 		
+	</div>
+</div>
+
+<br>
+<div ng-if="message" class="row">
+	<div class="col-md-12">
+		<div class="alert alert-success">
+			{{ message }}
+		</div>
+	</div>
+</div>
+
+<div ng-if="errorMessage" class="row">
+	<div class="col-md-12">
+		<div class="alert alert-danger">
+			{{ errorMessage }}
+		</div>
+	</div>
+</div>
+
+<div ng-if="user.fmEmployeeId" class="row">
+	<div class="col-md-12">
+		<div class="alert alert-warning">
+			Note, this account already has a linked fmEmployeeID. You
+			an change the linking ID, but it will impact how the user
+			account access Semper Features. <b>Current Id: {{user.fmEmployeeId}}</b>
+		</div>
 	</div>
 </div>
 
@@ -48,92 +70,38 @@
 				<th>Email</th>
 				<th>Phone</th>
 				<th>Address</th>
+				<th>Office</th>
 				<th width="5%"></th>
 			</tr>
-			<tr>
+			<tr ng-repeat="user in users">
 				<td>
-					101010
+					{{ user.id_employee }}
 				</td>
 				<td>
-					Stephan Smith
+					{{ user.name_first }} {{ user.name_last }}
 				</td>
 				<td>
-					test@test.com
+					--
 				</td>
 				<td>
-					(222) 222-2222
+					--
 				</td>
 				<td>
-					2 Chestnut Terr, Jamaica Plain, MA 02130
+					{{ user.office }}
 				</td>
 				<td>
-					<button ng-click="useFMId()" class="btn btn-success btn-xs">Use</button>
-				</td>
-			</tr>
-
-			<tr>
-				<td>
-					22222
+					{{ user.address_city }} {{ user.address_state }}
 				</td>
 				<td>
-					Liesl Smith
-				</td>
-				<td>
-					liesl@test.com
-				</td>
-				<td>
-					(111) 232-2222
-				</td>
-				<td>
-					22 Main Street, Jamaica Plain, MA 78404
-				</td>
-				<td>
-					<button ng-click="useFMId()" class="btn btn-success btn-xs">Use</button>
+					<button ng-click="useFMId(user.id_employee)" class="btn btn-success btn-xs">Use</button>
 				</td>
 			</tr>
-
-			<tr>
-				<td>
-					392929
-				</td>
-				<td>
-					Rocco Deman
-				</td>
-				<td>
-					rococo@test.com
-				</td>
-				<td>
-					(715) 232-2222
-				</td>
-				<td>
-					19211 East Houston Dr, Houston, Texas 78404
-				</td>
-				<td>
-					<button ng-click="useFMId()" class="btn btn-success btn-xs">Use</button>
-				</td>
-			</tr>
-
-			<tr>
-				<td>
-					919911
-				</td>
-				<td>
-					Ronnie Destinker
-				</td>
-				<td>
-					Ronnie111@test.com
-				</td>
-				<td>
-					(874) 222-1111
-				</td>
-				<td>
-					2 Boyston St, Boston, MA 01230
-				</td>
-				<td>
-					<button ng-click="useFMId()" class="btn btn-success btn-xs">Use</button>
-				</td>
-			</tr>
-
 		</table>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<b>Url:</b> <a href="{{url}}" target="_data">{{url}}</a>
 	</div>
 </div>

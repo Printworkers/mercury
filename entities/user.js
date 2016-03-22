@@ -26,7 +26,7 @@ module.exports = function (nga, lookups) {
 		'edit',
 		'<user-manage user="entry"></user-manage>',
 		'<login-as-user item="entry"></login-as-user>',
-		'<fm-sync-job job="{{entry}}"></fm-sync-job>'
+		'<fm-sync-job job="entry"></fm-sync-job>'
 	])
 	.filters([
 		nga.field('firstname', 'template')

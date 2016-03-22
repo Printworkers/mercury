@@ -2,7 +2,18 @@
 	File Maker Details
 </h4>
 
-<div class="row">
+<div ng-if="!hasEmployeeId" class="row">
+	<div class="col-md-12">
+		<div class="alert alert-danger">
+			This feature is not available, as the account does
+			not have a valid file Maker Employee Id.<br>
+			<br>
+			Use the FileMaker Linker to find and link this account.
+		</div>
+	</div>
+</div>
+
+<div ng-if="hasEmployeeId" class="row">
 	<div class="col-md-12">
 		<p>
 			This provides the ability to review the changes in the local
@@ -13,6 +24,10 @@
 		</p>
 
 		<br>
+
+		<div ng-if="errorMessage" class="alert alert-danger">
+			{{ errorMessage }}
+		</div>
 
 		<table class="table table-stripe table-hover">
 			<tr>
@@ -41,13 +56,13 @@
 				First Name
 				</td>
 				<td>
-				Stephan
+					{{ userData.firstname }}
 				</td>
 				<td class="success" align="center">
 				=
 				</td>
 				<td>
-				Stephan
+					{{ fmData.name_first }}
 				</td>
 				<td>
 					&nbsp;
@@ -59,16 +74,16 @@
 					<button class="btn pull-right btn-xs btn-default">use</button>
 				</td>
 				<td>
-				Last Name
+					Last Name
 				</td>
 				<td>
-				Stephan
+					{{ userData.lastname }}
 				</td>
 				<td class="danger" align="center">
 				<>
 				</td>
 				<td>
-				Bobo
+					{{ fmData.name_last }}
 				</td>
 				<td>
 					<button class="btn btn-xs btn-default">use</button>
@@ -80,16 +95,16 @@
 					<button class="btn btn-xs pull-right btn-default">use</button>
 				</td>
 				<td>
-				Address
+					City
 				</td>
 				<td>
-				2 Chestnut Terr
+					{{ userData.city }}
 				</td>
 				<td class="danger" align="center">
 				<>
 				</td>
 				<td>
-				2a Chestnut Terr
+					{{ fmData.address_city }}
 				</td>
 				<td>
 					<button class="btn btn-xs btn-default">use</button>
@@ -101,16 +116,16 @@
 					<button class="btn btn-xs pull-right btn-default">use</button>
 				</td>
 				<td>
-				Zip Code
+					Office
 				</td>
 				<td>
-				021022
+					{{ userData.office }}
 				</td>
 				<td class="danger" align="center">
 				<>
 				</td>
 				<td>
-				02130
+					{{ fmData.office }}
 				</td>
 				<td>
 					<button class="btn btn-xs btn-default">use</button>
@@ -119,22 +134,43 @@
 
 			<tr>
 				<td>
-					&nbsp;
+					<button class="btn btn-xs pull-right btn-default">use</button>
 				</td>
 				<td>
-				Phone
+					Primary Skill
 				</td>
 				<td>
-				617-953-7947
+					{{ userData.skill_1_primary }}
 				</td>
-				<td class="success" align="center">
-				=
-				</td>
-				<td>
-				617-953-7947
+				<td class="danger" align="center">
+				<>
 				</td>
 				<td>
-					&nbsp;
+					{{ fmData.dept_primary_name }}
+				</td>
+				<td>
+					<button class="btn btn-xs btn-default">use</button>
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<button class="btn btn-xs pull-right btn-default">use</button>
+				</td>
+				<td>
+					Primary Skill
+				</td>
+				<td>
+					{{ userData.skill_1_year }}
+				</td>
+				<td class="danger" align="center">
+				<>
+				</td>
+				<td>
+					{{ fmData.dept_primary_years }}
+				</td>
+				<td>
+					<button class="btn btn-xs btn-default">use</button>
 				</td>
 			</tr>
 

@@ -1,11 +1,17 @@
+// global.jQuery = require('./bower_components/jquery/dist/jquery.js');
 
 var _ = require('lodash');
-var myApp = angular.module('myApp', ['ng-admin', 'angular-keenio']);
+
+// require('./vendor/ng-admin.js');
+require('./bower_components/angular-animate/angular-animate.min.js');
+require('./bower_components/angular-modal-service/dst/angular-modal-service.min.js');
+
+var myApp = angular.module('myApp', ['ng-admin', 'angular-keenio', 'angularModalService']);
 
 myApp.constant('apiUrl', function() {
 	return 'https://api.semperllc.com/';
 }());
-
+ 
 /* controllers */
 require('./controllers/totalActiveAgentsCtrl')(myApp);
 var username = require('./controllers/usernameCtrl')(myApp);
