@@ -31,6 +31,7 @@ require('./configs/keen')(myApp);
 require('./extras/user-manage.js')(myApp);
 require('./extras/job-manage.js')(myApp);
 require('./extras/filemaker.js')(myApp);
+require('./extras/json/json.js')(myApp);
 
 /* Filters. */
 require('./filters/tel.js')(myApp);
