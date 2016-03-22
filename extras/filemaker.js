@@ -87,7 +87,7 @@ module.exports = function (myApp) {
 			controller: function($scope) {
 				$scope.errorMessage = '';
 				$scope.message = '';
-
+				$scope.searching = false;
 				$scope.results = [];
 				$scope.searchTerm = '';
 				$scope.searchField = 'FirstName';
@@ -108,7 +108,7 @@ module.exports = function (myApp) {
 
 				var buildUrl = function() {
 					var urlBase = 'https://semperpages-jrr316.c9users.io/MultipleEmployees_result.php';
-					$scope.url = urlBase + '?' + $scope.searchField + '=' + $scope.searchTerm + '&limit=10';
+					$scope.url = urlBase + '?' + $scope.searchField + '=' + $scope.searchTerm + '&limit=50';
 
 					return $scope.url;
 				};
@@ -121,14 +121,30 @@ module.exports = function (myApp) {
 				];
 
 				$scope.search = function() {
+					$scope.searching = true;
+					$scope.users = [];
+
 					$http({
 						method: 'GET',
 						url: buildUrl()
 					}).then(function successCallback(response) {
-						$scope.users = response.data.devices[0];
+						console.log('sss', response.data);
+
+						if (response.data.devices) {
+							$scope.users = response.data.devices[0];
+						} else {
+							$scope.users = [];
+						}
+
+						$scope.searching = false;
 					}, function errorCallback(response) {
 						$scope.errorMessage = 'Unable to reach filemaker API.';
+						$scope.searching = false;
 					});
+				};
+
+				$scope.createUser = function() {
+					alert('Coming Soon.');
 				};
 
 				$scope.useFMId = function(fmId) {
