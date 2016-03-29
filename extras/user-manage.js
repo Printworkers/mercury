@@ -83,6 +83,7 @@ module.exports = function (myApp) {
 				user: '&' 
 			},
 			link: function (scope) {
+
 				// var id = scope.user().values._id;
 
 				// scope.open = function () {
@@ -119,6 +120,24 @@ module.exports = function (myApp) {
 			},
 			controller: function($scope) {
 				$scope.user = $scope.user;
+
+				$scope.lookups = {
+					userTypes: [
+						{ value: 'job seeker', label: 'Job Seeker' },
+						{ value: 'employee', label: 'Employer' },
+						{ value: 'administrator', label: 'Administator' },
+						{ value: 'super', label: 'Administator Super' },
+					]
+				};
+
+				$scope.save = function() {
+					alert('asdfas');
+					$scope.user.save().then(function(data) {
+						console.log('ssss', data);
+
+					});
+				};
+
 			},
 			templateUrl: 'templates/user-details.html'
 		};

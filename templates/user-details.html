@@ -1,11 +1,161 @@
-<h4>
-	User Details
-</h4>
+<br>
 
-<div class="row">
-	<div class="col-md-10">
-		<p>
-			This is a placeholder for a user details, statuses etc.
-		</p>
+
+	<form name="form" novalidate>
+
+	<div class="row">
+
+		<div class="col-md-3">
+			<p>
+				The following are account user.
+			</p>
+		</div>
 	</div>
-</div>
+
+
+	<div class="row">
+
+		<div class="col-md-3">
+			<div class="form-group has-feedback" ng-class="{'has-error': form.firstname.$touched && form.firstname.$invalid}">
+				<label>First Name</label>
+				<input name="firstname" required id="firstname" class="form-control" ng-model="user.firstname" placeholder="Enter First Name" >
+
+				<span ng-if="form.firstname.$touched" ng-class="{ 'glyphicon-ok': form.firstname.$valid, 'glyphicon-remove': form.firstname.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+			</div>
+		</div>
+
+		<div class="col-md-3">
+			<div class="form-group has-feedback" ng-class="{'has-error': form.lastname.$touched && form.lastname.$invalid}">
+				<label>Last Name</label>
+				<input name="lastname" required id="lastname" class="form-control" ng-model="user.lastname" placeholder="Enter Last Name" >
+
+				<span ng-if="form.lastname.$touched" ng-class="{ 'glyphicon-ok': form.lastname.$valid, 'glyphicon-remove': form.lastname.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+			</div>
+		</div>
+
+		<div class="col-md-3">
+			<div class="form-group has-feedback" ng-class="{'has-error': form.type.$touched && form.type.$invalid}">
+				<label>Account Type</label>
+				<select name="type" required id="type" class="form-control" 
+						ng-model="user.type" 
+						placeholder="Select.."
+						ng-options="item.value as item.label for item in lookups.userTypes"> 
+					<option value="">Select Type</option> 
+				</select>
+				<span ng-if="form.type.$touched" ng-class="{ 'glyphicon-ok': form.type.$valid, 'glyphicon-remove': form.type.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="row">
+
+		<div class="col-md-3">
+			<div class="form-group has-feedback" ng-class="{'has-error': form.password.$touched && form.password.$invalid}">
+				<label>Password</label>
+				
+				<input type="password" name="password" id="password" class="form-control" ng-model="user.password" placeholder="Enter Password">
+
+				<span ng-if="form.password.$touched" ng-class="{ 'glyphicon-ok': form.password.$valid, 'glyphicon-remove': form.password.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+			</div>
+		</div>
+
+		<div class="col-md-3">
+			<div class="form-group has-feedback" ng-class="{'has-error': form.username.$touched && form.username.$invalid}">
+				<label>Username</label>
+				<input type="text" name="username" id="username" class="form-control" ng-model="user.username" placeholder="Enter Password">
+
+				<span ng-if="form.username.$touched" ng-class="{ 'glyphicon-ok': form.username.$valid, 'glyphicon-remove': form.username.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+			</div>
+		</div>
+		
+		<div class="col-md-6">
+			<div class="form-group has-feedback" ng-class="{'has-error': form.email.$touched && form.email.$invalid}">
+				<label>Email</label>
+				<input type="text" name="email" id="email" class="form-control" ng-model="user.email" placeholder="Enter Password">
+
+				<span ng-if="form.email.$touched" ng-class="{ 'glyphicon-ok': form.email.$valid, 'glyphicon-remove': form.email.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="row">
+
+		<div class="col-md-3">
+			<div class="form-group has-feedback" ng-class="{'has-error': form.address_line1.$touched && form.address_line1.$invalid}">
+				<label>Address</label>
+				
+				<input type="text" name="address_line1" id="address_line1" class="form-control" ng-model="user.address_line1" placeholder="Enter State">
+
+				<span ng-if="form.address_line1.$touched" ng-class="{ 'glyphicon-ok': form.address_line1.$valid, 'glyphicon-remove': form.address_line1.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+			</div>
+		</div>
+
+		<div class="col-md-3">
+			<div class="form-group has-feedback" ng-class="{'has-error': form.city.$touched && form.city.$invalid}">
+				<label>City</label>
+				
+				<input type="text" name="city" id="city" class="form-control" ng-model="user.city" placeholder="Enter State">
+
+				<span ng-if="form.city.$touched" ng-class="{ 'glyphicon-ok': form.city.$valid, 'glyphicon-remove': form.city.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+			</div>
+		</div>
+
+		<div class="col-md-3">
+			<div class="form-group has-feedback" ng-class="{'has-error': form.state.$touched && form.state.$invalid}">
+				<label>State</label>
+				
+				<input type="text" name="state" id="state" class="form-control" ng-model="user.state" placeholder="Enter State">
+
+				<span ng-if="form.state.$touched" ng-class="{ 'glyphicon-ok': form.state.$valid, 'glyphicon-remove': form.state.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+			</div>
+		</div>
+		
+		<div class="col-md-3">
+			<div class="form-group has-feedback" ng-class="{'has-error': form.zip.$touched && form.zip.$invalid}">
+				<label>Zip</label>
+				
+				<input type="text" name="zip" id="zip" class="form-control" ng-model="user.zip" placeholder="Enter State">
+
+				<span ng-if="form.zip.$touched" ng-class="{ 'glyphicon-ok': form.zip.$valid, 'glyphicon-remove': form.zip.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="row">
+
+		<div class="col-md-3">
+			<div class="form-group has-feedback" ng-class="{'has-error': form.company.$touched && form.company.$invalid}">
+				<label>Company</label>
+				
+				<input type="text" name="company" id="company" class="form-control" ng-model="user.company" placeholder="Enter Company">
+
+				<span ng-if="form.company.$touched" ng-class="{ 'glyphicon-ok': form.company.$valid, 'glyphicon-remove': form.company.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+			</div>
+		</div>
+
+		<div class="col-md-3">
+			<div class="form-group has-feedback" ng-class="{'has-error': form.company_url.$touched && form.company_url.$invalid}">
+				<label>Company Url</label>
+				
+				<input type="text" name="company_url" id="company_url" class="form-control" ng-model="user.company_url" placeholder="Enter State">
+
+				<span ng-if="form.company_url.$touched" ng-class="{ 'glyphicon-ok': form.company_url.$valid, 'glyphicon-remove': form.company_url.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+			</div>
+		</div>
+
+
+	</div>
+
+	<div class="row">
+
+		<div class="col-md-4">
+			<button class="btn btn-success" ng-disabled="form.$invalid" ng-click="save();">
+				<i ng-if="showSpinner == true" class="fa fa-spinner fa-spin"></i>
+				Save Account Details
+			</button>
+		</div>
+
+	</form>
