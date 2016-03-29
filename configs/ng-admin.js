@@ -40,4 +40,4 @@ module.exports = function(myApp) {
 		nga.configure(admin);
 	}]);
 
-}
+};

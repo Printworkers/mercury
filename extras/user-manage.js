@@ -139,15 +139,15 @@ module.exports = function (myApp) {
 					]
 				};
 
+				// $scope.lookups.homeOffices = lookups.homeoffice;
+
 				Restangular.all('homeoffice').getList().then(function(data) {
 					$scope.lookups.homeOffices = data;
 				});
 
 				$scope.save = function() {
 					$scope.user.save().then(function(data) {
-						console.log('ssss', data);
-
-					/* Send the notification. */
+						/* Send the notification. */
 						notification.log('Updated User Details', { addnCls: 'humane-flatty-success' });
 					}, function(err) {
 						/* Echo to the console. */
