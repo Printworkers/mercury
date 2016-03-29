@@ -33,7 +33,17 @@ module.exports = function (nga, lookups) {
 			.label('')
 			.pinned(true)
 			.template('<div class="input-group"><input type="text" ng-model="value" placeholder="Search" class="form-control"></input><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span></div>'),
-		nga.field('type').label('Type'),
+		nga.field('type', 'choice')
+				.label('Account Type')
+				.choices([ 
+					{ value: 'job seeker', label: 'Job Seeker' }, 
+					{ value: 'employer', label: 'Employer' },
+					{ value: 'administrator', label: 'Administrator' }, 
+					{ value: 'super', label: 'Super Administrator' },
+		]),
+		nga.field('homeoffice', 'choice')
+				.label('Home Office')
+				.choices(lookups.homeoffice),
 		nga.field('username', 'string').label('Username'),	
 		nga.field('email', 'string').label('email'),
 		nga.field('city', 'string').label('City'),

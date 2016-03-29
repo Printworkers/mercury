@@ -11,7 +11,7 @@ var myApp = angular.module('myApp', ['ng-admin', 'angular-keenio', 'angularModal
 myApp.constant('apiUrl', function() {
 	return 'https://api.semperllc.com/';
 }());
- 
+
 /* controllers */
 require('./controllers/totalActiveAgentsCtrl')(myApp);
 var username = require('./controllers/usernameCtrl')(myApp);

@@ -103,7 +103,7 @@ module.exports = function (myApp) {
 		};
 	}]);
 
-	myApp.directive('userManage', [ '$location', function ($location) {
+	myApp.directive('userManage', [ '$location', function ($location, Restangular) {
 		return {
 			restrict: 'E',
 			scope: { 
@@ -120,7 +120,7 @@ module.exports = function (myApp) {
 		};
 	}]);
 
-	myApp.directive('userDetails', function(Restangular) {
+	myApp.directive('userDetails', function(Restangular, notification) {
 		'use strict';
 		return {
 			restrict: 'E',
@@ -139,11 +139,21 @@ module.exports = function (myApp) {
 					]
 				};
 
+				Restangular.all('homeoffice').getList().then(function(data) {
+					$scope.lookups.homeOffices = data;
+				});
+
 				$scope.save = function() {
-					alert('asdfas');
 					$scope.user.save().then(function(data) {
 						console.log('ssss', data);
 
+					/* Send the notification. */
+						notification.log('Updated User Details', { addnCls: 'humane-flatty-success' });
+					}, function(err) {
+						/* Echo to the console. */
+						console.error('Error', err);
+
+						notification.log('Unable to save user details.', { addnCls: 'humane-flatty-error' });
 					});
 				};
 

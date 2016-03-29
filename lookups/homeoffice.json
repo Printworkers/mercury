@@ -1,0 +1,15 @@
+[
+	{"value":"Boston","label":"Boston"}, 
+	{"value":"San Diego","label":"San Diego"}, 
+	{"value":"Santa Clara","label":"Santa Clara"}, 
+	{"value":"San Francisco","label":"San Francisco"},
+	{"value":"Orange County","label":"Orange County"}, 
+	{"value":"New York City","label":"New York City"}, 
+	{"value":"Dallas","label":"Dallas"}, 
+	{"value":"Baltimore","label":"Baltimore"}, 
+	{"value":"Atlanta","label":"Atlanta"},
+	{"value":"New Jersey","label":"New Jersey"}, 
+	{"value":"Minneapolis-St Paul","label":"Minneapolis-St Paul"}, 
+	{"value":"Chicago","label":"Chicago"},
+	{"value":"Los Angeles","label":"Los Angeles"}, 
+]
