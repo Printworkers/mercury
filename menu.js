@@ -39,6 +39,10 @@ module.exports = function (nga, user) {
 				.title('Administrator')
 				.link('/user/list?search={"type":"administrator"}')
 				.icon('<span class="fa fa-users fa-fw"></span>')) // no active() function => will never appear active
+			.addChild(nga.menu()
+				.title('Sync Report')
+				.link('/user/fmSyncReport')
+				.icon('<span class="fa fa-users fa-fw"></span>')) // no active() function => will never appear active
 		)
 		.addChild(nga.menu()
 			.title('Jobs')

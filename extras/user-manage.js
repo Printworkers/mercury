@@ -74,6 +74,15 @@ module.exports = function (myApp) {
 			controllerAs: 'controller',
 			templateUrl: '/templates/user-tabs.html'
 		});
+
+		$stateProvider.state('user-fm-sync', {
+			parent: 'main',
+			url: '/user/fmSyncReport',
+			params: { id: null, tab: null },
+			controllerAs: 'controller',
+			templateUrl: '/templates/user-fm-sync-report.html'
+		});
+
 	});
 
 	myApp.directive('fmSyncUser', [ '$location', function ($location) {
