@@ -28,16 +28,8 @@ module.exports = function (nga, user) {
 				return path.indexOf('/user') === 0;
 			})
 			.addChild(nga.menu()
-				.title('Talent')
-				.link('/user/list?search={"type":"job seeker"}')
-				.icon('<span class="fa fa-users fa-fw"></span>')) // no active() function => will never appear active
-			.addChild(nga.menu()
-				.title('Clients')
-				.link('/user/list?search={"type":"employer"}')
-				.icon('<span class="fa fa-users fa-fw"></span>'))
-			.addChild(nga.menu()
-				.title('Administrator')
-				.link('/user/list?search={"type":"administrator"}')
+				.title('All')
+				.link('/user/list')
 				.icon('<span class="fa fa-users fa-fw"></span>')) // no active() function => will never appear active
 			.addChild(nga.menu()
 				.title('Sync Report')
