@@ -92,8 +92,8 @@ module.exports = function (myApp) {
 				$scope.searchTerm = '';
 				$scope.searchField = 'FirstName';
 
-				if ($scope.user.firstname) {
-					$scope.searchTerm = $scope.user.firstname;
+				if ($scope.user.name_first) {
+					$scope.searchTerm = $scope.user.name_first;
 				}
 
 				$scope.$watch('searchTerm', function() {

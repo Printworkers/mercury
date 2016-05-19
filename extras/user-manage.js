@@ -17,7 +17,7 @@ module.exports = function (myApp) {
 				}, function(err) {
 					console.log('SMS', err);
 					$scope.optionsErrorMessage = 'Got an Error';
-				});	
+				});
 			}
 		};
 
@@ -88,16 +88,10 @@ module.exports = function (myApp) {
 	myApp.directive('fmSyncUser', [ '$location', function ($location) {
 		return {
 			restrict: 'E',
-			scope: { 
-				user: '&' 
+			scope: {
+				user: '&'
 			},
 			link: function (scope) {
-
-				// var id = scope.user().values._id;
-
-				// scope.open = function () {
-				// 	$location.path('/job/details/' + id);
-				// };
 			},
 			template: '<button class="btn btn-primary btn-xs" ng-click="open()"><i class="fa fa-download"></i>&nbsp;Sync</button>'
 		};
@@ -106,8 +100,8 @@ module.exports = function (myApp) {
 	myApp.directive('userManage', [ '$location', function ($location, Restangular) {
 		return {
 			restrict: 'E',
-			scope: { 
-				user: '&' 
+			scope: {
+				user: '&'
 			},
 			link: function (scope) {
 				var id = scope.user().values._id;
@@ -181,4 +175,5 @@ module.exports = function (myApp) {
 			templateUrl: 'templates/user-agents-table.html'
 		};
 	});
-}
+
+};

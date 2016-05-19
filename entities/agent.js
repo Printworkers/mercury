@@ -6,8 +6,8 @@ module.exports = function (nga, user) {
     .title('Staff & Job Agents')
     .fields([
         nga.field('name'),
-        nga.field('city'),
-        nga.field('state'),
+        nga.field('address_city').label('City'),
+        nga.field('address_state').label('State'),
         nga.field('fmId')
         	.label('FM Id'),
         nga.field('type'),
@@ -25,10 +25,10 @@ module.exports = function (nga, user) {
             .pinned(true)
             .template('<div class="input-group"><input type="text" ng-model="value" placeholder="Search" class="form-control"></input><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span></div>'),
         nga.field('type').label('Type'),
-        nga.field('username', 'string').label('Username'),  
+        nga.field('username', 'string').label('Username'),
         nga.field('email', 'string').label('email'),
-        nga.field('city', 'string').label('City'),
-        nga.field('state', 'string').label('State')
+        nga.field('address_city', 'string').label('City'),
+        nga.field('address_state', 'string').label('State')
     ]);
 
     agent.creationView()
@@ -42,16 +42,16 @@ module.exports = function (nga, user) {
                 .validation( {required: true } )
                 .cssClasses('col-sm-4'),
             nga.field('User', 'reference')
-                .targetEntity(user) 
-                .targetField(nga.field('firstname')),
+                .targetEntity(user)
+                .targetField(nga.field('name_first')),
             // No Required Fields.
-            nga.field('city').validation({ required: false }).cssClasses('col-sm-4'),
-            nga.field('country').validation({ required: false }).cssClasses('col-sm-4'),
+            nga.field('address_city').label('City').validation({ required: false }).cssClasses('col-sm-4'),
+            nga.field('address_country').label('Country').validation({ required: false }).cssClasses('col-sm-4'),
             nga.field('ExpirationDate').validation({ required: false }).cssClasses('col-sm-4'),
             nga.field('salary').validation({ required: false }).cssClasses('col-sm-4'),
             nga.field('skill').validation({ required: false }).cssClasses('col-sm-4'),
             nga.field('worktype').validation({ required: false }).cssClasses('col-sm-4'),
-            nga.field('state').validation({ required: false }).cssClasses('col-sm-4'),
+            nga.field('address_state').label('State').validation({ required: false }).cssClasses('col-sm-4'),
             nga.field('shift').validation({ required: false }).cssClasses('col-sm-4')
         ]);
 

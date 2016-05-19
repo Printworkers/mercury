@@ -4,10 +4,10 @@ module.exports = function (nga, lookups) {
 	user.listView()
 	.title('Users')
 	.fields([
-		nga.field('firstname')
-			.label('Name')
+		nga.field('name_first')
+			.label('Full Name')
 			.template(function(e) {
-				return e.values.lastname + ', ' + e.values.firstname;
+				return e.values.name_first + ', ' + e.values.name_last;
 			}),
 		nga.field('username'),
 		nga.field('email'),
@@ -18,12 +18,10 @@ module.exports = function (nga, lookups) {
 			.format('MM/dd/yyyy')
 	]).listActions([
 		'edit',
-		'<user-manage user="entry"></user-manage>',
-		// '<login-as-user item="entry"></login-as-user>',
-		// '<fm-sync-job job="entry"></fm-sync-job>'
+		'<user-manage user="entry"></user-manage>'
 	])
 	.filters([
-		nga.field('firstname', 'template')
+		nga.field('name_first', 'template')
 			.label('')
 			.pinned(true)
 			.template('<div class="input-group"><input type="text" ng-model="value" placeholder="Search" class="form-control"></input><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span></div>'),
@@ -40,8 +38,8 @@ module.exports = function (nga, lookups) {
 				.choices(lookups.homeoffice),
 		nga.field('username', 'string').label('Username'),
 		nga.field('email', 'string').label('email'),
-		nga.field('city', 'string').label('City'),
-		nga.field('state', 'string').label('State')
+		nga.field('address_city', 'string').label('City'),
+		nga.field('address_state', 'string').label('State')
 	]);
 
 	user.creationView()
@@ -59,21 +57,27 @@ module.exports = function (nga, lookups) {
 				])
 				.validation({required: true })
 				.cssClasses('col-sm-4'),
-			nga.field('firstname')
+			nga.field('name_first')
 				.label('First Name')
 				.validation({ required: true })
 				.attributes({ placeholder: 'Enter First Name' })
 				.cssClasses('col-sm-4'),
-			nga.field('lastname')
+			nga.field('name_last')
 				.label('Last Name')
 				.validation({ required: true })
 				.attributes({ placeholder: 'Enter Last Name' })
 				.cssClasses('col-sm-4'),
+				nga.field('name_middle')
+					.label('Middle Name')
+					.validation({ required: false })
+					.attributes({ placeholder: 'Enter Middle Name' })
+					.cssClasses('col-sm-4'),
 			nga.field('phone')
 				.validation({ required: false })
 				.attributes({ placeholder: 'Enter Phone Number' })
 				.cssClasses('col-sm-4'),
-			nga.field('company')
+			nga.field('name_client')
+				.label('Company')
 				.validation({ required: true })
 				.attributes({ placeholder: 'Enter Company Name' })
 				.cssClasses('col-sm-4'),
@@ -89,30 +93,30 @@ module.exports = function (nga, lookups) {
 				.validation({ required: true })
 				.attributes({ placeholder: 'Enter a password' })
 				.cssClasses('col-sm-4'),
-			nga.field('address_line1')
+			nga.field('address_1')
 				.label('Address Line 1')
 				.validation({ required: true })
 				.attributes({ placeholder: 'Enter Street Address' })
 				.cssClasses('col-sm-4'),
-				nga.field('address_line2')
+				nga.field('address_2')
 					.label('Address Line 2')
 					.validation({required: true })
 					.attributes({ placeholder: 'Enter Address Extra' })
 					.cssClasses('col-sm-4'),
-			nga.field('city')
+			nga.field('address_city')
 				.validation({ required: false })
 				.attributes({ placeholder: 'Enter Address City' })
 				.cssClasses('col-sm-4'),
-			nga.field('state', 'choice')
+			nga.field('address_state', 'choice')
 				.validation({ required: false })
 				.attributes({ placeholder: 'Select a State' })
 				.choices(lookups.states)
 				.cssClasses('col-sm-4'),
-			nga.field('zip')
+			nga.field('address_zip')
 				.validation({ required: false })
 				.attributes({ placeholder: 'Select a Zip Code' })
 				.cssClasses('col-sm-4'),
-			nga.field('shortProfile', 'wysiwyg')
+			nga.field('web_profile', 'wysiwyg')
 			 	.label('Short Profile')
 				.validation({ required: false })
 				.attributes({ placeholder: 'Select the user account type.' })

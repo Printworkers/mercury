@@ -40,8 +40,8 @@
 	<tr ng-repeat="address in addresses">
 		<td>{{address.createdAt | date:'medium'}}</td>
 		<td>{{address.first_name}} {{address.last_name}}</td>
-		<td>{{address.address_line1}}</td>
-		<td>{{address.city}}, {{address.state}} {{address.zip_code}}</td>
+		<td>{{address.address_1}}</td>
+		<td>{{address.address_city}}, {{address.address_state}} {{address.address_zip}}</td>
 		<td>
 			<json-viewer entry="address"></json-viewer>
 			<edit-address address="address"></edit-address>

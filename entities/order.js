@@ -20,7 +20,7 @@ module.exports = function (nga, user) {
 		nga.field('status')
 			.label('Status')
 	]).listActions([
-		'edit', 
+		'edit',
 		'delete',
 	])
 	.filters([
@@ -36,8 +36,8 @@ module.exports = function (nga, user) {
 			nga.field('name').validation({required: true }).cssClasses('col-sm-4'),
 			nga.field('type').validation({required: true }).cssClasses('col-sm-4'),
 			nga.field('User', 'reference')
-				.targetEntity(user) 
-				.targetField(nga.field('firstname'))
+				.targetEntity(user)
+				.targetField(nga.field('name_first'))
 		]);
 
 	order.editionView().fields(order.creationView().fields());

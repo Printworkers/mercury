@@ -15,8 +15,8 @@ module.exports = function (nga, user) {
         .title('Create new Resume')
         .fields([
             nga.field('User', 'reference')
-    			.targetEntity(user) 
-    			.targetField(nga.field('firstname')),
+    			.targetEntity(user)
+    			.targetField(nga.field('name_first')),
     		nga.field('career_obj', 'wysiwyg').validation({ required: false }),
     		nga.field('special_skills', 'wysiwyg').validation({ required: false }),
     		nga.field('textResume', 'wysiwyg').validation({ required: false })
