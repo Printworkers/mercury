@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "angular-sanitize": "^1.5.5",
     "express": "^4.13.3",
     "express-sslify": "^1.0.1",
     "lodash": "~3.10.0",

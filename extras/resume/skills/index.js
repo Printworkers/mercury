@@ -42,6 +42,7 @@ module.exports = function(ngModule) {
                             user: $scope.user
                         },
 						controller: function($scope, user, close, allSkills) {
+                            $scope.use = user;
 
 							$scope.skill = {
 								skill_1_year: user.skill_1_year || '',
@@ -59,7 +60,7 @@ module.exports = function(ngModule) {
 							$scope.primarySkills = _.keys($scope.skillGroups);
 
 							$scope.save = function() {
-								user.save($scope.skill).then(function(data){
+								user.save({ skill_1_primary: 111 }).then(function(data){
 									close({ skills: $scope.skill }, 500);
 								}, function(err) {
 									console.log(err);

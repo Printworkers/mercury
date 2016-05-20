@@ -9,8 +9,8 @@ module.exports = function(myApp) {
 
         Restangular.extendModel('user', function(model) {
 
-            model.save = function() {
-                return this.customPUT(this);
+            model.save = function(data) {
+                return this.customPUT(data);
             };
 
             model.delete = function() {

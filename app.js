@@ -3,8 +3,9 @@ require('angular-animate');
 require('angular-modal-service');
 require('angular-input-masks');
 require('ng-file-upload');
+// require('angular-sanitize');
 
-var myApp = angular.module('myApp', [ 'ng-admin', 'ngFileUpload', 'ui.utils.masks', 'angular-keenio', 'angularModalService']);
+var myApp = angular.module('myApp', [ 'ng-admin', 'schemaForm', 'ngFileUpload', 'ui.utils.masks', 'angular-keenio', 'angularModalService' ]);
 
 myApp.constant('apiUrl', function() {
 	return 'https://api.semperllc.com/';
@@ -42,6 +43,7 @@ require('./extras/resume/education')(myApp);
 require('./extras/resume/work')(myApp);
 require('./extras/resume/document')(myApp);
 require('./extras/resume/skills')(myApp);
+require('./extras/resume/objectives')(myApp);
 
 /* Services. */
 require('./services/DataServices')(myApp);

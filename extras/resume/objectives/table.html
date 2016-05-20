@@ -1,0 +1,42 @@
+<span>
+<h4>Goals & Objectivs</h4>
+<table class="table table-block">
+    <tr>
+        <td>
+            <b>Career Objecties:</b><br>
+            {{details.careerObjectives || 'NA'}}
+        </td>
+        <td width="5%">
+            <button ng-click="editCareerObjectives()"  class="btn btn-sm btn-default">
+                <i class="glyphicon glyphicon-pencil"></i>
+            </button>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <b>Special Skills:</b><br>
+            {{details.specialSkills || 'NA'}}
+        </td>
+        <td>
+            <button ng-click="editSpecialSkills()" class="btn btn-sm btn-default">
+                <i class="glyphicon glyphicon-pencil"></i>
+            </button>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <b>Personal Interests:</b><br>
+            {{details.personalInterests || 'NA'}}
+
+        </td>
+        <td>
+            <button ng-click="editPersonalInterests()" class="btn btn-sm btn-default">
+                <i class="glyphicon glyphicon-pencil"></i>
+            </button>
+        </td>
+    </tr>
+
+</table>
+</span>
