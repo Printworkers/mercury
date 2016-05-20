@@ -1,0 +1,50 @@
+<div>
+    <div class="row">
+        <div class="col-md-8">
+            <h4>References</h4>
+        </div>
+        <div class="col-md-4">
+            <button ng-click="add()" class="btn btn-xs pull-right btn-default">
+                <i class="glyphicon glyphicon-plus"></i>&nbsp;Add a Reference
+            </button>
+        </div>
+    </div>
+
+    <table class="table table-block table-striped table-hover">
+        <tr>
+            <th width="15%">Name</th>
+            <th width="5%">Title</th>
+            <th width="20%">Company</th>
+            <th width="20%">Email</th>
+            <th width="20%">Phone</th>
+            <th></th>
+        </tr>
+
+        <tr ng-hide="data.length > 0">
+            <td >Click Add to add a reference</td>
+            <td width=""></td>
+            <td width=""></td>
+            <td width=""></td>
+            <td width=""></td>
+            <td></td>
+        </tr>
+        <tr ng-repeat="r in data">
+            <td>{{ r.name_contact }}</td>
+            <td>{{ r.position_worked }}</td>
+            <td>{{ r.name_company }}</td>
+            <td>{{ r.email }}</td>
+            <td>{{ r.phone | tel }}</td>
+            <td align="right">
+                <div class="btn-group pull-right">
+                    <button ng-click="edit(r)"  class="btn btn-xs btn-default">
+                        <i class="glyphicon glyphicon-pencil"></i>
+                    </button>
+                    <button ng-click="delete(r)" class="btn btn-xs btn-default">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </button>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+</div>

@@ -176,4 +176,43 @@ module.exports = function (myApp) {
 		};
 	});
 
+	myApp.directive('userResume', function(Restangular) {
+		'use strict';
+		return {
+			restrict: 'E',
+			scope: {
+				user: '='
+			},
+			controller: function($scope, Restangular) {
+				// Restangular.all('agent').getList({ User: $scope.user._id }).then(function(data) {
+				// 	if (data.data) {
+				// 		$scope.events = data.data;
+				// 	} else {
+				// 		$scope.events = data;
+				// 	}
+				// });
+			},
+			templateUrl: 'templates/user-resume.html'
+		};
+	});
+
+	myApp.directive('userForms', function(Restangular) {
+		'use strict';
+		return {
+			restrict: 'E',
+			scope: {
+				user: '='
+			},
+			controller: function($scope, Restangular) {
+				// Restangular.all('agent').getList({ User: $scope.user._id }).then(function(data) {
+				// 	if (data.data) {
+				// 		$scope.events = data.data;
+				// 	} else {
+				// 		$scope.events = data;
+				// 	}
+				// });
+			},
+			templateUrl: 'templates/user-forms.html'
+		};
+	});
 };

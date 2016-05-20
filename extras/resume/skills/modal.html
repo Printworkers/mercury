@@ -1,0 +1,101 @@
+<div class="modal fade">
+  <div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+    <button type="button" class="close" ng-click="close(false)" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title">Skills</h4>
+    </div>
+    <div class="modal-body">
+    <table class="table table-hover">
+    <tr>
+      <th width="5%"></th>
+      <th width="15%">Year(s)</th>
+      <th width="40%">Primary Skill</th>
+      <th width="40%">Secondary Skill</th>
+    </tr>
+      <tr>
+        <td class="text-right">
+          1.
+        </td>
+        <td>
+          <div ng-class="{'has-error': form.skill_1_year.$touched && form.skill_1_year.$invalid}">
+            <input type="string" class="form-control has-error" required name="skill_1_year" ng-model="skill.skill_1_year" id="skill_1_year">
+        </div>
+        </td>
+        <td>
+          <div ng-class="{'has-error': form.skill_1_primary.$touched && form.skill_1_primary.$invalid}">
+
+	          <select class="form-control" required name="skill_1_primary" ng-options="ft as ft for ft in primarySkills" ng-model="skill.skill_1_primary" id="skill_1_primary">
+					<option value="">Select a Skill...</option>
+			  </select>
+
+        </div>
+        </td>
+        <td>
+          <div ng-class="{'has-error': form.skill_1_secondary.$touched && form.skill_1_secondary.$invalid}">
+          <select class="form-control" ng-options="c.secondary as c.secondary for c in skillGroups[skill.skill_1_primary]" required name="skill_1_secondary" ng-model="skill.skill_1_secondary" id="skill_1_secondary">
+							<option value="">Select a Secondary Skill...</option>
+						</select>
+        </div>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="text-right">
+          2.
+        </td>
+        <td>
+          <div ng-class="{'has-error': form.skill_2_year.$touched && form.skill_2_year.$invalid}">
+          <input type="string" class="form-control" required name="skill_2_year" ng-model="skill.skill_2_year" id="skill_2_year">
+          </div>
+        </td>
+        <td>
+          <div ng-class="{'has-error': form.skill_2_primary.$touched && form.skill_2_primary.$invalid}">
+          <select class="form-control" required name="skill_2_primary" ng-options="ft as ft for ft in primarySkills" ng-model="skill.skill_2_primary" id="skill_2_primary">
+					<option value="">Select a Skill...</option>
+			  </select>
+        </div>
+        </td>
+        <td>
+          <div ng-class="{'has-error': form.skill_2_secondary.$touched && form.skill_2_secondary.$invalid}">
+          <select class="form-control" ng-options="c.secondary as c.secondary for c in skillGroups[skill.skill_2_primary]" required name="skill_2_secondary" ng-model="skill.skill_2_secondary" id="skill_2_secondary">
+							<option value="">Select a Secondary Skill...</option>
+						</select>
+        </div>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="text-right">
+          3.
+        </td>
+        <td>
+          <div ng-class="{'has-error': form.skill_3_year.$touched && form.skill_3_year.$invalid}">
+          <input type="string"  class="form-control" required name="skill_3_year" ng-model="skill.skill_3_year" id="skill_3_year">
+        </div>
+        </td>
+        <td>
+          <div ng-class="{'has-error': form.skill_3_primary.$touched && form.skill_3_primary.$invalid}">
+          <select class="form-control" required name="skill_3_primary" ng-options="ft as ft for ft in primarySkills" ng-model="skill.skill_3_primary" id="skill_3_primary">
+					<option value="">Select a Skill...</option>
+			  </select>
+        </div>
+        </td>
+        <td>
+          <div ng-class="{'has-error': form.skill_3_secondary.$touched && form.skill_3_secondary.$invalid}">
+          <select class="form-control" ng-options="c.secondary as c.secondary for c in skillGroups[skill.skill_3_primary]" required name="skill_3_secondary" ng-model="skill.skill_3_secondary" id="skill_3_secondary">
+				<option value="">Select a Secondary Skill...</option>
+		   </select>
+        </div>
+        </td>
+        <td></td>
+      </tr>
+    </table>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" ng-click="save()" class="btn btn-primary" data-dismiss="modal">OK</button>
+    </div>
+  </div>
+  </div>
+</div>

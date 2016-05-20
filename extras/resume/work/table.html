@@ -1,0 +1,44 @@
+<div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <h4>Work History</h4>
+        </div>
+        <div class="col-md-4">
+            <button ng-click="add()" class="btn pull-right btn-xs btn-default">
+                <i class="glyphicon glyphicon-plus"></i>&nbsp;Add Work History
+            </button>
+        </div>
+    </div>
+
+    <table class="table table-block table-stripe table-hover">
+        <tr>
+            <th width="20%">Company</th>
+            <th width="20%">Position</th>
+            <th width="40%">Dates</th>
+            <th width="20%"></th>
+        </tr>
+        <tr ng-hide="data.length > 0">
+            <td width="">Click Add to add Work History</td>
+            <td width=""></td>
+            <td width=""></td>
+            <td></td>
+        </tr>
+        <tr ng-repeat="history in data">
+            <td>{{ history.company }}</td>
+            <td>{{ history.position }}</td>
+            <td>{{ history.startDate | date: "MM/dd/yyyy"}} - {{ history.endDate | date: "MM/dd/yyyy"}}</td>
+            <td align="right">
+                <div class="btn-group pull-right">
+                    <button ng-click="edit(history)" class="btn btn-xs btn-default">
+                        <i class="glyphicon glyphicon-pencil"></i>
+                    </button>
+                    <button ng-click="delete(history)" class="btn btn-xs btn-default">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </button>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+</div>

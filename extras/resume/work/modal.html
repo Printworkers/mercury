@@ -1,0 +1,107 @@
+<div class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" ng-click="close(false)" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="title">
+					{{ isNew ? 'Add a New Work History' : 'Edit Work History' }}
+				</h4>
+			</div>
+			<div class="modal-body">
+				<form name="form" novalidate>
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group has-feedback" ng-class="{'has-error': form.company.$touched == true && form.company.$valid == false}">
+								<label for="company">Company *</label>
+								<input type="text" class="form-control" name="company" placeholder="Enter Company" required id="company" ng-model="model.company">
+								<span ng-if="form.company.$touched == true && form.company.$valid == false" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+								<span ng-if="form.company.$touched == true && form.company.$valid == true" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group has-feedback" ng-class="{'has-error': form.position.$touched == true && form.position.$valid == false}">
+								<label for="position">Position *</label>
+								<input type="text" class="form-control" name="position" placeholder="Enter position" required id="position" ng-model="model.position">
+								<span ng-if="form.position.$touched == true && form.position.$valid == false" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+								<span ng-if="form.position.$touched == true && form.position.$valid == true" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group has-feedback" ng-class="{'has-error': form.startingPayRate.$touched == true && form.startingPayRate.$valid == false}">
+								<label for="startingPayRate">Starting Pay Rate *</label>
+								<input type="test" id="startingPayRate" class="col-md-4 form-control" placeholder="Enter $/hr" name="startingPayRate" ng-model="model.startingPayRate.value" required />
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group has-feedback" ng-class="{'has-error': form.endingPayRate.$touched == true && form.endingPayRate.$valid == false}">
+								<label for="endingPayRate">Ending Pay Rate *</label>
+								<input type="text" id="endingPayRate" class="col-md-4 form-control"  placeholder="Enter $/hr" name="endingPayRate" ng-model="model.endingPayRate.value" required />
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group has-feedback" ng-class="{'has-error': form.phone.$touched == true && form.phone.$valid == false}">
+								<label for="phone">Phone *</label>
+								<input type="test" id="phone" class="col-md-4 form-control" maxlength="14" mask="(999) 999-9999" clean="true" placeholder="(###) ###-####" name="phone" ng-model="model.phone.value" required />
+							</div>
+						</div>
+					</div>
+
+					<br />
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group has-feedback" ng-class="{'has-error': form.dateRange.$touched == true && form.dateRange.$valid == false}">
+								<label for="dateRange">From</label>
+								<input type="date" id="exampleInput" class="col-md-4 form-control" name="input" ng-model="model.startDate.value" placeholder="yyyy-MM-dd" min="1930-01-01" ngRequired required />&nbsp;
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group has-feedback" ng-class="{'has-error': form.dateRange.$touched == true && form.dateRange.$valid == false}">
+								<label for="dateRange">To</label>
+								<input type="date" id="exampleInput" name="input" class="col-md-4 form-control" ng-model="model.endDate.value" placeholder="yyyy-MM-dd" min="1930-01-01" required ngRequired />
+								<span ng-if="form.dateRange.$touched == true && form.dateRange.$valid == false" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+								<span ng-if="form.dateRange.$touched == true && form.dateRange.$valid == true" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+							</div>
+						</div>
+						<span class="col-md-12"><em>If you dont know the exact date use the first of the month</em></span>
+					</div>
+
+					<br>
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group has-feedback" ng-class="{'has-error': form.location.$touched == true && form.location.$valid == false}">
+								<label for="location">Location *</label>
+								<input type="text" class="form-control" name="location" placeholder="Enter Location (City & State)" required id="location" ng-model="model.location">
+								<span ng-if="form.location.$touched == true && form.location.$valid == false" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+								<span ng-if="form.location.$touched == true && form.location.$valid == true" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group has-feedback" ng-class="{'has-error': form.description.$touched == true && form.description.$valid == false}">
+								<label for="description">Equipment/Software *</label>
+								<textarea class="form-control" name="description" required placeholder="Enter a description" id="description" ng-model="model.description" maxlength="100"></textarea>
+								<span ng-if="form.description.$touched == true && form.description.$valid == false" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+								<span ng-if="form.description.$touched == true && form.description.$valid == true" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+								<div><i>{{100 - model.description.length}} characters left</i></div>
+							</div>
+						</div>
+					</div>
+
+				</form>
+
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" ng-click="save()" class="btn btn-primary" data-dismiss="modal" ng-disabled="form.$invalid" >OK</button>
+			</div>
+
+		</div>
+	</div>
+</div>

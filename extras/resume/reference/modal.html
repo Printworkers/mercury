@@ -1,0 +1,82 @@
+<div class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" ng-click="close(false)" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="title">{{ isNew ? 'Add a New Reference' : 'Edit A Reference' }}</h4>
+			</div>
+			<div class="modal-body">
+				<form name="form" novalidate>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group has-feedback" ng-class="{'has-error': form.name_contact.$touched == true && form.name_contact.$valid == false}">
+								<label for="name_contact">Name *</label>
+								<input type="text" class="form-control" placeholder="Enter Name" name="name_contact" required id="name_contact" ng-model="model.name_contact">
+								<span ng-if="form.name_contact.$touched == true && form.name_contact.$valid == false" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+								<span ng-if="form.name_contact.$touched == true && form.name_contact.$valid == true" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group has-feedback" ng-class="{'has-error': form.position_worked.$touched == true && form.position_worked.$valid == false}">
+								<label for="position_worked">Title *</label>
+								<input type="text" class="form-control" required placeholder="Enter Title" id="position_worked" ng-model="model.position_worked">
+								<span ng-if="form.position_worked.$touched == true && form.position_worked.$valid == false" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+								<span ng-if="form.position_worked.$touched == true && form.position_worked.$valid == true" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group has-feedback" ng-class="{'has-error': form.email.$touched == true && form.email.$valid == false}">
+								<label for="email">Email</label>
+								<input type="email" class="form-control" name="email" placeholder="Enter Email" id="email" ng-model="model.email">
+								<span ng-if="form.email.$touched == true && form.email.$valid == false" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+								<span ng-if="form.email.$touched == true && form.email.$valid == true" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="name_company">Company *</label>
+								<input type="text" class="form-control" name="name_company" required placeholder="Enter Company Name" id="name_company" ng-model="model.name_company">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group has-feedback" ng-class="{'has-error': form.phone.$touched == true && form.phone.$valid == false}">
+								<label for="phone">Phone *</label>
+								<input type="text" class="form-control" name="phone" required placeholder="(XXX) XXX-XXXX" id="phone" ng-model="model.phone" ui-us-phone-number maxlength="14">
+								<span ng-if="form.phone.$touched == true && form.phone.$valid == false" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+								<span ng-if="form.phone.$touched == true && form.phone.$valid == true" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group has-feedback" ng-class="{'has-error': form.work_relationship.$touched == true && form.work_relationship.$valid == false}">
+								<label for="work_relationship">Relationship *</label>
+								<input type="text" class="form-control" placeholder="Enter Work Relationship" name="work_relationship" id="work_relationship" ng-model="model.work_relationship">
+								<span ng-if="form.work_relationship.$touched == true && form.work_relationship.$valid == false" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+								<span ng-if="form.work_relationship.$touched == true && form.work_relationship.$valid == true" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="years">Years Known</label>
+								<input type="number" class="form-control" placeholder="Enter Years Known" min="0" name="years" id="years" ng-model="model.years">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="address">Address</label>
+								<input type="text" class="form-control" placeholder="Enter Address" name="address" id="address" ng-model="model.address">
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" ng-disabled="form.$invalid" ng-click="save()" class="btn btn-primary" data-dismiss="modal">OK</button>
+			</div>
+		</div>
+	</div>
+</div>

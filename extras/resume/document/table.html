@@ -1,0 +1,33 @@
+<div>
+
+    <semper-document-upload user="user"></semper-document-upload>
+
+    <p>
+        Upload and review your resume, portfolio or add an optional cover letter.
+    </p>
+
+    <table class="table table-block table-hover">
+        <tr>
+            <th width="30%">Resume Title</th>
+            <th width="20%">Type</th>
+            <th width="20">Uploaded</th>
+            <th width="20%"></th>
+        </tr>
+        <tr ng-repeat="d in data">
+            <td>{{ d.name || 'No Name' }}</td>
+            <td>{{ d.fileType || d.type || 'Unknown' }}</td>
+            <td>{{ d.createdAt || today || 'Unknown' | date: "MM/dd/yyyy"}}</td>
+            <td align="right">
+                <button class="btn btn-sm btn-default" ng-click="delete(d)">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </button>
+
+                <a download="{{d.name}}" class="btn btn-sm btn-default" ng-href="{{d.fileUrl}}">
+                    <i class="glyphicon glyphicon-download-alt"></i>&nbsp;Download
+                </a>
+
+            </td>
+        </tr>
+
+    </table>
+</div>

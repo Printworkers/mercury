@@ -1,0 +1,24 @@
+<div>
+
+    <div class="row">
+    	<div class="col-md-6">
+    		<h4>
+    			Resume and Portfolio
+
+                <button type="file" ngf-select="upload($file, $invalidFiles)" accept="pdf" ngf-max-size="8MB" class="btn btn-sm pull-right btn-success">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    Upload a File
+                </button>
+    		</h4>
+    	</div>
+
+    	<div class="col-md-6">
+    		<div style="padding-top: 10px; height: 50px; border:1px dashed #DFDFDF;" ngf-drop="upload($file, $invalidFiles)" accept="pdf" ngf-max-size="8MB">
+        		<center>
+        			Drag and Drop files Here
+        		</center>
+    		</div>
+    	</div>
+    </div>
+
+</div>

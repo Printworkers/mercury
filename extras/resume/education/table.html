@@ -1,0 +1,47 @@
+<div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <h4>Education</h4>
+        </div>
+        <div class="col-md-4">
+            <button ng-click="add()" class="btn btn-xs pull-right btn-default">
+                <i class="glyphicon glyphicon-plus"></i>&nbsp;Add Education
+            </button>
+        </div>
+    </div>
+
+    <table class="table table-block table-striped table-hover">
+        <tr>
+            <th>School</th>
+            <th>Location</th>
+            <th>Degree</th>
+            <th>Year Graduated</th>
+            <th></th>
+        </tr>
+        <tr ng-hide="data.length > 0">
+            <td width="">Click Add to add Education</td>
+            <td width=""></td>
+            <td width=""></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr ng-repeat="e in data">
+            <td>{{ e.name }}</td>
+            <td>{{ e.city }}, {{ e.state }}</td>
+            <td>{{ e.degree }}</td>
+            <td>{{ e.year }}</td>
+            <td align="right">
+                <div class="btn-group pull-right">
+                    <button ng-click="edit(e)"  class="btn btn-xs btn-default">
+                        <i class="glyphicon glyphicon-pencil"></i>
+                    </button>
+                    <button ng-click="delete(e)" class="btn btn-xs btn-default">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </button>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+</div>

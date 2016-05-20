@@ -1,0 +1,119 @@
+<div class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" ng-click="close(false)" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">
+					{{ isNew ? 'Add a New Education' : 'Edit A Education' }}
+				</h4>
+			</div>
+			<div class="modal-body">
+				<form name="educationForm" novalidate>
+
+					<div class="row">
+
+						<div class="col-md-12">
+							<div class="form-group has-feedback" ng-class="{'has-error': educationForm.name.$touched == true && educationForm.name.$valid == false}">
+								<label for="name">School *</label>
+								<input type="text" class="form-control" name="name" placeholder="Enter School" required id="name" ng-model="model.name">
+								<span ng-if="educationForm.name.$touched == true && educationForm.name.$valid == false" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+								<span ng-if="educationForm.name.$touched == true && educationForm.name.$valid == true" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="row">
+
+						<div class="col-md-4">
+
+							<div class="form-group has-feedback" ng-class="{'has-error': educationForm.city.$touched == true && educationForm.city.$valid == false}">
+								<label for="city">City *</label>
+								<input type="text" class="form-control" name="city" placeholder="Enter City" required id="city" ng-model="model.city">
+								<span ng-if="educationForm.city.$touched == true && educationForm.city.$valid == false" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+								<span ng-if="educationForm.city.$touched == true && educationForm.city.$valid == true" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+							</div>
+
+						</div>
+
+						<div class="col-md-4">
+							<div class="form-group has-feedback" ng-class="{'has-error': educationForm.state.$touched == true && educationForm.state.$valid == false}">
+								<label for="state">State *</label><br>
+								<select name="state" class="form-control"
+										ng-model="model.state"
+										ng-options="item.value as item.label for item in lookUpValues.state"
+										required>
+									<option value="">Select State</option>
+								</select>
+								<span ng-if="educationForm.state.$touched == true && educationForm.state.$valid == false" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+								<span ng-if="educationForm.state.$touched == true && educationForm.state.$valid == true" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+								<span class="error" ng-show="educationForm.state.$dirty && educationForm.state.$invalid">Select State</span>
+							</div>
+						</div>
+
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="country">Country *</label><br>
+								<select class="form-control" ng-options="item.value as item.label for item in lookUpValues.country" ng-model="model.country"></select>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="row">
+
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="country">School Type *</label><br>
+								<select class="form-control" ng-options="item.value as item.label for item in lookUpValues.schoolType" ng-model="model.type_school"></select>
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="form-group has-feedback" ng-class="{'has-error': educationForm.year.$touched == true && educationForm.year.$valid == false}">
+								<label for="year">Year Graduated *</label>
+
+								<select name="year" ng-options="n for n in [] | range:1940:2020" class="form-control" ng-model="model.year">
+									<option value="">
+										Enter Year
+									</option>
+								</select>
+
+								<span ng-if="educationForm.year.$touched == true && educationForm.year.$valid == false" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+								<span ng-if="educationForm.year.$touched == true && educationForm.year.$valid == true" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+
+						<div class="col-md-6">
+
+							<div class="form-group">
+								<label for="country">Degree *</label><br>
+								<select class="form-control" ng-options="item.value as item.label for item in lookUpValues.degree" ng-model="model.degree"></select>
+							</div>
+
+						</div>
+
+						<div class="col-md-6">
+
+							<div class="form-group has-feedback" ng-class="{'has-error': educationForm.course.$touched == true && educationForm.major.$valid == false}">
+								<label for="course">Course(s) *</label>
+								<input type="text" class="form-control" placeholder="Enter Majors" name="course" required id="course" ng-model="model.course">
+								<span ng-if="educationForm.course.$touched == true && educationForm.course.$valid == false" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+								<span ng-if="educationForm.course.$touched == true && educationForm.course.$valid == true" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+							</div>
+
+						</div>
+
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" ng-click="save()"  ng-disabled="educationForm.$invalid" class="btn btn-primary" data-dismiss="modal">OK</button>
+			</div>
+		</div>
+	</div>
+</div>

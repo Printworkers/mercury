@@ -1,37 +1,50 @@
-// global.jQuery = require('./bower_components/jquery/dist/jquery.js');
-
 var _ = require('lodash');
+require('angular-animate');
+require('angular-modal-service');
+require('angular-input-masks');
+require('ng-file-upload');
 
-// require('./vendor/ng-admin.js');
-require('./bower_components/angular-animate/angular-animate.min.js');
-require('./bower_components/angular-modal-service/dst/angular-modal-service.min.js');
-
-var myApp = angular.module('myApp', ['ng-admin', 'angular-keenio', 'angularModalService']);
+var myApp = angular.module('myApp', [ 'ng-admin', 'ngFileUpload', 'ui.utils.masks', 'angular-keenio', 'angularModalService']);
 
 myApp.constant('apiUrl', function() {
 	return 'https://api.semperllc.com/';
 }());
 
+/* Constants */
+require('./constants.js')(myApp);
+
 /* controllers */
 require('./controllers/totalActiveAgentsCtrl')(myApp);
-var username = require('./controllers/usernameCtrl')(myApp);
+require('./controllers/usernameCtrl')(myApp);
 
-// instantialize directives
+/* Directives */
 require('./directives/dashboard')(myApp);
 require('./directives/loginAsUser')(myApp);
 require('./directives/previewJob')(myApp);
 require('./directives/header')(myApp);
 require('./directives/sendEmail')(myApp);
+require('./directives/range')(myApp);
 
-/* Setup the Configs for Angular setup. */
+/* Configurations */
 require('./configs/restangular')(myApp);
 require('./configs/ng-admin')(myApp);
 require('./configs/keen')(myApp);
 
+/* Extras */
 require('./extras/user-manage.js')(myApp);
 require('./extras/job-manage.js')(myApp);
 require('./extras/filemaker.js')(myApp);
 require('./extras/json/json.js')(myApp);
+
+/* Resumes */
+require('./extras/resume/reference')(myApp);
+require('./extras/resume/education')(myApp);
+require('./extras/resume/work')(myApp);
+require('./extras/resume/document')(myApp);
+require('./extras/resume/skills')(myApp);
+
+/* Services. */
+require('./services/DataServices')(myApp);
 
 /* Filters. */
 require('./filters/tel.js')(myApp);

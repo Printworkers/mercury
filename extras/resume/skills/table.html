@@ -1,0 +1,53 @@
+<div>
+
+	<div class="row">
+		<div class="col-md-8">
+			<h4>Skills</h4>
+		</div>
+
+		<div class="col-md-4">
+			<button ng-click="edit()" class="btn pull-right btn-sm btn-default">
+				<i class="glyphicon glyphicon-plus"></i>
+				<span ng-show="skills.length">Add</span>
+				<span ng-show="!skills.length">Edit</span>
+			</button>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<p>
+				Add at least three works skills and how many years' experience you have with those skills.
+			</p>
+		</div>
+	</div>
+
+	<table class="table table-block table-hover">
+		<tr>
+			<th width="20%">Year(s)</th>
+			<th width="40%">Major Skillset</th>
+			<th width="40%">Minor Skillset</th>
+		</tr>
+		<tr ng-if="skills.length">
+			<td width="">Click Add to Add skills</td>
+			<td width=""></td>
+			<td width=""></td>
+		</tr>
+		<tr ng-hide="skills.length < 1">
+			<td>{{ skills.skill_1_year }}</td>
+			<td>{{ skills.skill_1_primary }}</td>
+			<td>{{ skills.skill_1_secondary }}</td>
+		</tr>
+		<tr ng-hide="skills.length < 2">
+			<td>{{ skills.skill_2_year }}</td>
+			<td>{{ skills.skill_2_primary }}</td>
+			<td>{{ skills.skill_2_secondary }}</td>
+		</tr>
+		<tr ng-hide="skills.length < 3">
+			<td>{{ skills.skill_3_year }}</td>
+			<td>{{ skills.skill_3_primary }}</td>
+			<td>{{ skills.skill_3_secondary }}</td>
+		</tr>
+	</table>
+
+</div>

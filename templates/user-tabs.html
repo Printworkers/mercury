@@ -65,9 +65,14 @@ $(function(){
 					Details
 				</a>
 			</li>
-            <li role="presentation" ng-class="{ 'active': tab == 'resume'}">
-				<a href="#resume" aria-controls="resume" role="tab" data-toggle="tab">
+            <li role="presentation" ng-show="user.type == 'job seeker'">
+                <a href="#resume" aria-controls="forms" role="tab" data-toggle="tab">
 					Resume
+				</a>
+			</li>
+            <li role="presentation" ng-show="user.type == 'job seeker'">
+				<a href="#forms" aria-controls="forms" role="tab" data-toggle="tab">
+					Forms
 				</a>
 			</li>
 			<li role="presentation" ng-class="{ 'active': tab == 'agents'}">
@@ -101,8 +106,12 @@ $(function(){
 				<user-details user="user"></user-details>
 			</div>
 
-            <div role="tabpanel" class="tab-pane" ng-class="{ 'active': tab == 'resume'}" id="resume">
+            <div ng-if="user.type == 'job seeker'" role="tabpanel" class="tab-pane" ng-class="{ 'active': tab == 'resume'}" id="resume">
 				<user-resume user="user"></user-resume>
+			</div>
+
+            <div ng-if="user.type == 'job seeker'" role="tabpanel" class="tab-pane" ng-class="{ 'active': tab == 'forms'}" id="forms">
+				<user-forms user="user"></user-forms>
 			</div>
 
 			<div role="tabpanel" class="tab-pane" ng-class="{ 'active': tab == 'agents'}" id="agents">
