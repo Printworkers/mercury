@@ -47,6 +47,7 @@ require('./extras/resume/objectives')(myApp);
 
 /* Services. */
 require('./services/DataServices')(myApp);
+require('./services/Modal')(myApp);
 
 /* Filters. */
 require('./filters/tel.js')(myApp);

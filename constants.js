@@ -816,4 +816,37 @@ module.exports = function(ngModule) {
 	    { value: "santaClara", label: "Santa Clara", id: '115' }
 	]);
 
+	ngModule.constant('yesno', [
+		{ value: 'yes', label: 'Yes' },
+		{ value: 'no', label: 'No' },
+	]);
+
+	ngModule.constant('source', [
+		{ value: 'Personal Referral', label: 'Personal Referral' },
+		{ value: 'Website', label: 'Website' },
+		{ value: 'Newspaper', label: 'Newspaper' },
+		{ value: 'Trade Show/Job Fair', label: 'Trade Show/Job Fair' },
+		{ value: 'Trade Magazine', label: 'Trade Magazine' },
+		{ value: 'Mailer', label: 'Mailer' },
+		{ value: 'Web Search', label: 'Web Search' },
+		{ value: 'Adwords', label: 'Adwords' },
+		{ value: 'Facebook', label: 'Facebook' },
+		{ value: 'Facebook', label: 'Facebook' },
+		{ value: 'Twitter', label: 'Twitter' },
+		{ value: 'Google Plus', label: 'Google Plus' },
+		{ value: 'Glassdoor', label: 'Glassdoor' },
+		{ value: 'Email', label: 'Email' },
+		{ value: 'Indeed', label: 'Indeed' },
+		{ value: 'SimplyHired', label: 'SimplyHired' },
+		{ value: 'ZipRecruiter', label: 'ZipRecruiter' },
+		{ value: 'Semper/Tech Creative Blog', label: 'Semper/Tech Creative Blog' },
+		{ value: 'Word of Mouth/Referral', label: 'Word of Mouth/Referral' },
+		{ value: 'Industry Ad', label: 'Industry Ad' },
+		{ value: 'Direct Mail/Postcard', label: 'Direct Mail/Postcard' },
+		{ value: 'Trade Show/speaking', label: 'Trade Show/speaking' },
+		{ value: 'Trade association', label: 'Trade association' },
+		{ value: 'Used in Past', label: 'Used in Past' },
+		{ value: 'Sales Call', label: 'Sales Call' },
+		{ value: 'Other', label: 'Other' }
+	]);
 };

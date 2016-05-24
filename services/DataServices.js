@@ -21,6 +21,14 @@ module.exports = function(myApp) {
                 return Restangular.all('user').post(this);
             };
 
+            model.fetch = function() {
+                return Restangular.all('user').get();
+            };
+
+            model.addForm = function(data) {
+                return this.customPOST(data, 'addForm');
+            };
+
             return model;
          });
 
@@ -139,6 +147,9 @@ module.exports = function(myApp) {
                     n.isNew = true;
 
                     return n;
+                },
+                get: function(id) {
+                    return Restangular.one('user', id).get();
                 }
             },
             Document: {

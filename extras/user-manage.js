@@ -39,18 +39,8 @@ module.exports = function (myApp) {
 	};
 
 	var userResolve = {
-		user: function($stateParams, $q, Restangular) {
-			var deferred = $q.defer();
-			Restangular.all('user').get($stateParams.id).then(function(data) {
-				if (data.data) {
-					deferred.resolve(data.data);
-				} else {
-					deferred.resolve(data);
-				}
-			}, function(err) {
-				deferred.reject(err);
-			});
-			return deferred.promise;
+		user: function($stateParams, $DataServices) {
+			return $DataServices.User.get($stateParams.id);
 		}
 	};
 
@@ -121,8 +111,14 @@ module.exports = function (myApp) {
 			scope: {
 				user: '='
 			},
-			controller: function($scope) {
+			controller: function($scope, usState, source, yesno) {
 				$scope.user = $scope.user;
+
+				$scope.lookUps = {
+					state: usState,
+					source: source,
+					yesno: yesno
+				};
 
 				$scope.lookups = {
 					userTypes: [
@@ -196,21 +192,63 @@ module.exports = function (myApp) {
 		};
 	});
 
-	myApp.directive('userForms', function(Restangular) {
+	myApp.directive('userForms', function(Restangular, $rootScope, $SchemaModal) {
 		'use strict';
 		return {
 			restrict: 'E',
 			scope: {
 				user: '='
 			},
-			controller: function($scope, Restangular) {
-				// Restangular.all('agent').getList({ User: $scope.user._id }).then(function(data) {
-				// 	if (data.data) {
-				// 		$scope.events = data.data;
-				// 	} else {
-				// 		$scope.events = data;
-				// 	}
-				// });
+			controller: function($scope) {
+
+				$scope.addTestForm = function() {
+
+					var schema = {
+                        type: 'object',
+                        properties: {
+                          form_key: {
+                              type: 'string',
+							  title: 'Form Key'
+                          },
+                          adobe_url: {
+                            type: 'string',
+							title: 'Adobe Url'
+						  },
+						  s3Url: {
+							  type: 'string',
+							  title: 'S3 Url'
+						  }
+                        },
+                        required: [ 'form_key', 'adobe_url', 's3Url' ]
+                      };
+
+                      var form = [
+                        '*',
+                        {
+                          type: 'submit',
+                          title: 'Submit'
+                        }
+                      ];
+
+					  var submit = function(form, data, close) {
+						  $scope.user.addForm(data).then(function(result) {
+							  // Close the modal.
+							  close();
+						  });
+					  };
+
+					  $SchemaModal.open('Add Adobe Form', {}, schema, form, submit);
+				};
+
+				$scope.delete = function() {
+					alert('Coming soon');
+				};
+
+				$scope.download = function() {
+					alert('Coming soon');
+				};
+
+				$scope.data = $scope.user.forms;
 			},
 			templateUrl: 'templates/user-forms.html'
 		};
