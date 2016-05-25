@@ -15,9 +15,7 @@
 
 <div class="row">
 	<div class="col-md-4">
-
 		<select type="text" class="form-control" ng-options="item.value as item.label for item in seachFieldOpts" ng-model="searchField" name="searchField" placeholder="Search for..."></select>
-
 	</div>
 
 	<div class="col-md-6">
@@ -41,6 +39,7 @@
 </div>
 
 <div ng-if="errorMessage" class="row">
+	<br />
 	<div class="col-md-12">
 		<div class="alert alert-danger">
 			{{ errorMessage }}
@@ -95,10 +94,10 @@
 					{{ user.name_first }} {{ user.name_last }}
 				</td>
 				<td>
-					--
+					{{ user.email || 'NA' }}
 				</td>
 				<td>
-					--
+					{{ user.phone || 'NA' }}
 				</td>
 				<td>
 					{{ user.office }}
@@ -107,19 +106,14 @@
 					{{ user.address_city }} {{ user.address_state }}
 				</td>
 				<td>
-					<button ng-click="useFMId(user.id_employee)" class="btn btn-success btn-xs">Use</button>
+					<button ng-click="useFMId(user.id_employee)" class="btn btn-success btn-xs">Link Accounts</button>
 				</td>
 			</tr>
 		</table>
 	</div>
 </div>
 
-<div class="row">
-	<div class="col-md-12">
-		<button class="btn btn-warning" ng-click="createUser();">Create Filemaker User</button>
-	</div>
-</div>
-
+<button class="btn btn-default" ng-click="createUser()">Create Usr</button>
 <br>
 
 <div class="row">

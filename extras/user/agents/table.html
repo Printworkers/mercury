@@ -7,7 +7,7 @@
 </p>
 
 <p>
-	<add-address user="user"></add-address>
+	<add-agent-modal-button user="user"></add-agent-modal-button>
 </p>
 
 <table class="table table-striped">
@@ -37,14 +37,13 @@
 			<br><br>
 		</td>
 	</tr>
-	<tr ng-repeat="address in addresses">
-		<td>{{address.createdAt | date:'medium'}}</td>
-		<td>{{address.first_name}} {{address.last_name}}</td>
-		<td>{{address.address_1}}</td>
-		<td>{{address.address_city}}, {{address.address_state}} {{address.address_zip}}</td>
+	<tr ng-repeat="item in data">
+		<td>{{item.createdAt | date:'medium'}}</td>
+		<td>{{item.first_name}} {{address.last_name}}</td>
+		<td>{{item.address_1}}</td>
+		<td>{{item.address_city}}, {{item.address_state}} {{item.address_zip}}</td>
 		<td>
-			<json-viewer entry="address"></json-viewer>
-			<edit-address address="address"></edit-address>
+			<json-viewer entry="igem"></json-viewer>
 		</td>
 	</tr>
 </table>

@@ -6,6 +6,28 @@ module.exports = function(myApp) {
         var Work = Restangular.service('work');
         var Document = Restangular.service('document');
         var User = Restangular.service('user');
+        var Agent = Restangular.service('agent');
+
+        Restangular.extendModel('agent', function(model) {
+
+            model.save = function(data) {
+                return this.customPUT(data);
+            };
+
+            model.delete = function() {
+                return Restangular.one('agent', this._id).remove();
+            };
+
+            model.add = function() {
+                return Restangular.all('agent').post(this);
+            };
+
+            model.fetch = function() {
+                return Restangular.all('agent').get();
+            };
+
+            return model;
+         });
 
         Restangular.extendModel('user', function(model) {
 
@@ -149,7 +171,26 @@ module.exports = function(myApp) {
                     return n;
                 },
                 get: function(id) {
-                    return Restangular.one('user', id).get();
+                    return Restangular.one('user', id).get().then(function(data) {
+                        return data.data ? data.data : data;
+                    });
+                }
+            },
+            Agent: {
+                service: User,
+                new: function() {
+                    var n =  Restangular.one('agent');
+                    n.isNew = true;
+
+                    return n;
+                },
+                get: function(id) {
+                    return Restangular.one('agent', id).get().then(function(data) {
+                        return data.data ? data.data : data;
+                    });
+                },
+                find: function(User) {
+                    return Restangular.all('agent').getList({ User: User });
                 }
             },
             Document: {
@@ -164,7 +205,7 @@ module.exports = function(myApp) {
                 find: function(User) {
                     return Restangular.all('document').getList({ User: User });
                 }
-            },
+            }
         };
     }]);
 

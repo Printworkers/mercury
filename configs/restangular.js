@@ -1,10 +1,9 @@
 module.exports = function(myApp) {
 
-
 	myApp.config(function(RestangularProvider, apiUrl) {
 
 		RestangularProvider.setBaseUrl(apiUrl);
-		RestangularProvider.setDefaultHeaders({'x-access-token': localStorage.getItem('semper-admin-token') }); 	
+		RestangularProvider.setDefaultHeaders({'x-access-token': localStorage.getItem('semper-admin-token') });
 		RestangularProvider.setRestangularFields({ id: '_id' });
 
 		RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response) {
@@ -13,7 +12,7 @@ module.exports = function(myApp) {
 			}
 			return data;
 		});
-		
+
 		RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
 			var extractedData = {};
 			// .. to look for getList operations

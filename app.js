@@ -7,6 +7,8 @@ require('ng-file-upload');
 
 var myApp = angular.module('myApp', [ 'ng-admin', 'schemaForm', 'ngFileUpload', 'ui.utils.masks', 'angular-keenio', 'angularModalService' ]);
 
+myApp.constant('FMApiUrl', 'http://71.11.2.114/Semper');
+
 myApp.constant('apiUrl', function() {
 	return 'https://api.semperllc.com/';
 }());
@@ -27,8 +29,8 @@ require('./directives/sendEmail')(myApp);
 require('./directives/range')(myApp);
 
 /* Configurations */
-require('./configs/restangular')(myApp);
 require('./configs/ng-admin')(myApp);
+require('./configs/restangular')(myApp);
 require('./configs/keen')(myApp);
 
 /* Extras */
@@ -37,6 +39,9 @@ require('./extras/job-manage.js')(myApp);
 require('./extras/filemaker.js')(myApp);
 require('./extras/json/json.js')(myApp);
 
+require('./extras/user/fmLinker')(myApp);
+require('./extras/user/fmSync')(myApp);
+
 /* Resumes */
 require('./extras/resume/reference')(myApp);
 require('./extras/resume/education')(myApp);
@@ -44,6 +49,8 @@ require('./extras/resume/work')(myApp);
 require('./extras/resume/document')(myApp);
 require('./extras/resume/skills')(myApp);
 require('./extras/resume/objectives')(myApp);
+
+require('./extras/user/agents')(myApp);
 
 /* Services. */
 require('./services/DataServices')(myApp);

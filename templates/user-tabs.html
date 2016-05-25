@@ -36,18 +36,16 @@ $(function(){
 
 <div class="row">
 	<div class="col-md-4">
-		<b>Name</b>: {{user.name || 'NA'}}<br>
+		<b>Full Name</b>: {{ user.name_first }} {{ user.name_last }}<br>
 		<b>Phone</b>: {{user.phone || 'NA' | tel }}<br>
 		<b>Id</b>: {{user._id || 'NA'}}
 	</div>
 	<div class="col-md-4">
 		<b>Status</b>: {{user.status || 'NA'}}<br>
 		<b>Created:</b> {{user.createdAt | date: 'medium' }}
-
 		<div ng-if="user.type == 'job seeker'">
-			<b>fmEmployeeId</b>: {{user.fmEmployeeId || 'NA'}}
+			<b>Employee Id</b>: {{user.id_employee || 'NA'}}
 		</div>
-
 	</div>
 	<div class="col-md-3">
 
@@ -119,11 +117,11 @@ $(function(){
 			</div>
 
 			<div role="tabpanel" class="tab-pane" ng-class="{ 'active': tab == 'filemaker'}" id="filemaker">
-				<!-- <user-filemaker-details user="user"></user-filemaker-details> -->
+				<user-filemaker-details user="user"></user-filemaker-details>
 			</div>
 
 			<div role="tabpanel" class="tab-pane" ng-class="{ 'active': tab == 'filemaker-linker'}" id="filemaker-linker">
-				<!-- <user-filemaker-linker user="user"></user-filemaker-linker> -->
+				<user-filemaker-linker user="user"></user-filemaker-linker>
 			</div>
 
 			<div role="tabpanel" class="tab-pane" ng-class="{ 'active': tab == 'options'}" id="options">

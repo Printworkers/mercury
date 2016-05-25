@@ -1,0 +1,94 @@
+<h4>
+	File Maker Details
+</h4>
+
+<div ng-if="!hasEmployeeId" class="row">
+	<div class="col-md-12">
+		<div class="alert alert-danger">
+			This feature is not available, as the account does
+			not have a valid file Maker Employee Id.<br>
+			<br>
+			Use the FileMaker Linker to find and link this account.
+		</div>
+	</div>
+</div>
+
+<div ng-if="hasEmployeeId" class="row">
+	<div class="col-md-12">
+		<p>
+			This provides the ability to review the changes in the local
+			web data, and the remote File Maker record. This process
+			allow you, as the administrator to choose which values you
+			want to push to filemaker, or import into the web db.
+			The dates show the last time data changes in either system.
+		</p>
+
+		<br>
+
+		<div ng-if="errorMessage" class="alert alert-danger">
+			{{ errorMessage }}
+		</div>
+
+		<table class="table table-stripe table-hover">
+
+			<tr>
+				<td></td>
+				<td>
+					Last: {{ userData.updatedAt | date:'short' }}<br />
+					<div class="btn-group">
+						<button ng-disabled="saveToWeb !== true" ng-click="saveDataToWeb()" ng-class="{ 'btn-success': saveToWeb === true }" class="btn btn-default btn-sm">
+							Save Changes
+						</button>
+						<json-viewer class="btn-sm" entry="userData"></json-viewer>
+					</div>
+				</td>
+				<td></td>
+				<td>
+					Last: {{ fmData.timestamp_modification | date:'short' }}<br />
+					<div class="btn-group">
+						<button ng-disabled="saveToFM !== true" ng-click="saveDataToFM()" ng-class="{ 'btn-success': saveToFM === true }" class="btn btn-default btn-sm">
+							Save Changes
+						</button>
+						<json-viewer class="btn-sm" entry="fmData"></json-viewer>
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<th width="25%">Field</th>
+				<th width="30%">Local Value</th>
+				<th width="15%" align="center">Action</th>
+				<th width="30%">File Maker</th>
+			</tr>
+
+			<tr ng-repeat="field in fields">
+				<td class="active">
+					{{ field.title }}
+				</td>
+				<td ng-click="useLeft(field);">
+					{{ userData[field.webfld] }}
+				</td>
+				<td align="center" ng-class="{ 'danger': userData[field.webfld] !== fmData[field.fmfld], 'success': userData[field.webfld] === fmData[field.fmfld] }">
+					<span ng-if="userData[field.webfld] === fmData[field.fmfld]"> Same </span>
+					<span ng-if="userData[field.webfld] !== fmData[field.fmfld]"> Different </span>
+				</td>
+				<td ng-click="useRight(field);">
+					{{ fmData[field.fmfld] }}
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+
+				</td>
+				<td>
+					<button class="btn btn-sm pull-right btn-danger" ng-click="useAllWeb();">Use all</button>
+				</td>
+				<td>&nbsp;</td>
+				<td>
+					<button class="btn btn-sm btn-danger" ng-click="useAllFM();">Use all</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
