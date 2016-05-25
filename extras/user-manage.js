@@ -123,7 +123,7 @@ module.exports = function (myApp) {
 				$scope.lookups = {
 					userTypes: [
 						{ value: 'job seeker', label: 'Job Seeker' },
-						{ value: 'employee', label: 'Employer' },
+						{ value: 'employer', label: 'Employer' },
 						{ value: 'administrator', label: 'Administator' },
 						{ value: 'super', label: 'Administator Super' },
 					]
