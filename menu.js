@@ -67,6 +67,11 @@ module.exports = function (nga, user) {
 				.icon('<span class="fa fa-clone fa-fw"></span>'))
 		)
 		.addChild(nga.menu()
+			.title('Queue')
+			.link('/queue/list')
+			.icon('<span class="fa fa-desktop fa-fw"></span>')
+		)
+		.addChild(nga.menu()
 			.title('Site')
 			.icon('<span class="fa fa-shopping-cart fa-fw"></span>')
 			.active(function(path) {

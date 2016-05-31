@@ -111,7 +111,7 @@ module.exports = function (myApp) {
 			scope: {
 				user: '='
 			},
-			controller: function($scope, usState, source, yesno) {
+			controller: function($scope, usState, source, yesno, homeOffice) {
 				$scope.user = $scope.user;
 
 				$scope.lookUps = {
@@ -126,14 +126,9 @@ module.exports = function (myApp) {
 						{ value: 'employer', label: 'Employer' },
 						{ value: 'administrator', label: 'Administator' },
 						{ value: 'super', label: 'Administator Super' },
-					]
+					],
+					homeOffices: homeOffice
 				};
-
-				// $scope.lookups.homeOffices = lookups.homeoffice;
-
-				Restangular.all('homeoffice').getList().then(function(data) {
-					$scope.lookups.homeOffices = data;
-				});
 
 				$scope.save = function() {
 					$scope.user.save().then(function(data) {

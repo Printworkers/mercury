@@ -42,7 +42,7 @@
 				<select name="homeoffice" required id="homeoffice" class="form-control"
 						ng-model="user.homeoffice"
 						placeholder="Select.."
-						ng-options="item.name as item.name for item in lookups.homeOffices">
+						ng-options="item.value as item.label for item in lookups.homeOffices">
 					<option value="">Select Home Office</option>
 				</select>
 				<span ng-if="form.homeoffice.$touched" ng-class="{ 'glyphicon-ok': form.homeoffice.$valid, 'glyphicon-remove': form.homeoffice.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -70,6 +70,16 @@
 				<label>Email</label>
 				<input type="text" name="email" autocomplete="off" id="email" class="form-control" ng-model="user.email" placeholder="Enter Password">
 				<span ng-if="form.email.$touched" ng-class="{ 'glyphicon-ok': form.email.$valid, 'glyphicon-remove': form.email.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-3">
+			<div class="form-group has-feedback" ng-class="{'has-error': form.phone.$touched && form.phone.$invalid}">
+				<label>Phone</label>
+				<input type="tel" name="phone" id="phone" class="form-control" ng-model="user.phone" placeholder="Enter Password">
+				<span ng-if="form.phone.$touched" ng-class="{ 'glyphicon-ok': form.phone.$valid, 'glyphicon-remove': form.phone.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
 			</div>
 		</div>
 	</div>

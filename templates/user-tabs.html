@@ -42,7 +42,8 @@ $(function(){
 	</div>
 	<div class="col-md-4">
 		<b>Status</b>: {{user.status || 'NA'}}<br>
-		<b>Created:</b> {{user.createdAt | date: 'medium' }}
+		<b>Created:</b> {{user.createdAt | date: 'medium' }}<br>
+        <b>Updated:</b> {{user.updatedAt | date: 'medium' }}<br>
 		<div ng-if="user.type == 'job seeker'">
 			<b>Employee Id</b>: {{user.id_employee || 'NA'}}
 		</div>

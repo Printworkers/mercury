@@ -1,12 +1,12 @@
 module.exports = function(myApp) {
 
 	myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', 'apiUrl', function(NgAdminConfigurationProvider, RestangularProvider, apiUrl) {
-		
+
 		var nga = NgAdminConfigurationProvider;
 		var lookups = require('../lookups');
 
 		/* create an admin application. */
-		var admin = nga.application('Semper LLC Administrator').baseApiUrl(apiUrl); 
+		var admin = nga.application('Semper LLC Administrator').baseApiUrl(apiUrl);
 		var homeoffice = require('../entities/homeoffice')(nga);
 		var user = require('../entities/user')(nga, lookups, homeoffice);
 		var agent = require('../entities/agent')(nga, user);
@@ -16,6 +16,7 @@ module.exports = function(myApp) {
 		var order = require('../entities/order')(nga, user);
 		var application = require('../entities/application')(nga, user, order);
 		var skill = require('../entities/skill')(nga);
+		var queue = require('../entities/queue')(nga);
 
 		admin.addEntity(user);
 		admin.addEntity(lookup);
@@ -26,6 +27,7 @@ module.exports = function(myApp) {
 		admin.addEntity(order);
 		admin.addEntity(application);
 		admin.addEntity(skill);
+		admin.addEntity(queue);
 
 		/* Dashboard */
 		admin.dashboard(nga.dashboard()

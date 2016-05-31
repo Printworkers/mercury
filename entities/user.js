@@ -1,4 +1,5 @@
 module.exports = function (nga, lookups) {
+
 	var user = nga.entity('user').identifier(nga.field('_id'));
 
 	user.listView()
