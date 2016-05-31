@@ -67,7 +67,7 @@ module.exports = function(myApp) {
 
     /* Directive that provides a upload feature for resume documnts. */
 
-    myApp.directive('semperDocumentUpload', [ 'ModalService', 'Restangular', '$rootScope', 'Upload', '$timeout', function(ModalService, Restangular, $rootScope, Upload, $timeout) {
+    myApp.directive('semperDocumentUpload', [ 'ModalService', '$rootScope', 'Upload', '$timeout', function(ModalService, $rootScope, Upload, $timeout) {
         return {
             replace: true,
             template: require('./form.html'),

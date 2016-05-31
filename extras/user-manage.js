@@ -104,7 +104,7 @@ module.exports = function (myApp) {
 		};
 	}]);
 
-	myApp.directive('userDetails', function(Restangular, notification) {
+	myApp.directive('userDetails', function(notification) {
 		'use strict';
 		return {
 			restrict: 'E',
@@ -147,27 +147,19 @@ module.exports = function (myApp) {
 		};
 	});
 
-	myApp.directive('userResume', function(Restangular) {
+	myApp.directive('userResume', function() {
 		'use strict';
 		return {
 			restrict: 'E',
 			scope: {
 				user: '='
 			},
-			controller: function($scope, Restangular) {
-				// Restangular.all('agent').getList({ User: $scope.user._id }).then(function(data) {
-				// 	if (data.data) {
-				// 		$scope.events = data.data;
-				// 	} else {
-				// 		$scope.events = data;
-				// 	}
-				// });
-			},
+			controller: function($scope) {},
 			templateUrl: 'templates/user-resume.html'
 		};
 	});
 
-	myApp.directive('userForms', function(Restangular, $rootScope, $SchemaModal) {
+	myApp.directive('userForms', function($rootScope, $SchemaModal) {
 		'use strict';
 		return {
 			restrict: 'E',

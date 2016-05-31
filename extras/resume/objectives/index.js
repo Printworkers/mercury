@@ -1,6 +1,6 @@
 module.exports = function(ngModule) {
 
-	ngModule.directive('semperEmployeeObjectives', [ 'ModalService', 'Restangular', function( ModalService, Restangular) {
+	ngModule.directive('semperEmployeeObjectives', [ 'ModalService', function( ModalService) {
 		return {
 			replace: true,
 			scope: {
@@ -42,7 +42,7 @@ module.exports = function(ngModule) {
 							title: 'Special Skills',
 							content: $scope.user.specialSkills
 						},
-						controller: function($scope, Restangular, title, content, user, close) {
+						controller: function($scope, title, content, user, close) {
 							/* Setup the save function. */
 							$scope.title = title;
 							$scope.content = content;
@@ -67,7 +67,7 @@ module.exports = function(ngModule) {
 							title: 'Career Objectives',
 							content: $scope.user.careerObjectives
 						},
-						controller: function($scope, Restangular, title, content, user, close) {
+						controller: function($scope, title, content, user, close) {
 							/* Setup the save function. */
 							$scope.title = title;
 							$scope.content = content;
