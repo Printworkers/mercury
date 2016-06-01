@@ -10,7 +10,7 @@ var myApp = angular.module('myApp', [ 'ng-admin', 'schemaForm', 'ngFileUpload', 
 myApp.constant('FMApiUrl', 'http://71.11.2.114/Semper');
 
 myApp.constant('apiUrl', function() {
-	return 'https://api.semperllc.com/';
+	return window.apiUrl || 'https://api.semperllc.com/';
 }());
 
 /* Constants */

@@ -1,5 +1,5 @@
 // Include gulp
-var gulp = require('gulp'); 
+var gulp = require('gulp');
 
 // Include Our Plugins
 var jshint = require('gulp-jshint');
@@ -18,6 +18,7 @@ var source = require('vinyl-source-stream');
 var stringify = require('stringify');
 var nodemon = require('gulp-nodemon');
 var browserSync = require('browser-sync').create();
+var template = require('gulp-template');
 
 // Lint Task
 gulp.task('lint', function() {
@@ -47,7 +48,7 @@ gulp.task('start', function () {
   nodemon({
     script: 'server.js', ext: 'js html', env: { 'NODE_ENV': 'development' }
   });
-})
+});
 
 // Watch Files For Changes
 gulp.task('watch', function() {
@@ -57,6 +58,12 @@ gulp.task('watch', function() {
 
 // Default Task
 gulp.task('default', ['lint', 'sass', 'scripts','js', 'watch', 'start']);
+
+// gulp.task('indexTpl', () =>
+//     gulp.src('templates/index.html')
+//         .pipe(template( { name: 'Sindre'}))
+//         .pipe(gulp.dest('dist'))
+// );
 
 // create a task that ensures the `js` task is complete before
 // reloading browsers
@@ -84,7 +91,7 @@ var customOpts = {
   debug: true
 };
 var opts = assign({}, watchify.args, customOpts);
-var b = watchify(browserify(opts)); 
+var b = watchify(browserify(opts));
 
 b.transform(stringify({
 	extensions: ['.html'], minify: true
