@@ -91,6 +91,12 @@ $(function(){
 				</a>
 			</li>
 
+            <li role="presentation">
+                <a href="#queue" aria-controls="queue" role="tab" data-toggle="tab">
+                    Queue
+                </a>
+            </li>
+
 			<li role="presentation" ng-class="{ 'active': tab == 'options'}">
 				<a href="#options" aria-controls="options" role="tab" data-toggle="tab">
 					Options
@@ -111,6 +117,10 @@ $(function(){
 
             <div ng-if="user.type == 'job seeker'" role="tabpanel" class="tab-pane" ng-class="{ 'active': tab == 'forms'}" id="forms">
 				<user-forms user="user"></user-forms>
+			</div>
+
+            <div role="tabpanel" class="tab-pane" ng-class="{ 'active': tab == 'queue'}" id="queue">
+				<user-queue-table user="user"></user-queue-table>
 			</div>
 
 			<div role="tabpanel" class="tab-pane" ng-class="{ 'active': tab == 'agents'}" id="agents">

@@ -7,6 +7,28 @@ module.exports = function(myApp) {
         var Document = Restangular.service('document');
         var User = Restangular.service('user');
         var Agent = Restangular.service('agent');
+        var Queue = Restangular.service('queue');
+
+        Restangular.extendModel('queue', function(model) {
+
+            model.save = function(data) {
+                return this.customPUT(data);
+            };
+
+            model.delete = function() {
+                return Restangular.one('queue', this._id).remove();
+            };
+
+            model.add = function() {
+                return Restangular.all('queue').post(this);
+            };
+
+            model.fetch = function() {
+                return Restangular.all('queue').get();
+            };
+
+            return model;
+         });
 
         Restangular.extendModel('agent', function(model) {
 
@@ -134,6 +156,19 @@ module.exports = function(myApp) {
                 },
                 find: function(User) {
                     return Restangular.all('reference').getList({ User: User });
+                }
+            },
+            Queue: {
+                service: Queue,
+                new: function(opts) {
+                    var n =  Restangular.one('queue');
+                    n.User = opts.User;
+                    n.isNew = true;
+
+                    return n;
+                },
+                find: function(User) {
+                    return Restangular.all('queue').getList({ User: User });
                 }
             },
             Education: {

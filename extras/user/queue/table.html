@@ -1,0 +1,53 @@
+<h4>
+	Queue Events for this User
+</h4>
+
+<p>
+	The following is a list of all the queue events for this user.
+</p>
+
+<table class="table table-striped">
+	<tr>
+		<th>
+			Enqueued
+		</th>
+		<th>
+			Done
+		</th>
+		<th>
+			Task
+		</th>
+		<th>
+			Status
+		</th>
+		<th>
+			Details
+		</th>
+	</tr>
+	<tr ng-if="data.length == 0">
+		<td class="warning" colspan="5" align="center">
+			<br><br>
+			<br>
+			There are no records available.
+			<br><br>
+			<br><br>
+		</td>
+	</tr>
+	<tr ng-repeat="item in data">
+		<td>
+			{{item.enqueued | date:'short'}}
+		</td>
+		<td>
+			{{item.ended | date:'short'}}
+		</td>
+		<td>
+			{{item.name}}
+		</td>
+		<td>
+			{{item.status}}
+		</td>
+		<td>
+			<json-viewer entry="item"></json-viewer>
+		</td>
+	</tr>
+</table>

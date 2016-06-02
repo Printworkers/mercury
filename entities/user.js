@@ -40,7 +40,8 @@ module.exports = function (nga, lookups) {
 		nga.field('username', 'string').label('Username'),
 		nga.field('email', 'string').label('email'),
 		nga.field('address_city', 'string').label('City'),
-		nga.field('address_state', 'string').label('State')
+		nga.field('address_state', 'string').label('State'),
+		nga.field('id_employee', 'string').label('FM Employee Id')
 	]);
 
 	user.creationView()

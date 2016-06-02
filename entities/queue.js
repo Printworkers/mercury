@@ -95,7 +95,7 @@ module.exports = function (nga) {
             nga.field('timeout'),
 			nga.field('params', 'json'),
 			nga.field('result', 'json'),
-			nga.field('error'),
+			nga.field('error', 'json'),
 			nga.field('stack')
 				.template(function(e) {
 					return e.values.stack || 'NA';
