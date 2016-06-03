@@ -104,7 +104,7 @@
 				<label>State (*)</label>
 				<select class="form-control" name="address_state" id="address_state"
 						ng-model="user.address_state"
-						ng-options="item.value as item.label for item in lookUps.state"
+						ng-options="item.value as item.label for item in lookups.state"
 						required>
 					<option value="">Select State</option>
 				</select>
@@ -160,7 +160,7 @@
 				<label for="source">Source</label>
 				<select class="form-control" name="source" id="source"
 						ng-model="user.source"
-						ng-options="item.value as item.label for item in lookUps.source"
+						ng-options="item.value as item.label for item in lookups.source"
 						>
 					<option value="">Select Source</option>
 				</select>
@@ -173,7 +173,7 @@
 				<label for="flag_union">Union Flag</label>
 				<select class="form-control" name="flag_union" id="flag_union"
 						ng-model="user.flag_union"
-						ng-options="item.value as item.label for item in lookUps.yesno"
+						ng-options="item.value as item.label for item in lookups.yesno"
 						>
 					<option value="">Select Union Status</option>
 				</select>
@@ -247,7 +247,7 @@
 				<label for="flag_relocate_willing">Willing to Relocate?</label>
 				<select class="form-control" name="flag_relocate_willing" id="flag_relocate_willing"
 						ng-model="user.flag_relocate_willing"
-						ng-options="item.value as item.label for item in lookUps.yesno"
+						ng-options="item.value as item.label for item in lookups.yesno"
 						>
 					<option value="">Select Willingness</option>
 				</select>
@@ -274,6 +274,7 @@
 		<div class="col-md-3">
 			<div class="form-group has-feedback" ng-class="{'has-error': form.flag_application_signed.$touched && form.flag_application_signed.$invalid }">
 				<label for="flag_application_signed">Remote App Status</label>
+
 				<input type="text" name="flag_application_signed" id="flag_application_signed" class="form-control" ng-model="user.flag_application_signed" placeholder="Remote App Status">
 				<span ng-if="form.flag_application_signed.$touched" ng-class="{ 'glyphicon-ok': form.flag_application_signed.$valid, 'glyphicon-remove': form.flag_application_signed.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
 			</div>
@@ -283,7 +284,7 @@
 				<label for="flag_available_immediately">Available Immediately?</label>
 				<select class="form-control" name="flag_available_immediately" id="flag_available_immediately"
 						ng-model="user.flag_available_immediately"
-						ng-options="item.value as item.label for item in lookUps.yesno"
+						ng-options="item.value as item.label for item in lookups.yesno"
 						>
 					<option value="">Select Availability</option>
 				</select>
@@ -300,7 +301,7 @@
 				<span ng-if="form.app_working_company.$touched" ng-class="{ 'glyphicon-ok': form.app_working_company.$valid, 'glyphicon-remove': form.app_working_company.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
 			</div>
 		</div>
-		<div class="col-md-3">
+		<!-- <div class="col-md-3">
 			<div class="form-group has-feedback" ng-class="{'has-error': form.drivers_license_number.$touched && form.drivers_license_number.$invalid }">
 				<label for="drivers_license_number">Drivers License Number</label>
 				<input type="text" name="drivers_license_number" id="drivers_license_number" class="form-control" ng-model="user.drivers_license_number" placeholder="Enter Company Name">
@@ -312,17 +313,29 @@
 				<label for="drivers_license_state">Drivers License State</label>
 				<select class="form-control" name="drivers_license_state" id="drivers_license_state"
 						ng-model="user.drivers_license_state"
-						ng-options="item.value as item.label for item in lookUps.state"
+						ng-options="item.value as item.label for item in lookups.state"
 						>
 					<option value="">Select State</option>
 				</select>
 
 				<span ng-if="form.drivers_license_state.$touched" ng-class="{ 'glyphicon-ok': form.drivers_license_state.$valid, 'glyphicon-remove': form.drivers_license_state.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
 			</div>
-		</div>
+		</div> -->
 	</div>
 
 	<div ng-if="user.type === 'job seeker'" class="row">
+		<div class="col-md-6">
+			<div class="form-group has-feedback" ng-class="{'has-error': form.ra_status.$touched && form.ra_status.$invalid }">
+				<label for="ra_phase_2_status">Remote App Status</label>
+				<select class="form-control" name="ra_status" id="ra_status"
+						ng-model="user.ra_status"
+						ng-options="item.value as item.label for item in lookups.ra_app_statuses"
+						>
+				</select>
+
+				<span ng-if="form.ra_status.$touched" ng-class="{ 'glyphicon-ok': form.ra_status.$valid, 'glyphicon-remove': form.ra_status.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+			</div>
+		</div>
 		<div class="col-md-3">
 			<div class="form-group has-feedback" ng-class="{'has-error': form.id_employee.$touched && form.id_employee.$invalid }">
 				<label for="id_employee">FM Employee Id</label>

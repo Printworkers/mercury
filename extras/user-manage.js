@@ -114,13 +114,20 @@ module.exports = function (myApp) {
 			controller: function($scope, usState, source, yesno, homeOffice) {
 				$scope.user = $scope.user;
 
-				$scope.lookUps = {
+				$scope.lookups = {
 					state: usState,
 					source: source,
-					yesno: yesno
-				};
-
-				$scope.lookups = {
+					yesno: yesno,
+					ra_app_statuses: [
+						{ value: 'phase1_open', label: 'Phase 1 Open' },
+						{ value: 'phase1_pending', label: 'Phase 1 Processing' },
+						{ value: 'phase1_signing', label: 'Phase 1 Signing' },
+						{ value: 'phase1_complete', label: 'Phase 1 Complete' },
+						{ value: 'phase2_open', label: 'Phase 2 Open (Elegibility)' },
+						{ value: 'phase2_pending', label: 'Phase 2 Processing (Elegibility)' },
+						{ value: 'phase2_signing', label: 'Phase 2 Signing' },
+						{ value: 'closed', label: 'Closed' }
+					],
 					userTypes: [
 						{ value: 'job seeker', label: 'Job Seeker' },
 						{ value: 'employer', label: 'Employer' },
