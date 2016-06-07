@@ -10,9 +10,11 @@ module.exports = function (myApp) {
             controller: function($scope) {
 
                 /* Query for the Queue items for this user. */
-                $DataServices.Queue.find( $scope.user._id ).then(function(data) {
-                    $scope.data = data;
-                });
+                var fetch = $scope.fetch = function() {
+                    $DataServices.Queue.find( $scope.user._id ).then(function(data) {
+                        $scope.data = data;
+                    });
+                };
 
                 /* Query. */
                 $scope.delete = function(item) {
@@ -23,6 +25,8 @@ module.exports = function (myApp) {
                         });
                     }
                 };
+
+                fetch();
             },
             template: require('./table.html')
         };

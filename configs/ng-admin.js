@@ -1,5 +1,13 @@
 module.exports = function(myApp) {
 
+	myApp.config(function($sceDelegateProvider, RestangularProvider) {
+		$sceDelegateProvider.resourceUrlWhitelist([
+			'self',
+			'http://admin.semperllc.com/**',
+			'https://admin.semperllc.com/**'
+		]);
+	});
+
 	myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', 'apiUrl', function(NgAdminConfigurationProvider, RestangularProvider, apiUrl) {
 
 		var nga = NgAdminConfigurationProvider;

@@ -1,5 +1,9 @@
 <h4>
 	Queue Events for this User
+
+	<button ng-click="fetch();" class="pull-right btn btn-default btn-sm">
+		Refresh
+	</button>
 </h4>
 
 <p>
@@ -33,7 +37,7 @@
 			<br><br>
 		</td>
 	</tr>
-	<tr ng-repeat="item in data">
+	<tr ng-repeat="item in data | orderBy:'-enqueued'">
 		<td>
 			{{item.enqueued | date:'short'}}
 		</td>
@@ -44,7 +48,21 @@
 			{{item.name}}
 		</td>
 		<td>
-			{{item.status}}
+			<span class="label label-success" ng-if="item.status === 'queued'">
+				{{ item.status }}
+			</span>
+
+			<span class="label label-danger" ng-if="item.status === 'failed'">
+				{{ item.status }}
+			</span>
+
+			<span class="label label-default" ng-if="item.status === 'dequeued'">
+				{{item.status}}
+			</span>
+
+			<span class="label label-primary" ng-if="item.status === 'complete'">
+				{{item.status}}
+			</span>
 		</td>
 		<td>
 			<div class="btn-group pull-right">
