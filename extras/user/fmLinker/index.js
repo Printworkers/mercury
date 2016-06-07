@@ -8,6 +8,7 @@ module.exports = function (myApp) {
 				user: '='
 			},
 			controller: function($scope) {
+
 				$scope.errorMessage = '';
 				$scope.message = '';
 				$scope.searching = false;
@@ -19,14 +20,18 @@ module.exports = function (myApp) {
 					$scope.searchTerm = $scope.user.email;
 				}
 
-				$scope.$watch('searchTerm', function() {
-					$scope.search();
-					buildUrl();
+				$scope.$watch('searchTerm', function(newValue, oldValue) {
+					if (newValue !== oldValue) {
+						$scope.search();
+						buildUrl();
+					}
 				});
 
-				$scope.$watch('searchField', function() {
-					$scope.search();
-					buildUrl();
+				$scope.$watch('searchField', function(newValue, oldValue) {
+					if (newValue !== oldValue) {
+						$scope.search();
+						buildUrl();
+					}
 				});
 
 				var buildUrl = function() {

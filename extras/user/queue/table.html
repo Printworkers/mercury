@@ -21,7 +21,7 @@
 			Status
 		</th>
 		<th>
-			Details
+			&nbsp;
 		</th>
 	</tr>
 	<tr ng-if="data.length == 0">
@@ -47,7 +47,13 @@
 			{{item.status}}
 		</td>
 		<td>
-			<json-viewer entry="item"></json-viewer>
+			<div class="btn-group pull-right">
+				<json-viewer entry="item"></json-viewer>
+
+				<button ng-click="delete(item);" class="btn btn-danger">
+					<i class="glyphicon glyphicon-trash"></i>
+				</button>
+			</div>
 		</td>
 	</tr>
 </table>

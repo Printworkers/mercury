@@ -155,7 +155,11 @@ module.exports = function(myApp) {
                     return n;
                 },
                 find: function(User) {
-                    return Restangular.all('reference').getList({ User: User });
+                    return Restangular.all('reference')
+                        .getList({ User: User })
+                        .then(function(data) {
+                            return data.data ? data.data : data;
+                        });
                 }
             },
             Queue: {
@@ -168,7 +172,11 @@ module.exports = function(myApp) {
                     return n;
                 },
                 find: function(User) {
-                    return Restangular.all('queue').getList({ User: User });
+                    return Restangular.all('queue')
+                        .getList({ User: User })
+                        .then(function(data) {
+                            return data.data ? data.data : data;
+                        });
                 }
             },
             Education: {
@@ -181,7 +189,11 @@ module.exports = function(myApp) {
                     return n;
                 },
                 find: function(User) {
-                    return Restangular.all('education').getList({ User: User });
+                    return Restangular.all('education')
+                        .getList({ User: User })
+                        .then(function(data) {
+                            return data.data ? data.data : data;
+                        });
                 }
             },
             Work: {
@@ -194,7 +206,11 @@ module.exports = function(myApp) {
                     return n;
                 },
                 find: function(User) {
-                    return Restangular.all('work').getList({ User: User });
+                    return Restangular.all('work')
+                        .getList({ User: User })
+                        .then(function(data) {
+                            return data.data ? data.data : data;
+                        });
                 }
             },
             User: {
@@ -206,9 +222,11 @@ module.exports = function(myApp) {
                     return n;
                 },
                 get: function(id) {
-                    return Restangular.one('user', id).get().then(function(data) {
-                        return data.data ? data.data : data;
-                    });
+                    return Restangular.one('user', id)
+                        .get()
+                        .then(function(data) {
+                            return data.data ? data.data : data;
+                        });
                 }
             },
             Agent: {
@@ -220,12 +238,18 @@ module.exports = function(myApp) {
                     return n;
                 },
                 get: function(id) {
-                    return Restangular.one('agent', id).get().then(function(data) {
-                        return data.data ? data.data : data;
-                    });
+                    return Restangular.one('agent', id)
+                        .get()
+                        .then(function(data) {
+                            return data.data ? data.data : data;
+                        });
                 },
                 find: function(User) {
-                    return Restangular.all('agent').getList({ User: User });
+                    return Restangular.all('agent')
+                        .getList({ User: User })
+                        .then(function(data) {
+                            return data.data ? data.data : data;
+                        });
                 }
             },
             Document: {
@@ -238,7 +262,11 @@ module.exports = function(myApp) {
                     return n;
                 },
                 find: function(User) {
-                    return Restangular.all('document').getList({ User: User });
+                    return Restangular.all('document')
+                        .getList({ User: User })
+                        .then(function(data) {
+                            return data.data ? data.data : data;
+                        });
                 }
             }
         };
