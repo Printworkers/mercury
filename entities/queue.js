@@ -27,7 +27,13 @@ module.exports = function (nga) {
 		{ value: 'emailRegistration', label: 'Send Registration Welcome email' },
 		{ value: 'emailPasswordReset', label: 'Send Password Reset email' },
 		{ value: 'emailPasswordUsername', label: 'Send Username reminder email' },
-		{ value: 'emailNewPasscode', label: 'Send New Passcode email' }
+		{ value: 'emailNewPasscode', label: 'Send New Passcode email' },
+
+		{ value: 'userDetermineHomeOffice', label: 'Calc the Closest Homeoffice' },
+		{ value: 'userSignedForm', label: 'Transmit User Signed Form Data (Phase 1)' },
+		{ value: 'handleAdobeSignedForm', label: 'Handle Adobe Callback Form Data (s3 etc)' },
+
+		{ value: 'jobImports', label: 'Handle Job Imports' }
 	];
 
 	queue.listView()
