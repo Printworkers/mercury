@@ -5,6 +5,8 @@
 		<div class="col-md-3">
 			<p>
 				The following is a account user.
+
+
 			</p>
 		</div>
 	</div>
@@ -54,15 +56,16 @@
 		<div class="col-md-3">
 			<div class="form-group has-feedback" ng-class="{'has-error': form.password.$touched && form.password.$invalid}">
 				<label>Password</label>
-				<input type="password" name="password" id="password" class="form-control" ng-model="user.password" placeholder="Enter Password">
-				<span ng-if="form.password.$touched" ng-class="{ 'glyphicon-ok': form.password.$valid, 'glyphicon-remove': form.password.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+				<br>
+
+				<edit-password-button user="user"></edit-password-button>
 			</div>
 		</div>
 		<div class="col-md-3">
 			<div class="form-group has-feedback" ng-class="{'has-error': form.username.$touched && form.username.$invalid}">
-				<label>Username</label>
-				<input type="text" name="username" id="username" class="form-control" ng-model="user.username" placeholder="Enter Password">
-				<span ng-if="form.username.$touched" ng-class="{ 'glyphicon-ok': form.username.$valid, 'glyphicon-remove': form.username.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+				<label>Username: {{ user.username }}</label>
+				<br>
+				<edit-username-button user="user"></edit-username-button>
 			</div>
 		</div>
 		<div class="col-md-6">

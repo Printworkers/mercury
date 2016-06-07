@@ -16,9 +16,9 @@ module.exports = function (nga, lookups) {
 			.label('FMId'),
 		nga.field('type'),
 		nga.field('lastLoginAt', 'date')
+			.label('Last Login')
 			.format('MM/dd/yyyy')
 	]).listActions([
-		'edit',
 		'<user-manage user="entry"></user-manage>'
 	])
 	.filters([
@@ -124,7 +124,7 @@ module.exports = function (nga, lookups) {
 				.attributes({ placeholder: 'Select the user account type.' })
 		]);
 
-	user.editionView().fields(user.creationView().fields());
+	// user.editionView().fields(user.creationView().fields());
 
 	return user;
 };
