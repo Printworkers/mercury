@@ -188,12 +188,12 @@ module.exports = function (myApp) {
                             type: 'string',
 							title: 'Adobe Url'
 						  },
-						  s3Url: {
+						  s3url: {
 							  type: 'string',
 							  title: 'S3 Url'
 						  }
                         },
-                        required: [ 'form_key', 'adobe_url', 's3Url' ]
+                        required: [ 'form_key', 'adobe_url', 's3url' ]
                       };
 
                       var form = [
