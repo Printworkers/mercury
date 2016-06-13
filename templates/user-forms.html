@@ -28,10 +28,10 @@
                     {{ item.form_key }}
                 </td>
                 <td>
-                    {{ item.adobe_url }}
+                    <a ng-if={{item.adobe_url}} href="{{item.adobe_url}}">Adobe URL</a>
                 </td>
                 <td>
-                    {{ item.s3url }}
+                    <a ng-if={{item.s3url}} href="{{item.s3url}}">S3 URL</a>
                 </td>
                 <td>
                     <div class="btn-group pull-right">
