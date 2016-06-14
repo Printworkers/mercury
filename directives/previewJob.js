@@ -13,7 +13,7 @@ module.exports = function(myApp) {
                     window.alert('Feature Coming Soon');
                 };
             },
-            template: '<button class="btn btn-success btn-xs" ng-click="showJob()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Live Preview</button>'
+            template: '<button class="btn btn-success btn-xs" ng-click="showJob()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Preview</button>'
         };
     });
 };

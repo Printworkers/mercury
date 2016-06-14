@@ -4,8 +4,8 @@ module.exports = function (myApp) {
 		return {
 			restrict: 'E',
 			replace: true,
-			scope: { 
-				job: '&' 
+			scope: {
+				job: '&'
 			},
 			link: function (scope) {
 				scope.open = function() {
@@ -43,7 +43,7 @@ module.exports = function (myApp) {
 				};
 
 			},
-			template: '<button class="btn btn-primary btn-xs" ng-click="open()"><i class="fa fa-download"></i>&nbsp;FM Sync</button>'
+			template: '<button class="btn btn-primary btn-xs" ng-click="open()"><i class="fa fa-download"></i>&nbsp;Sync</button>'
 		};
 	}]);
 

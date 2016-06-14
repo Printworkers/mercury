@@ -12,8 +12,8 @@ module.exports = function (nga, lookups) {
 			}),
 		nga.field('username'),
 		nga.field('email'),
-		nga.field('fmId')
-			.label('FMId'),
+		nga.field('id')
+			.label('id_employee'),
 		nga.field('type'),
 		nga.field('lastLoginAt', 'date')
 			.label('Last Login')
