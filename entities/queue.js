@@ -33,6 +33,9 @@ module.exports = function (nga) {
 		{ value: 'userSignedForm', label: 'Transmit User Signed Form Data (Phase 1)' },
 		{ value: 'handleAdobeSignedForm', label: 'Handle Adobe Callback Form Data (s3 etc)' },
 
+		{ value: 'userStoreFormS3', label: 'Store Form S3 URL' },
+		{ value: 'userStoreFormData', label: 'Store Form Data' },
+
 		{ value: 'jobImports', label: 'Handle Job Imports' }
 	];
 
