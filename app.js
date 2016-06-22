@@ -27,6 +27,7 @@ require('./directives/previewJob')(myApp);
 require('./directives/header')(myApp);
 require('./directives/sendEmail')(myApp);
 require('./directives/range')(myApp);
+require('./directives/queue')(myApp);
 
 /* Configurations */
 require('./configs/ng-admin')(myApp);

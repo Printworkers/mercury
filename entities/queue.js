@@ -42,7 +42,7 @@ module.exports = function (nga) {
 	queue.listView()
 		.title('Queue Jobs')
 		.perPage(50)
-		.description('The following is a list of Queue Jobs.')
+		.description('The following is a list of Queue Jobs. <total-queue-jobs></total-queue-jobs>')
 		.fields([
 			nga.field('queue'),
             nga.field('name'),
@@ -78,7 +78,11 @@ module.exports = function (nga) {
 						return '&nbsp;';
 					}
 				}),
-		]).listActions(['show', 'edit', 'delete'])
+		]).listActions([
+			'show',
+			'edit',
+			'delete'
+		])
 		.filters([
 			nga.field('status', 'choice')
 				.label('Status')
