@@ -1,0 +1,193 @@
+<div class="modal fade">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" ng-click="close(false)" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">
+					Queue Summary
+				</h4>
+			</div>
+			<div class="modal-body">
+
+				<div class="row">
+			        <div class="col-lg-5">
+			            <div class="panel panel-primary">
+
+			                <div class="panel-heading">
+			                    <div class="row">
+			                        <div class="col-xs-12">
+			                            <div>
+			                                Name & Status
+			                            </div>
+			                        </div>
+			                    </div>
+			                </div>
+
+			                <table class="table table-striped table-hover table-border">
+			                    <tr ng-repeat="item in report1.data">
+			                        <td width="40%">{{ item._id.name }}</td>
+									<td width="30%">{{ item._id.status }}</td>
+			                        <td width="30%">{{ item.count }}</td>
+			                    </tr>
+			                </table>
+
+			            </div>
+					</div>
+
+					<div class="col-lg-7">
+						<div class="panel panel-primary">
+
+							<div class="panel-heading">
+								<div class="row">
+									<div class="col-xs-12">
+										<div>
+											In Given State
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<table class="table table-striped table-hover table-border">
+								<tr>
+									<td width="40%">Time</td>
+									<td width="10%">Queued</td>
+									<td width="10%">DeQueued</td>
+									<td width="10%">Failed</td>
+									<td width="10%">Completed</td>
+									<td width="10%">Cancelled</td>
+								</tr>
+								<tr>
+									<td width="40%">Last 30m</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+								</tr>
+								<tr>
+									<td width="40%">Last 60</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+								</tr>
+								<tr>
+									<td width="40%">Last Day</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+								</tr>
+								<tr>
+									<td width="40%">Last Week</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+								</tr>
+							</table>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-lg-5">
+						<div class="panel panel-primary">
+
+							<div class="panel-heading">
+								<div class="row">
+									<div class="col-md-12">
+										Failed Jobs
+									</div>
+								</div>
+							</div>
+
+							<table class="table table-striped table-hover table-border">
+								<tr>
+									<td width="70%">Name 2</td>
+									<td width="30%">10</td>
+								</tr>
+								<tr>
+									<td>Name 2</td>
+									<td>100</td>
+								</tr>
+								<tr>
+									<td>Name 3</td>
+									<td>10</td>
+								</tr>
+							</table>
+
+						</div>
+					</div>
+
+					<div class="col-lg-7">
+						<div class="panel panel-primary">
+
+							<div class="panel-heading">
+								<div class="row">
+									<div class="col-xs-12">
+										<div>
+											In Given State
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<table class="table table-striped table-hover table-border">
+								<tr>
+									<td width="40%">Time</td>
+									<td width="10%">Queued</td>
+									<td width="10%">DeQueued</td>
+									<td width="10%">Failed</td>
+									<td width="10%">Completed</td>
+									<td width="10%">Cancelled</td>
+								</tr>
+								<tr>
+									<td width="40%">Last 30m</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+								</tr>
+								<tr>
+									<td width="40%">Last 60</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+								</tr>
+								<tr>
+									<td width="40%">Last Day</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+								</tr>
+								<tr>
+									<td width="40%">Last Week</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
+								</tr>
+							</table>
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" ng-click="save()"  ng-disabled="educationForm.$invalid" class="btn btn-primary" data-dismiss="modal">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
