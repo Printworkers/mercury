@@ -1,4 +1,4 @@
-module.exports = function (nga) {
+module.exports = function (nga, user) {
 
 	var queue = nga.entity('queue').identifier(nga.field('_id'));
 
@@ -36,7 +36,9 @@ module.exports = function (nga) {
 		{ value: 'userStoreFormS3', label: 'Store Form S3 URL' },
 		{ value: 'userStoreFormData', label: 'Store Form Data' },
 
-		{ value: 'jobImports', label: 'Handle Job Imports' }
+		{ value: 'jobImports', label: 'Handle Job Imports' },
+
+		{ value: 'userSyncSnapShot', label: 'User Snapshot for Filemaker'}
 	];
 
 	queue.listView()
@@ -44,8 +46,8 @@ module.exports = function (nga) {
 		.perPage(50)
 		.description('The following is a list of Queue Jobs. <total-queue-jobs></total-queue-jobs> <queue-report></queue-report>')
 		.fields([
-			nga.field('queue'),
             nga.field('name'),
+			nga.field('params.userId').label('User'),
 			nga.field('status')
 				.template(function(e) {
 					var className = 'label-default';
@@ -90,14 +92,17 @@ module.exports = function (nga) {
 			nga.field('name', 'choice')
 				.pinned(true)
 				.label('Task Name')
-				.choices(nameChoices)
+				.choices(nameChoices),
+			// nga.field('userId', 'reference')
+			// 	.targetEntity(user)
+			// 	.targetField(nga.field('username'))
+			// 	.label('User')
 		]);
 
 	queue.showView()
 		.title('Queue Details')
 		.fields([
 			nga.field('name'),
-			nga.field('queue'),
 			nga.field('status'),
 			nga.field('enqueued', 'date').format('MM/dd/yyyy HH:mm:ss'),
             nga.field('dequeued', 'date').format('MM/dd/yyyy HH:mm:ss'),
@@ -119,10 +124,10 @@ module.exports = function (nga) {
 		.title('Edit Queue Job')
 		.description('This allows you to edit basic items in queue job.')
 		.fields([
-			nga.field('queue', 'choice')
+			nga.field('queue')
 				.validation({ required: true })
-				.choices(queueChoices)
-				.defaultValue('standard')
+				.editable(false)
+				.defaultValue('general')
 				.cssClasses('col-sm-6'),
 			nga.field('name', 'choice')
 				.validation({ required: true })
@@ -145,10 +150,9 @@ module.exports = function (nga) {
 		.title('Create new Queue Job')
 		.description('This provides the ability to create a new job.')
 		.fields([
-			nga.field('queue', 'choice')
-				.validation({ required: true })
-				.choices(queueChoices)
-				.defaultValue('standard')
+			nga.field('queue')
+				.editable(false)
+				.defaultValue('general')
 				.cssClasses('col-sm-4'),
 			nga.field('name', 'choice')
 				.validation({ required: true })
@@ -160,13 +164,9 @@ module.exports = function (nga) {
 				.choices(statusChoices)
 				.defaultValue('queued')
 				.cssClasses('col-sm-4'),
-            nga.field('queue')
-    			.validation({ required: true })
-				.defaultValue('standard')
-    			.cssClasses('col-sm-4'),
 			nga.field('params', 'json')
     			.validation({ required: false })
-    			.cssClasses('col-sm-4')
+    			.cssClasses('col-sm-10')
 		]);
 
 	return queue;

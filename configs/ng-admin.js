@@ -24,7 +24,7 @@ module.exports = function(myApp) {
 		var order = require('../entities/order')(nga, user);
 		var application = require('../entities/application')(nga, user, order);
 		var skill = require('../entities/skill')(nga);
-		var queue = require('../entities/queue')(nga);
+		var queue = require('../entities/queue')(nga, user);
 
 		admin.addEntity(user);
 		admin.addEntity(lookup);

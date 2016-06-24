@@ -173,7 +173,7 @@ module.exports = function(myApp) {
                 },
                 find: function(User) {
                     return Restangular.all('queue')
-                        .getList({ User: User })
+                        .getList({ userId: User })
                         .then(function(data) {
                             return data.data ? data.data : data;
                         });
