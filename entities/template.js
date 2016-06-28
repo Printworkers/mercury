@@ -2,13 +2,22 @@
 
 module.exports = function (nga, user) {
 
+	var keyChoices = [
+		{ value: 'userUsernameReminder', label: 'User Username Reminder' },
+		{ value: 'userPasswordReminder', label: 'User Password Reminder' },
+
+		{ value: 'userUsernameReminder-Draft', label: 'User userName Reminder (Draft)' },
+		{ value: 'userPasswordReminder-Draft', label: 'User Password Reminder (Draft)' }
+	];
+
 	/* emailTemplate */
 	var template = nga.entity('template').identifier(nga.field('_id'));
-	template.label('Templates');
+	template.label('Email Templates');
 
 	template.listView()
 	.title('Templates')
 	.fields([
+		nga.field('emailKey').label('Key'),
 		nga.field('name').label('Template Name'),
 		nga.field('type').label('Type'),
 		nga.field('createdAt', 'date')
@@ -16,11 +25,11 @@ module.exports = function (nga, user) {
 			.label('Created'),
 		nga.field('updatedAt', 'date')
 			.format('MM/dd/yy')
-			.label('Updated'),
-		nga.field('custom_action')
-			.label('')
-			.template('<send-email post="entry"></send-email>')
-	]).listActions(['edit', 'delete'])
+			.label('Updated')
+	]).listActions([
+		'edit',
+		'delete',
+		'<send-email template="entry"></send-email>'])
 	.filters([
 		nga.field('q', 'template')
 			.label('')
@@ -37,12 +46,22 @@ module.exports = function (nga, user) {
 				.attributes({ placeholder: 'Enter a name for this template' })
 				.validation({ required: true })
 				.cssClasses('col-sm-8'),
+			nga.field('emailKey', 'choice')
+				.choices(keyChoices)
+				.label('Email Key')
+				.attributes({ description: 'asdfasdf' })
+				.validation({ required: true })
+				.cssClasses('col-sm-8'),
 			nga.field('html', 'wysiwyg')
 				.attributes({ placeholder: 'Enter an HTML template' })
 				.validation({required: true }),
 			nga.field('type')
 				.validation({ required: true })
 				.attributes({ placeholder: 'Enter a type' })
+				.cssClasses('col-sm-4'),
+			nga.field('from', 'email')
+				.validation({ required: true })
+				.attributes({ placeholder: 'From Email' })
 				.cssClasses('col-sm-4')
 		]);
 

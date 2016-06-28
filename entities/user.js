@@ -78,11 +78,6 @@ module.exports = function (nga, lookups) {
 				.validation({ required: false })
 				.attributes({ placeholder: 'Enter Phone Number' })
 				.cssClasses('col-sm-4'),
-			nga.field('name_client')
-				.label('Company')
-				.validation({ required: true })
-				.attributes({ placeholder: 'Enter Company Name' })
-				.cssClasses('col-sm-4'),
 			nga.field('username')
 				.validation({ required: true })
 				.attributes({ placeholder: 'Enter Username', autocomplete: "false" })
@@ -94,37 +89,8 @@ module.exports = function (nga, lookups) {
 			nga.field('password', 'password')
 				.validation({ required: true })
 				.attributes({ placeholder: 'Enter a password' })
-				.cssClasses('col-sm-4'),
-			nga.field('address_1')
-				.label('Address Line 1')
-				.validation({ required: true })
-				.attributes({ placeholder: 'Enter Street Address' })
-				.cssClasses('col-sm-4'),
-				nga.field('address_2')
-					.label('Address Line 2')
-					.validation({required: true })
-					.attributes({ placeholder: 'Enter Address Extra' })
-					.cssClasses('col-sm-4'),
-			nga.field('address_city')
-				.validation({ required: false })
-				.attributes({ placeholder: 'Enter Address City' })
-				.cssClasses('col-sm-4'),
-			nga.field('address_state', 'choice')
-				.validation({ required: false })
-				.attributes({ placeholder: 'Select a State' })
-				.choices(lookups.states)
-				.cssClasses('col-sm-4'),
-			nga.field('address_zip')
-				.validation({ required: false })
-				.attributes({ placeholder: 'Select a Zip Code' })
-				.cssClasses('col-sm-4'),
-			nga.field('web_profile', 'wysiwyg')
-			 	.label('Short Profile')
-				.validation({ required: false })
-				.attributes({ placeholder: 'Select the user account type.' })
+				.cssClasses('col-sm-4')
 		]);
-
-	// user.editionView().fields(user.creationView().fields());
 
 	return user;
 };

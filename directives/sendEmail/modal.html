@@ -1,0 +1,78 @@
+<div class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" ng-click="close(false)" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">
+					Send Email Test
+				</h4>
+			</div>
+			<div class="modal-body">
+
+				<div class="row">
+					<div class="col-md-10">
+						<table class="table table-striped table-hover">
+							<tr>
+								<td>
+									Name
+								</td>
+								<td>
+									{{ template.name }}
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Subject
+								</td>
+								<td>
+									{{ template.subject }}
+								</td>
+							</tr>
+							<tr>
+								<td>
+									emailKey
+								</td>
+								<td>
+									{{ template.emailKey }}
+								</td>
+							</tr>
+							<tr>
+								<td>
+									From
+								</td>
+								<td>
+									{{ template.from }}
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-10">
+						<div class="form-group has-feedback" ng-class="{'has-error': form.to.$touched == true && form.to.$valid == false}">
+							<label for="to">To</label>
+							<input type="text" class="form-control" placeholder="Enter to Email" name="to" required id="to" ng-model="data.to">
+							<span ng-if="form.to.$touched == true && form.to.$valid == false" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+							<span ng-if="form.to.$touched == true && form.to.$valid == true" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-10">
+						<div class="form-group has-feedback" ng-class="{'has-error': form.user.$touched == true && form.user.$valid == false}">
+							<label for="user">User Id</label>
+							<input type="text" class="form-control" placeholder="Enter User Id" name="user" required id="user" ng-model="data.user">
+							<span ng-if="form.user.$touched == true && form.user.$valid == false" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+							<span ng-if="form.user.$touched == true && form.user.$valid == true" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" ng-click="sendEmail()"  ng-disabled="educationForm.$invalid" class="btn btn-primary" data-dismiss="modal">Send Test</button>
+			</div>
+		</div>
+	</div>
+</div>

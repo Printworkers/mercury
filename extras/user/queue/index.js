@@ -1,6 +1,6 @@
 module.exports = function (myApp) {
 
-    myApp.directive('userQueueTable', function($DataServices) {
+    myApp.directive('userQueueTable', function($DataServices, $location, $state) {
         'use strict';
         return {
             restrict: 'E',
@@ -24,6 +24,10 @@ module.exports = function (myApp) {
                             if (index > -1) $scope.data.splice(index, 1);
                         });
                     }
+                };
+
+                $scope.edit = function(item) {
+                    $state.go('edit', { entity: 'queue', id: item._id });
                 };
 
                 fetch();

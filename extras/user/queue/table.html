@@ -66,9 +66,13 @@
 		</td>
 		<td>
 			<div class="btn-group pull-right">
-				<json-viewer entry="item"></json-viewer>
+				<json-viewer entry="item" class="btn-sm"></json-viewer>
 
-				<button ng-click="delete(item);" class="btn btn-danger">
+				<button ng-click="edit(item);" class="btn btn-sm btn-default">
+					<i class="glyphicon glyphicon-pencil"></i>
+				</button>
+
+				<button ng-click="delete(item);" class="btn btn-sm btn-danger">
 					<i class="glyphicon glyphicon-trash"></i>
 				</button>
 			</div>
