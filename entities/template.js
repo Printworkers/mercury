@@ -3,11 +3,15 @@
 module.exports = function (nga, user) {
 
 	var keyChoices = [
+		{ value: 'userNewAccount', label: 'User New Account' },
 		{ value: 'userUsernameReminder', label: 'User Username Reminder' },
 		{ value: 'userPasswordReminder', label: 'User Password Reminder' },
-
+		{ value: 'userNewPassCode', label: 'User New Passcode'},
+		// Draft Versions
+		{ value: 'userNewAccount-Draft', label: 'User New Account (Draft)' },
 		{ value: 'userUsernameReminder-Draft', label: 'User userName Reminder (Draft)' },
-		{ value: 'userPasswordReminder-Draft', label: 'User Password Reminder (Draft)' }
+		{ value: 'userPasswordReminder-Draft', label: 'User Password Reminder (Draft)' },
+		{ value: 'userNewPassCode-Draft', label: 'User New Passcode (Draft)'}
 	];
 
 	/* emailTemplate */
@@ -16,10 +20,10 @@ module.exports = function (nga, user) {
 
 	template.listView()
 	.title('Templates')
+	.description('These templates provide the ability to customize the email messages and data.')
 	.fields([
 		nga.field('emailKey').label('Key'),
-		nga.field('name').label('Template Name'),
-		nga.field('type').label('Type'),
+		nga.field('name').label('Name'),
 		nga.field('createdAt', 'date')
 			.format('MM/dd/yy')
 			.label('Created'),
@@ -52,6 +56,10 @@ module.exports = function (nga, user) {
 				.attributes({ description: 'asdfasdf' })
 				.validation({ required: true })
 				.cssClasses('col-sm-8'),
+			nga.field('subject')
+				.label('Subject')
+				.validation({ required: true })
+				.cssClasses('col-sm-8'),
 			nga.field('html', 'wysiwyg')
 				.attributes({ placeholder: 'Enter an HTML template' })
 				.validation({required: true }),
@@ -62,7 +70,11 @@ module.exports = function (nga, user) {
 			nga.field('from', 'email')
 				.validation({ required: true })
 				.attributes({ placeholder: 'From Email' })
-				.cssClasses('col-sm-4')
+				.cssClasses('col-sm-4'),
+			nga.field('fields', 'json')
+				.validation({ required: false })
+				.attributes({ placeholder: 'Enter fields for the email template' })
+				.cssClasses('col-sm-8')
 		]);
 
 	template

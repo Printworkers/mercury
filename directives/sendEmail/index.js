@@ -22,14 +22,25 @@ module.exports = function(myApp) {
                         controller: function($scope, template, close) {
                             $scope.template = template;
 
+                            var fields = {};
+                            _.each(template, function(v, k) {
+                                if (_.isString(k) && k.indexOf('fields.') === 0) {
+                                    fields[k.replace('fields.','')] = v;
+                                }
+                            });
+
                             $scope.data = {
-                                to: '',
-                                user: ''
+                                to: 'stephan.smith.bc93@gmail.com',
+                                // user: '',
+                                data: JSON.stringify(fields)
                             };
 
                             $scope.sendEmail = function() {
 
-                                template.customPOST($scope.data, 'test', function(data) {
+                                var data = _.clone($scope.data);
+                                data.data = JSON.parse(data.data);
+
+                                template.customPOST(data, 'test', function(data) {
                                     console.log('here we are', data);
                                 }, function(err) {
                                     console.log('err', err);
