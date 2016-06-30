@@ -79,7 +79,8 @@ module.exports = function (nga, user) {
 		]).listActions([
 			'show',
 			'edit',
-			'delete'
+			'delete',
+			'<re-queue-job-btn entry="entry"></re-queue-job-btn>'
 		])
 		.filters([
 			nga.field('status', 'choice')

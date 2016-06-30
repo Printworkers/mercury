@@ -28,6 +28,7 @@ require('./directives/header')(myApp);
 require('./directives/sendEmail')(myApp);
 require('./directives/range')(myApp);
 require('./directives/queue')(myApp);
+require('./directives/reQueue')(myApp);
 
 /* Configurations */
 require('./configs/ng-admin')(myApp);
