@@ -38,7 +38,8 @@ module.exports = function (nga, user) {
 
 		{ value: 'userEducationUpsert', label: 'Upsert for Resume Work Education' },
 		{ value: 'userReferenceUpsert', label: 'Upsert for Resume Work Reference' },
-		{ value: 'userWorkHistoryUpsert', label: 'Upsert for Resume Work History' }
+		{ value: 'userWorkHistoryUpsert', label: 'Upsert for Resume Work History' },
+		{ value: 'talentImports', label: 'Handle Talent Imports' }
 	];
 
 	queue.listView()
