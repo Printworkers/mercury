@@ -25,6 +25,7 @@ module.exports = function(myApp) {
 		var application = require('../entities/application')(nga, user, order);
 		var skill = require('../entities/skill')(nga);
 		var queue = require('../entities/queue')(nga, user);
+		var talent = require('../entities/talent')(nga);
 
 		admin.addEntity(user);
 		admin.addEntity(lookup);
@@ -36,6 +37,7 @@ module.exports = function(myApp) {
 		admin.addEntity(application);
 		admin.addEntity(skill);
 		admin.addEntity(queue);
+		admin.addEntity(talent);
 
 		/* Dashboard */
 		admin.dashboard(nga.dashboard()
@@ -44,9 +46,7 @@ module.exports = function(myApp) {
 
 		/* Header */
 		admin.header('<div header></div>');
-
 	 	admin.menu(require('../menu')(nga, admin));
-
 		nga.configure(admin);
 	}]);
 
