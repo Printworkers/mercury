@@ -34,7 +34,11 @@ module.exports = function (nga, user) {
 		{ value: 'userStoreFormData', label: 'Store Form Data' },
 		{ value: 'jobImports', label: 'Handle Job Imports' },
 		{ value: 'userSyncSnapShot', label: 'User Snapshot for Filemaker'},
-		{ value: 'createClient', label: 'Create a Client FM Account'}
+		{ value: 'createClient', label: 'Create a Client FM Account'},
+
+		{ value: 'userEducationUpsert', label: 'Upsert for Resume Work Education' },
+		{ value: 'userReferenceUpsert', label: 'Upsert for Resume Work Reference' },
+		{ value: 'userWorkHistoryUpsert', label: 'Upsert for Resume Work History' }
 	];
 
 	queue.listView()

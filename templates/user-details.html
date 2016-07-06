@@ -342,7 +342,7 @@
 		<div class="col-md-3">
 			<div class="form-group has-feedback" ng-class="{'has-error': form.id_employee.$touched && form.id_employee.$invalid }">
 				<label for="id_employee">FM Employee Id</label>
-				<input type="text" name="id_employee" id="id_employee" class="form-control" ng-model="user.id_employee" placeholder="Enter Company Name">
+				<input type="text" name="id_employee" ng-disabled="true" id="id_employee" class="form-control" ng-model="user.id_employee" placeholder="Filemaker Employee Id">
 				<span ng-if="form.id_employee.$touched" ng-class="{ 'glyphicon-ok': form.id_employee.$valid, 'glyphicon-remove': form.id_employee.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
 			</div>
 		</div>

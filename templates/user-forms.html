@@ -18,7 +18,9 @@
 
                 <b>Adobe Url:</b> <a href="{{ item.adobeUrl }}" target="_blank">{{ item.adobeUrl }}</a><br>
 
-                <b>S3Url:</b> {{ item.s3Url || 'NA' }}
+                <b>S3Url:</b> {{ item.s3Url || 'NA Pending' }}
+
+                <b>formData:</b> {{ item.formData || 'NA Pending' }}
 
                 <div class="btn-group pull-right">
                     <button ng-click="delete(item)" class="btn btn-danger">
