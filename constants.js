@@ -804,13 +804,11 @@ module.exports = function(ngModule) {
 	    { value: "boston", label: "Boston", id: '100' },
 	    { value: "chicago", label: "Chicago", id: '103' },
 	    { value: "dallas", label: "Dallas", id: '106' },
-	    { value: "international", label: "International", id: '0' },
 	    { value: "losAngeles", label: "Los Angeles", id: '108' },
 	    { value: "minneapolisStPaul", label: "Minneapolis-St Paul", id: '120' },
 	    { value: "newJersey", label: "New Jersey", id: '118' },
 	    { value: "newYorkCity", label: "New York", id: '122' },
 	    { value: "orangeCounty", label: "Orange County", id: '117'},
-	    { value: "otherLocations", label: "Other Locations", id: '0' },
 	    { value: "sanDiego", label: "San Diego", id: '121' },
 	    { value: "sanFrancisco", label: "San Francisco", id: '114' },
 	    { value: "santaClara", label: "Santa Clara", id: '115' }
@@ -819,6 +817,11 @@ module.exports = function(ngModule) {
 	ngModule.constant('yesno', [
 		{ value: 'yes', label: 'Yes' },
 		{ value: 'no', label: 'No' },
+	]);
+
+	ngModule.constant('booleanYesNo', [
+		{ value: true, label: 'Yes' },
+		{ value: false, label: 'No' },
 	]);
 
 	ngModule.constant('source', [

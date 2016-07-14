@@ -46,6 +46,8 @@ require('./extras/user/fmSync')(myApp);
 require('./extras/user/queue')(myApp);
 require('./extras/user/password')(myApp);
 require('./extras/user/username')(myApp);
+require('./extras/user/details')(myApp);
+require('./extras/user/forms')(myApp);
 
 /* Resumes */
 require('./extras/resume/reference')(myApp);

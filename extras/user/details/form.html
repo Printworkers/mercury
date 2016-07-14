@@ -40,11 +40,11 @@
 		</div>
 		<div class="col-md-3">
 			<div class="form-group has-feedback" ng-class="{'has-error': form.homeoffice.$touched && form.homeoffice.$invalid}">
-				<label>Home Office (*)</label>
-				<select name="homeoffice" required id="homeoffice" class="form-control"
-						ng-model="user.homeoffice"
+				<label>Home Office (*) (id: {{ user.id_office }})</label>
+				<select name="id_office" required id="id_office" class="form-control"
+						ng-model="user.id_office"
 						placeholder="Select.."
-						ng-options="item.value as item.label for item in lookups.homeOffices">
+						ng-options="item.id as item.label for item in lookups.homeOffices">
 					<option value="">Select Home Office</option>
 				</select>
 				<span ng-if="form.homeoffice.$touched" ng-class="{ 'glyphicon-ok': form.homeoffice.$valid, 'glyphicon-remove': form.homeoffice.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -344,6 +344,21 @@
 				<label for="id_employee">FM Employee Id</label>
 				<input type="text" name="id_employee" ng-disabled="true" id="id_employee" class="form-control" ng-model="user.id_employee" placeholder="Filemaker Employee Id">
 				<span ng-if="form.id_employee.$touched" ng-class="{ 'glyphicon-ok': form.id_employee.$valid, 'glyphicon-remove': form.id_employee.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-3">
+			<div class="form-group has-feedback" ng-class="{'has-error': form.flag_no_email.$touched && form.flag_no_email.$invalid }">
+				<label for="flag_no_email">Email No Flag? ({{user.flag_no_email}})</label>
+				<select class="form-control" name="flag_no_email" id="flag_no_email"
+						ng-model="user.flag_no_email"
+						ng-options="item.value as item.label for item in lookups.booleanYesNo"
+						>
+					<option value="">Select Status</option>
+				</select>
+				<span ng-if="form.flag_no_email.$touched" ng-class="{ 'glyphicon-ok': form.flag_no_email.$valid, 'glyphicon-remove': form.flag_available_immediately.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
 			</div>
 		</div>
 	</div>
