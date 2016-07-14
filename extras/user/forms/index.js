@@ -58,7 +58,7 @@ module.exports = function (myApp) {
 
 				$scope.data = $scope.user.forms;
 			},
-			template: './list.html'
+			template: require('./list.html')
 		};
 	});
 };
