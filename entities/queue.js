@@ -14,6 +14,7 @@ module.exports = function (nga, user) {
 
 	var queueChoices = [
 		{ value: 'general', label: 'General Queue' },
+		{ value: 'local', label: 'Local Queue' }
 	];
 
 	var nameChoices = [
@@ -126,9 +127,9 @@ module.exports = function (nga, user) {
 		.title('Edit Queue Job')
 		.description('This allows you to edit basic items in queue job.')
 		.fields([
-			nga.field('queue')
+			nga.field('queue', 'choice')
 				.validation({ required: true })
-				.editable(false)
+				.choices(queueChoices)
 				.defaultValue('general')
 				.cssClasses('col-sm-6'),
 			nga.field('name', 'choice')
