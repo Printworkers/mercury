@@ -13,6 +13,9 @@
 <table class="table table-striped">
 	<tr>
 		<th>
+			Queue
+		</th>
+		<th>
 			Enqueued
 		</th>
 		<th>
@@ -38,6 +41,9 @@
 		</td>
 	</tr>
 	<tr ng-repeat="item in data | orderBy:'-enqueued'">
+		<td>
+			{{item.name}}
+		</td>
 		<td>
 			{{item.enqueued | date:'short'}}
 		</td>
