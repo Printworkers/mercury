@@ -261,6 +261,23 @@
 
 	<div ng-if="user.type === 'job seeker'" class="row">
 		<div class="col-md-3">
+			<div class="form-group has-feedback" ng-class="{'has-error': form.transportation.$touched && form.transportation.$invalid }">
+				<label for="transportation">Transportation</label>
+				<input type="text" name="transportation" id="transportation" class="form-control" ng-model="user.transportation" placeholder="Enter Transportation">
+				<span ng-if="form.transportation.$touched" ng-class="{ 'glyphicon-ok': form.transportation.$valid, 'glyphicon-remove': form.transportation.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="form-group has-feedback" ng-class="{'has-error': form.app_working_company.$touched && form.app_working_company.$invalid }">
+				<label for="app_working_company">Working Company</label>
+				<input type="text" name="app_working_company" id="app_working_company" class="form-control" ng-model="user.app_working_company" placeholder="Enter Company Name">
+				<span ng-if="form.app_working_company.$touched" ng-class="{ 'glyphicon-ok': form.app_working_company.$valid, 'glyphicon-remove': form.app_working_company.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+			</div>
+		</div>
+	</div>
+
+	<div ng-if="user.type === 'job seeker'" class="row">
+		<div class="col-md-3">
 			<div class="form-group has-feedback" ng-class="{'has-error': form.app_reason_leave_last.$touched && form.app_reason_leave_last.$invalid }">
 				<label for="app_reason_leave_last">Reasons left last</label>
 				<input type="text" name="app_reason_leave_last" id="app_reason_leave_last" class="form-control" ng-model="user.app_reason_leave_last" placeholder="Enter reason">
@@ -294,36 +311,6 @@
 				<span ng-if="form.flag_available_immediately.$touched" ng-class="{ 'glyphicon-ok': form.flag_available_immediately.$valid, 'glyphicon-remove': form.flag_available_immediately.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
 			</div>
 		</div>
-	</div>
-
-	<div ng-if="user.type === 'job seeker'" class="row">
-		<div class="col-md-3">
-			<div class="form-group has-feedback" ng-class="{'has-error': form.app_working_company.$touched && form.app_working_company.$invalid }">
-				<label for="app_working_company">Working Company</label>
-				<input type="text" name="app_working_company" id="app_working_company" class="form-control" ng-model="user.app_working_company" placeholder="Enter Company Name">
-				<span ng-if="form.app_working_company.$touched" ng-class="{ 'glyphicon-ok': form.app_working_company.$valid, 'glyphicon-remove': form.app_working_company.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
-			</div>
-		</div>
-		<!-- <div class="col-md-3">
-			<div class="form-group has-feedback" ng-class="{'has-error': form.drivers_license_number.$touched && form.drivers_license_number.$invalid }">
-				<label for="drivers_license_number">Drivers License Number</label>
-				<input type="text" name="drivers_license_number" id="drivers_license_number" class="form-control" ng-model="user.drivers_license_number" placeholder="Enter Company Name">
-				<span ng-if="form.drivers_license_number.$touched" ng-class="{ 'glyphicon-ok': form.drivers_license_number.$valid, 'glyphicon-remove': form.drivers_license_number.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
-			</div>
-		</div>
-		<div class="col-md-3">
-			<div class="form-group has-feedback" ng-class="{'has-error': form.drivers_license_state.$touched && form.drivers_license_state.$invalid }">
-				<label for="drivers_license_state">Drivers License State</label>
-				<select class="form-control" name="drivers_license_state" id="drivers_license_state"
-						ng-model="user.drivers_license_state"
-						ng-options="item.value as item.label for item in lookups.state"
-						>
-					<option value="">Select State</option>
-				</select>
-
-				<span ng-if="form.drivers_license_state.$touched" ng-class="{ 'glyphicon-ok': form.drivers_license_state.$valid, 'glyphicon-remove': form.drivers_license_state.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
-			</div>
-		</div> -->
 	</div>
 
 	<div ng-if="user.type === 'job seeker'" class="row">
