@@ -47,6 +47,9 @@ $(function(){
 		<div ng-if="user.type == 'job seeker'">
 			<b>Employee Id</b>: {{user.id_employee || 'NA'}}
 		</div>
+        <div ng-if="user.type == 'employer'">
+			<b>Client Id</b>: {{user.id_client || 'NA'}}
+		</div>
 	</div>
 	<div class="col-md-4">
         <div>

@@ -1,6 +1,6 @@
 module.exports = function (myApp) {
 
-	myApp.directive('fmSyncJob', [ 'ModalService', '$http', function(ModalService, $http) {
+    myApp.directive('fmSyncJob', [ 'ModalService', '$http', function(ModalService, $http) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -10,14 +10,15 @@ module.exports = function (myApp) {
 			link: function (scope) {
 				scope.open = function() {
 					ModalService.showModal({
-						template: require('../templates/job-sync-from-filemaker.html'),
+						template: require('./modal.html'),
 						scope: scope,
 						controller: function($element, close) {
 							var id = scope.job().values.fmJobId;
+                            scope.jobId = scope.job._identifierValue;
 
 							scope.submit = function() {
 
-								var id = '44413';
+								var id = scope.jobId;
 								var url = 'https://semperpages-jrr316.c9users.io/SingleJob.php?jobID=' + id;
 
 								$http({
@@ -43,7 +44,7 @@ module.exports = function (myApp) {
 				};
 
 			},
-			template: '<button class="btn btn-primary btn-xs" ng-click="open()"><i class="fa fa-download"></i>&nbsp;Sync</button>'
+			template: '<button class="btn btn-primary btn-xs" ng-click="open()"><i class="fa fa-download"></i></button>'
 		};
 	}]);
 

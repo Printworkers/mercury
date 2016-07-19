@@ -16,8 +16,7 @@ module.exports = function (nga, user) {
         	.label('Status'),
     ]).listActions([
     	'edit',
-    	'delete',
-    	'<login-as-user item="{{entry}}"></login-as-user>'
+    	'delete'
     ])
     .filters([
         nga.field('q', 'template')

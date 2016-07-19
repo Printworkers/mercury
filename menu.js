@@ -14,17 +14,10 @@ module.exports = function (nga, user) {
 		.addChild(nga.menu()
 			.title('Users')
 			.icon('<span class="fa fa-users fa-fw"></span>')
+			.link('/user/list')
 			.active(function(path) {
 				return path.indexOf('/user') === 0;
 			})
-			.addChild(nga.menu()
-				.title('All')
-				.link('/user/list')
-				.icon('<span class="fa fa-users fa-fw"></span>')) // no active() function => will never appear active
-			.addChild(nga.menu()
-				.title('Sync Report')
-				.link('/user/fmSyncReport')
-				.icon('<span class="fa fa-users fa-fw"></span>')) // no active() function => will never appear active
 		)
 		.addChild(nga.menu()
 			.title('Jobs')
@@ -47,19 +40,12 @@ module.exports = function (nga, user) {
 			.link('/application/list')
 		)
 		.addChild(nga.menu()
-			.title('Agents')
+			.title('Job/Talent Agents')
 			.icon('<span class="fa fa-search-plus fa-fw"></span>')
+			.link('/agent/list')
 			.active(function(path) {
 				return path.indexOf('/agent') === 0;
 			})
-			.addChild(nga.menu()
-				.title('Job Agents')
-				.link('/agent/list?search={"type":"job"}')
-				.icon('<span class="fa fa-clone fa-fw"></span>')) // no active() function => will never appear active
-			.addChild(nga.menu()
-				.title('Staff Agents')
-				.link('/agent/list?search={"type":"staff"}')
-				.icon('<span class="fa fa-clone fa-fw"></span>'))
 		)
 		.addChild(nga.menu()
 			.title('Queue')

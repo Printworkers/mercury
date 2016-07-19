@@ -52,7 +52,7 @@ module.exports = function (myApp) {
 			resolve: userResolve,
 			controller: userTabCtrl,
 			controllerAs: 'controller',
-			templateUrl: '/templates/user-tabs.html'
+			template: require('./tabs.html')
 		});
 
 		$stateProvider.state('user-detail-tabs', {
@@ -62,58 +62,9 @@ module.exports = function (myApp) {
 			resolve: userResolve,
 			controller: userTabCtrl,
 			controllerAs: 'controller',
-			templateUrl: '/templates/user-tabs.html'
+			template: require('./tabs.html')
 		});
 
-		$stateProvider.state('user-fm-sync', {
-			parent: 'main',
-			url: '/user/fmSyncReport',
-			params: { id: null, tab: null },
-			controllerAs: 'controller',
-			templateUrl: '/templates/user-fm-sync-report.html'
-		});
-
-	});
-
-	myApp.directive('fmSyncUser', [ '$location', function ($location) {
-		return {
-			restrict: 'E',
-			scope: {
-				user: '&'
-			},
-			link: function (scope) {
-			},
-			template: '<button class="btn btn-primary btn-xs" ng-click="open()"><i class="fa fa-download"></i>&nbsp;Sync</button>'
-		};
-	}]);
-
-	myApp.directive('userManage', [ '$location', '$state', function ($location, $state) {
-		return {
-			restrict: 'E',
-			scope: {
-				user: '&'
-			},
-			link: function (scope) {
-				var id = scope.user().values._id;
-
-				scope.open = function () {
-					$location.path('/user/details/' + id);
-				};
-			},
-			template: '<button class="btn btn-success btn-xs" ng-click="open()"><i class="glyphicon glyphicon-pensil"></i> Manage</button>'
-		};
-	}]);
-
-	myApp.directive('userResume', function() {
-		'use strict';
-		return {
-			restrict: 'E',
-			scope: {
-				user: '='
-			},
-			controller: function($scope) {},
-			templateUrl: 'templates/user-resume.html'
-		};
 	});
 
 };

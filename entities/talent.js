@@ -15,7 +15,9 @@ module.exports = function (nga) {
         nga.field('office').label('Office'),
     ]).listActions([
     	'show',
-    	'delete'
+    	'delete',
+        '<preview-talent talent="entry"></preview-talent>',
+        '<fm-sync-talent talent="entry"></fm-sync-talent>'
     ])
     .filters([
     	nga.field('q', 'template')

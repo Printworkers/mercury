@@ -36,7 +36,7 @@ module.exports = function (nga) {
     	'edit',
     	'show',
     	'delete',
-    	'<preview-job item="entry"></preview-job>',
+    	'<preview-job job="entry"></preview-job>',
     	'<fm-sync-job job="entry"></fm-sync-job>'
     ])
     .filters([

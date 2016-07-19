@@ -22,6 +22,9 @@
 			Done
 		</th>
 		<th>
+			Stats
+		</th>
+		<th>
 			Task
 		</th>
 		<th>
@@ -42,7 +45,7 @@
 	</tr>
 	<tr ng-repeat="item in data | orderBy:'-enqueued'">
 		<td>
-			{{item.name}}
+			{{item.queue}}
 		</td>
 		<td>
 			{{item.enqueued | date:'short'}}
@@ -51,7 +54,7 @@
 			{{item.ended | date:'short'}}
 		</td>
 		<td>
-			{{item.name}}
+			...
 		</td>
 		<td>
 			<span class="label label-success" ng-if="item.status === 'queued'">

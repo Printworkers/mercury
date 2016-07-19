@@ -1,5 +1,3 @@
-// var myTemplate = require('../templates/sendEmail.html');
-
 module.exports = function (nga, user) {
 
 	var keyChoices = [

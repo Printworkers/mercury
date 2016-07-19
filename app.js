@@ -23,9 +23,8 @@ require('./controllers/usernameCtrl')(myApp);
 /* Directives */
 require('./directives/dashboard')(myApp);
 require('./directives/loginAsUser')(myApp);
-require('./directives/previewJob')(myApp);
 require('./directives/header')(myApp);
-require('./directives/sendEmail')(myApp);
+// require('./directives/sendEmail')(myApp);
 require('./directives/range')(myApp);
 require('./directives/queue')(myApp);
 require('./directives/reQueue')(myApp);
@@ -36,11 +35,9 @@ require('./configs/restangular')(myApp);
 require('./configs/keen')(myApp);
 
 /* Extras */
-require('./extras/user-manage.js')(myApp);
-require('./extras/job-manage.js')(myApp);
-require('./extras/filemaker.js')(myApp);
 require('./extras/json/json.js')(myApp);
 
+/* User */
 require('./extras/user/fmLinker')(myApp);
 require('./extras/user/fmSync')(myApp);
 require('./extras/user/queue')(myApp);
@@ -48,8 +45,25 @@ require('./extras/user/password')(myApp);
 require('./extras/user/username')(myApp);
 require('./extras/user/details')(myApp);
 require('./extras/user/forms')(myApp);
+require('./extras/user/manage')(myApp);
+require('./extras/user/user-routes')(myApp);
+
+/* Talent */
+require('./extras/talent/preview')(myApp);
+require('./extras/talent/sync')(myApp);
+
+/* Jobs */
+require('./extras/job/sync')(myApp);
+require('./extras/job/preview')(myApp);
+
+/* Template. */
+require('./extras/template/sendEmail')(myApp);
+
+/* Filemaker. */
+require('./extras/filemaker')(myApp);
 
 /* Resumes */
+require('./extras/resume/page')(myApp);
 require('./extras/resume/reference')(myApp);
 require('./extras/resume/education')(myApp);
 require('./extras/resume/work')(myApp);
