@@ -26,6 +26,8 @@
     "jquery": "^2.2.2",
     "bower": "*",
     "install": "^1.0.4",
-    "angular-schema-form": "^0.8.13"
+    "angular-schema-form": "^0.8.13",
+    "angular-json-editor": "^0.2.1",
+    "angular-moment": "^0.10.3"
   }
 }

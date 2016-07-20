@@ -1,0 +1,151 @@
+<script>
+$(function(){
+  var hash = window.location.hash;
+  $('.nav-tabs a').click(function (e) {
+  	e.preventDefault();
+  	e.stopPropagation();
+  	var parts = window.location.hash.split('?');
+  	var hashBase = parts[0];
+  	var fragment = $(this).attr('href').replace('#', '');
+  	var hashEl = hashBase.split('/');
+  	if (hashEl.length == 4) {
+  		hashEl.push(fragment);
+  	} else if (hashEl.length == 5) {
+  		hashEl[4] = fragment;
+  	}
+  	window.location.hash = hashEl.join('/');
+  });
+});
+</script>
+
+<div class="row">
+	<div class="col-md-12">
+	<h2>
+		Queue Details: {{ queue._id || 'NA'}}
+
+		<div class="btn-group pull-right">
+			<json-viewer class="btn-sm" entry="queue"></json-viewer>
+			<a href="#/queue/list" class="btn btn-default btn-sm">
+				<span class="glyphicon glyphicon-list" aria-hidden="true"></span>&nbsp;
+				List
+			</a>
+		</div>
+	</h2>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-4">
+		<b>Name</b>: {{ queue.name }}<br>
+		<b>Queue</b>: {{queue.queue }}<br>
+	</div>
+	<div class="col-md-4">
+		<b>Status</b>: {{ queue.status || 'NA'}}<br>
+	</div>
+	<div class="col-md-4">
+        <b>Enqueued:</b> {{ queue.enqueued | date: 'medium' }}<br>
+        <b>Dequeued:</b> {{ queue.dequeued | date: 'medium' }}<br>
+	</div>
+</div>
+
+<br>
+
+<div class="row">
+	<div class="col-md-12">
+		<!-- Nav tabs -->
+		<ul class="nav nav-tabs" role="tablist">
+			<li role="presentation" ng-class="{ 'active': tab == 'details'}">
+				<a href="#details" aria-controls="details" role="tab" data-toggle="tab">
+					Details
+				</a>
+			</li>
+            <li role="presentation">
+                <a href="#results" aria-controls="forms" role="tab" data-toggle="tab">
+					Results
+				</a>
+			</li>
+            <li role="presentation">
+                <a href="#more" aria-controls="forms" role="tab" data-toggle="tab">
+					More
+				</a>
+			</li>
+		</ul>
+
+		<!-- Tab panes -->
+		<div class="tab-content">
+
+			<div role="tabpanel" class="tab-pane" ng-class="{ 'active': tab == 'details'}" id="details">
+				<queue-details queue="queue"></queue-details>
+			</div>
+
+            <div role="tabpanel" class="tab-pane" ng-class="{ 'active': tab == 'results'}" id="results">
+                <br>
+                <b>Results:</b>
+				<pre style="height: 400px; overflow: scroll;" ng-bind-html="queue.result | prettify"></pre>
+			</div>
+
+            <div role="tabpanel" class="tab-pane" ng-class="{ 'active': tab == 'more'}" id="mores">
+                <br>
+                <b>More Details:</b>
+
+                <table class="table table-hover table-striped">
+                    <tr>
+                        <td>Attempts</td>
+                        <td>
+                            {{ queue.attempts }}
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Timeout</td>
+                        <td>
+                            {{ queue.timeout }}
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Delay</td>
+                        <td>
+                            {{ queue.delay }}
+                        </td>
+                        <td>
+                            <span am-time-ago="queue.delay"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Enqeueued</td>
+                        <td>
+                            {{ queue.enqueued }}
+                        </td>
+                        <td>
+                            <span am-time-ago="queue.enqueued"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Dequeued</td>
+                        <td>
+                            {{ queue.dequeued }}
+                        </td>
+                        <td>
+                            <span am-time-ago="queue.dequeued"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Ended</td>
+                        <td>
+                            {{ queue.ended }}
+                        </td>
+                        <td>
+                            <span am-time-ago="queue.ended"></span>
+                        </td>
+                    </tr>
+                </table>
+			</div>
+
+		</div>
+	</div>
+</div>

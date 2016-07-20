@@ -2,6 +2,56 @@ module.exports = function(ngModule) {
 
 	ngModule.constant('FMApiUrl', 'https://semper-filemaker-api.herokuapp.com');
 
+	var queueQueues = [
+		{ value: 'general', label: 'General Queue' },
+		{ value: 'local', label: 'Local Queue' }
+	];
+
+	var queueNames = [
+		// Standard Worker tasks.
+		{ value: 'userCreate', label: 'userCreate' },
+		{ value: 'userPatch', label: 'userPatch' },
+		{ value: 'userSignedForm', label: 'userSignedForm' },
+		{ value: 'userUpdateEmailStatus', label: 'userUpdateEmailStatus' },
+		// Cron worker Tasks.
+		{ value: 'emailRegistration', label: 'emailRegistration' },
+		{ value: 'emailPasswordReset', label: 'emailPasswordReset' },
+		{ value: 'emailPasswordUsername', label: 'emailPasswordUsername' },
+		{ value: 'emailNewPasscode', label: 'emailNewPasscode' },
+		{ value: 'userDetermineHomeOffice', label: 'userDetermineHomeOffice' },
+		{ value: 'userSignedForm', label: 'userSignedForm' },
+		{ value: 'handleAdobeSignedForm', label: 'handleAdobeSignedForm' },
+		{ value: 'userStoreFormS3', label: 'userStoreFormS3' },
+		{ value: 'userStoreFormData', label: 'userStoreFormData' },
+		{ value: 'jobImports', label: 'jobImports' },
+		{ value: 'userSyncSnapShot', label: 'userSyncSnapShot'},
+		{ value: 'createClient', label: 'createClient'},
+		{ value: 'userEducationUpsert', label: 'userEducationUpsert' },
+		{ value: 'userReferenceUpsert', label: 'userReferenceUpsert' },
+		{ value: 'userWorkHistoryUpsert', label: 'userWorkHistoryUpsert' },
+		{ value: 'talentImports', label: 'talentImports' }
+	];
+
+	var queueStatuses = [
+		{ value: 'queued', label: 'Queued' },
+		{ value: 'dequeued', label: 'Dequeued' },
+		{ value: 'complete', label: 'Complete' },
+		{ value: 'failed', label: 'Failed' },
+		{ value: 'cancelled', label: 'Cancelled' }
+	];
+
+	ngModule.constant('globallookups', {
+		queue: {
+			queue: queueQueues,
+			name: queueNames,
+			status: queueStatuses
+		}
+	});
+
+	ngModule.constant('queueQueues', queueQueues);
+	ngModule.constant('queueTasks', queueNames);
+	ngModule.constant('queueStatuses', queueStatuses);
+
 	ngModule.constant('skillYears', [
 		{ value: 1, label: '' },
 		{ value: 2, label: '' },

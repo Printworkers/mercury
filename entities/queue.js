@@ -1,46 +1,7 @@
-module.exports = function (nga, user) {
+module.exports = function (nga, user, globallookups) {
 
 	var queue = nga.entity('queue').identifier(nga.field('_id'));
-
 	queue.label('Queue Jobs');
-
-	var statusChoices = [
-		{ value: 'queued', label: 'Queued' },
-		{ value: 'dequeued', label: 'Dequeued' },
-		{ value: 'complete', label: 'Complete' },
-		{ value: 'failed', label: 'Failed' },
-		{ value: 'cancelled', label: 'Cancelled' }
-	];
-
-	var queueChoices = [
-		{ value: 'general', label: 'General Queue' },
-		{ value: 'local', label: 'Local Queue' }
-	];
-
-	var nameChoices = [
-		// Standard Worker tasks.
-		{ value: 'userCreate', label: 'userCreate' },
-		{ value: 'userPatch', label: 'userPatch' },
-		{ value: 'userSignedForm', label: 'userSignedForm' },
-		{ value: 'userUpdateEmailStatus', label: 'userUpdateEmailStatus' },
-		// Cron worker Tasks.
-		{ value: 'emailRegistration', label: 'emailRegistration' },
-		{ value: 'emailPasswordReset', label: 'emailPasswordReset' },
-		{ value: 'emailPasswordUsername', label: 'emailPasswordUsername' },
-		{ value: 'emailNewPasscode', label: 'emailNewPasscode' },
-		{ value: 'userDetermineHomeOffice', label: 'userDetermineHomeOffice' },
-		{ value: 'userSignedForm', label: 'userSignedForm' },
-		{ value: 'handleAdobeSignedForm', label: 'handleAdobeSignedForm' },
-		{ value: 'userStoreFormS3', label: 'userStoreFormS3' },
-		{ value: 'userStoreFormData', label: 'userStoreFormData' },
-		{ value: 'jobImports', label: 'jobImports' },
-		{ value: 'userSyncSnapShot', label: 'userSyncSnapShot'},
-		{ value: 'createClient', label: 'createClient'},
-		{ value: 'userEducationUpsert', label: 'userEducationUpsert' },
-		{ value: 'userReferenceUpsert', label: 'userReferenceUpsert' },
-		{ value: 'userWorkHistoryUpsert', label: 'userWorkHistoryUpsert' },
-		{ value: 'talentImports', label: 'talentImports' }
-	];
 
 	queue.listView()
 		.title('Queue Jobs')
@@ -82,23 +43,18 @@ module.exports = function (nga, user) {
 					}
 				}),
 		]).listActions([
-			'show',
 			'edit',
-			'delete',
-			'<re-queue-job-btn entry="entry"></re-queue-job-btn>'
+			'<re-queue-job-btn entry="entry"></re-queue-job-btn>',
+			'<queue-manage queue="entry"></queue-manage>'
 		])
 		.filters([
 			nga.field('status', 'choice')
 				.label('Status')
-				.choices(statusChoices),
+				.choices(globallookups.queue.status),
 			nga.field('name', 'choice')
 				.pinned(true)
 				.label('Task Name')
-				.choices(nameChoices),
-			// nga.field('userId', 'reference')
-			// 	.targetEntity(user)
-			// 	.targetField(nga.field('username'))
-			// 	.label('User')
+				.choices(globallookups.queue.name)
 		]);
 
 	queue.showView()
@@ -128,17 +84,17 @@ module.exports = function (nga, user) {
 		.fields([
 			nga.field('queue', 'choice')
 				.validation({ required: true })
-				.choices(queueChoices)
+				.choices(globallookups.queue.queue)
 				.defaultValue('general')
 				.cssClasses('col-sm-6'),
 			nga.field('name', 'choice')
 				.validation({ required: true })
-				.choices(nameChoices)
+				.choices(globallookups.queue.name)
 				.defaultValue('cron')
 				.cssClasses('col-sm-6'),
 			nga.field('status', 'choice')
 				.validation({ required: true })
-				.choices(statusChoices)
+				.choices(globallookups.queue.status)
 				.cssClasses('col-sm-6'),
             nga.field('queue')
     			.validation({ required: true })
@@ -158,12 +114,12 @@ module.exports = function (nga, user) {
 				.cssClasses('col-sm-4'),
 			nga.field('name', 'choice')
 				.validation({ required: true })
-				.choices(nameChoices)
+				.choices(globallookups.queue.queue)
 				.defaultValue('cron')
 				.cssClasses('col-sm-4'),
 			nga.field('status', 'choice')
 				.validation({ required: true })
-				.choices(statusChoices)
+				.choices(globallookups.queue.status)
 				.defaultValue('queued')
 				.cssClasses('col-sm-4'),
 			nga.field('params', 'json')

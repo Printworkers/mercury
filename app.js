@@ -3,9 +3,11 @@ require('angular-animate');
 require('angular-modal-service');
 require('angular-input-masks');
 require('ng-file-upload');
+
+require('./bower_components/angular-moment/angular-moment.js');
 // require('angular-sanitize');
 
-var myApp = angular.module('myApp', [ 'ng-admin', 'schemaForm', 'ngFileUpload', 'ui.utils.masks', 'angular-keenio', 'angularModalService' ]);
+var myApp = angular.module('myApp', [ 'ng-admin', 'angularMoment', 'schemaForm', 'ngFileUpload', 'ui.utils.masks', 'angular-keenio', 'angularModalService' ]);
 
 myApp.constant('apiUrl', function() {
 	return window.apiUrl || 'https://api.semperllc.com/';
@@ -53,6 +55,11 @@ require('./extras/talent/sync')(myApp);
 /* Jobs */
 require('./extras/job/sync')(myApp);
 require('./extras/job/preview')(myApp);
+
+/* Queue */
+require('./extras/queue/manage')(myApp);
+require('./extras/queue/queue-routes')(myApp);
+require('./extras/queue/details')(myApp);
 
 /* Template. */
 require('./extras/template/sendEmail')(myApp);

@@ -8,7 +8,7 @@ module.exports = function(myApp) {
 		]);
 	});
 
-	myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', 'apiUrl', function(NgAdminConfigurationProvider, RestangularProvider, apiUrl) {
+	myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', 'apiUrl', 'globallookups', function(NgAdminConfigurationProvider, RestangularProvider, apiUrl, globallookups) {
 
 		var nga = NgAdminConfigurationProvider;
 		var lookups = require('../lookups');
@@ -24,7 +24,7 @@ module.exports = function(myApp) {
 		var order = require('../entities/order')(nga, user);
 		var application = require('../entities/application')(nga, user, order);
 		var skill = require('../entities/skill')(nga);
-		var queue = require('../entities/queue')(nga, user);
+		var queue = require('../entities/queue')(nga, user, globallookups);
 		var talent = require('../entities/talent')(nga);
 
 		admin.addEntity(user);

@@ -177,6 +177,13 @@ module.exports = function(myApp) {
                         .then(function(data) {
                             return data.data ? data.data : data;
                         });
+                },
+                get: function(id) {
+                    return Restangular.one('queue', id)
+                        .get()
+                        .then(function(data) {
+                            return data.data ? data.data : data;
+                        });
                 }
             },
             Education: {

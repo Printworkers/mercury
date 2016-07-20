@@ -1,0 +1,72 @@
+<br>
+<form name="form" novalidate>
+
+	<div class="row">
+		<div class="col-md-12">
+			<p>
+				Use the following to manage the Queue setttings.
+			</p>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-4">
+			<div class="form-group has-feedback" ng-class="{'has-error': form.name.$touched && form.name.$invalid}">
+				<label>Name</label>
+				<select name="status" required id="status" class="form-control"
+						ng-model="queue.name"
+						placeholder="Select.."
+						ng-options="item.value as item.label for item in globallookups.queue.name">
+					<option value="">Select Name</option>
+				</select>
+				<span ng-if="form.name.$touched" ng-class="{ 'glyphicon-ok': form.name.$valid, 'glyphicon-remove': form.name.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="form-group has-feedback" ng-class="{'has-error': form.queue.$touched && form.queue.$invalid}">
+				<label>Queue</label>
+				<select name="status" required id="status" class="form-control"
+						ng-model="queue.queue"
+						placeholder="Select.."
+						ng-options="item.value as item.label for item in globallookups.queue.queue">
+					<option value="">Select Queue</option>
+				</select>
+				<span ng-if="form.queue.$touched" ng-class="{ 'glyphicon-ok': form.queue.$valid, 'glyphicon-remove': form.queue.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="form-group has-feedback" ng-class="{'has-error': form.status.$touched && form.status.$invalid}">
+				<label>Status</label>
+				<select name="status" required id="status" class="form-control"
+						ng-model="queue.status"
+						placeholder="Select.."
+						ng-options="item.value as item.label for item in globallookups.queue.status">
+					<option value="">Select Status</option>
+				</select>
+				<span ng-if="form.status.$touched" ng-class="{ 'glyphicon-ok': form.status.$valid, 'glyphicon-remove': form.status.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="form-group has-feedback" ng-class="{'has-error': form.params.$touched && form.params.$invalid }">
+				<label for="params">Params</label>
+				<textarea type="text" name="params" id="params" rows="10" class="form-control" ng-model="jsonString" placeholder="Enter Params"></textarea>
+				<span ng-if="form.params.$touched" ng-class="{ 'glyphicon-ok': form.params.$valid, 'glyphicon-remove': form.params.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+				{{ jsonStatus }}
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<button class="btn btn-success" ng-disabled="form.$invalid" ng-click="save();">
+				<i ng-if="showSpinner == true" class="fa fa-spinner fa-spin"></i>
+				Save Changes
+			</button>
+		</div>
+	</div>
+
+</form>
+<br />
