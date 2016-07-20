@@ -19,28 +19,27 @@ module.exports = function (nga, user) {
 
 	var nameChoices = [
 		// Standard Worker tasks.
-		{ value: 'userCreate', label: 'Create a Telent FM Account' },
-		{ value: 'userPatch', label: 'Update User Information to FM' },
-		{ value: 'userSignedForm', label: 'Send User Data to FM after signin' },
-		{ value: 'userUpdateEmailStatus', label: 'Send FM Email Optout Status Change' },
+		{ value: 'userCreate', label: 'userCreate' },
+		{ value: 'userPatch', label: 'userPatch' },
+		{ value: 'userSignedForm', label: 'userSignedForm' },
+		{ value: 'userUpdateEmailStatus', label: 'userUpdateEmailStatus' },
 		// Cron worker Tasks.
-		{ value: 'emailRegistration', label: 'Send Registration Welcome email' },
-		{ value: 'emailPasswordReset', label: 'Send Password Reset email' },
-		{ value: 'emailPasswordUsername', label: 'Send Username reminder email' },
-		{ value: 'emailNewPasscode', label: 'Send New Passcode email' },
-		{ value: 'userDetermineHomeOffice', label: 'Calc the Closest Homeoffice' },
-		{ value: 'userSignedForm', label: 'Transmit User Signed Form Data (Phase 1)' },
-		{ value: 'handleAdobeSignedForm', label: 'Handle Adobe Callback Form Data (s3 etc)' },
-		{ value: 'userStoreFormS3', label: 'Store Form S3 URL' },
-		{ value: 'userStoreFormData', label: 'Store Form Data' },
-		{ value: 'jobImports', label: 'Handle Job Imports' },
-		{ value: 'userSyncSnapShot', label: 'User Snapshot for Filemaker'},
-		{ value: 'createClient', label: 'Create a Client FM Account'},
-
-		{ value: 'userEducationUpsert', label: 'Upsert for Resume Work Education' },
-		{ value: 'userReferenceUpsert', label: 'Upsert for Resume Work Reference' },
-		{ value: 'userWorkHistoryUpsert', label: 'Upsert for Resume Work History' },
-		{ value: 'talentImports', label: 'Handle Talent Imports' }
+		{ value: 'emailRegistration', label: 'emailRegistration' },
+		{ value: 'emailPasswordReset', label: 'emailPasswordReset' },
+		{ value: 'emailPasswordUsername', label: 'emailPasswordUsername' },
+		{ value: 'emailNewPasscode', label: 'emailNewPasscode' },
+		{ value: 'userDetermineHomeOffice', label: 'userDetermineHomeOffice' },
+		{ value: 'userSignedForm', label: 'userSignedForm' },
+		{ value: 'handleAdobeSignedForm', label: 'handleAdobeSignedForm' },
+		{ value: 'userStoreFormS3', label: 'userStoreFormS3' },
+		{ value: 'userStoreFormData', label: 'userStoreFormData' },
+		{ value: 'jobImports', label: 'jobImports' },
+		{ value: 'userSyncSnapShot', label: 'userSyncSnapShot'},
+		{ value: 'createClient', label: 'createClient'},
+		{ value: 'userEducationUpsert', label: 'userEducationUpsert' },
+		{ value: 'userReferenceUpsert', label: 'userReferenceUpsert' },
+		{ value: 'userWorkHistoryUpsert', label: 'userWorkHistoryUpsert' },
+		{ value: 'talentImports', label: 'talentImports' }
 	];
 
 	queue.listView()
