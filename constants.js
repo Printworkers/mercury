@@ -1,6 +1,6 @@
 module.exports = function(ngModule) {
 
-	ngModule.constant('FMApiUrl', 'https://wpe.semperllc.com/Semper');
+	ngModule.constant('FMApiUrl', 'https://semper-filemaker-api.herokuapp.com');
 
 	ngModule.constant('skillYears', [
 		{ value: 1, label: '' },
