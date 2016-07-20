@@ -7,8 +7,6 @@ require('ng-file-upload');
 
 var myApp = angular.module('myApp', [ 'ng-admin', 'schemaForm', 'ngFileUpload', 'ui.utils.masks', 'angular-keenio', 'angularModalService' ]);
 
-myApp.constant('FMApiUrl', 'http://71.11.2.114/Semper');
-
 myApp.constant('apiUrl', function() {
 	return window.apiUrl || 'https://api.semperllc.com/';
 }());

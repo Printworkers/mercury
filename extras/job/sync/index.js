@@ -1,6 +1,6 @@
 module.exports = function (myApp) {
 
-    myApp.directive('fmSyncJob', [ 'ModalService', '$http', function(ModalService, $http) {
+    myApp.directive('fmSyncJob', [ 'ModalService', '$http', 'FMApiUrl', function(ModalService, $http, FMApiUrl) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -13,17 +13,13 @@ module.exports = function (myApp) {
 						template: require('./modal.html'),
 						scope: scope,
 						controller: function($element, close) {
-							var id = scope.job().values.fmJobId;
-                            scope.jobId = scope.job._identifierValue;
+                            scope.id_job = scope.job._identifierValue;
 
 							scope.submit = function() {
 
-								var id = scope.jobId;
-								var url = 'https://semperpages-jrr316.c9users.io/SingleJob.php?jobID=' + id;
-
 								$http({
 									method: 'GET',
-									url: url
+									url: FMApiUrl + '/job_find_single.php?id_job=' + scope.id_job
 								}).then(function successCallback(response) {
 
 									scope.message = 'Got data from FileMaker';

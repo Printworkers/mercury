@@ -1,5 +1,7 @@
 module.exports = function(ngModule) {
 
+	ngModule.constant('FMApiUrl', 'https://wpe.semperllc.com/Semper');
+
 	ngModule.constant('skillYears', [
 		{ value: 1, label: '' },
 		{ value: 2, label: '' },

@@ -145,12 +145,11 @@ module.exports = function (myApp) {
 					$scope.hasEmployeeId = true;
 
 					var get = function() {
-						var id = $scope.user.id_employee;
-						var url = FMApiUrl + '/user_find_single.php?id_employee=' + id;
+						var id_employee = $scope.user.id_employee;
 
 						$http({
 							method: 'GET',
-							url: url
+							url: FMApiUrl + '/user_find_single.php?id_employee=' + id_employee
 						}).then(function successCallback(response) {
 							$scope.fmData = response.data;
 							$scope.message = '';
