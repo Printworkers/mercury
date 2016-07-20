@@ -25,9 +25,6 @@
 			Stats
 		</th>
 		<th>
-			Task
-		</th>
-		<th>
 			Status
 		</th>
 		<th>
@@ -45,7 +42,7 @@
 	</tr>
 	<tr ng-repeat="item in data | orderBy:'-enqueued'">
 		<td>
-			{{item.queue}}
+			{{item.name}}
 		</td>
 		<td>
 			{{item.enqueued | date:'short'}}
