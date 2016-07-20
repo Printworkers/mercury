@@ -27,7 +27,7 @@ module.exports = function (myApp) {
                 };
 
                 $scope.edit = function(item) {
-                    $state.go('edit', { entity: 'queue', id: item._id });
+                    $state.go('queue-detail', { entity: 'queue', id: item._id });
                 };
 
                 fetch();

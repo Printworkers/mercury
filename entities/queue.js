@@ -43,8 +43,8 @@ module.exports = function (nga, user, globallookups) {
 					}
 				}),
 		]).listActions([
-			'edit',
-			'<re-queue-job-btn entry="entry"></re-queue-job-btn>',
+			// 'edit',
+			// '<re-queue-job-btn entry="entry"></re-queue-job-btn>',
 			'<queue-manage queue="entry"></queue-manage>'
 		])
 		.filters([

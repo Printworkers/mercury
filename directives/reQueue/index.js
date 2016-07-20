@@ -10,10 +10,13 @@ module.exports = function(myApp) {
                 entry: '='
             },
             link: function(scope, element, attrs) {
-                scope.queue = scope.entry.values;
-                scope.show = scope.queue.status != 'queued';
+                scope.queue = scope.entry;
+                scope.show = scope.queue.status !== 'queued';
             },
             controller: function($scope) {
+                $scope.queue = $scope.entry;
+                // $scope.show = $scope.queue.status !== 'queued';
+
                 $scope.runChange = function() {
                     if (confirm('Do you want to re-queue this job? It will run as soon as the worker is ready.')) {
                         $scope.entry.values.patch({ status: 'queued' }).then(function(data) {
@@ -23,7 +26,7 @@ module.exports = function(myApp) {
                     }
                 };
             },
-            template: '<a Xng-if="show" class="btn btn-default btn-xs" ng-click="runChange()"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span></a>'
+            template: '<a ng-if="show" class="btn btn-default btn-sm" ng-click="runChange()"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span></a>'
         };
     });
 
