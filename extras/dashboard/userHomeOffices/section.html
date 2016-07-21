@@ -1,0 +1,21 @@
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-3">
+                <i class="fa fa-users fa-2x"></i>
+            </div>
+            <div class="col-xs-9 text-right">
+                <h3 style="padding: 0px; margin-top: 5px; margin-bottom: 0px;">
+                    Home Offices
+                </h3>
+            </div>
+        </div>
+    </div>
+    <table class="table table-striped table-hover table-border">
+        <tr ng-repeat="value in data">
+            <td>{{ value._id }}</td>
+            <td>{{ value.count }}</td>
+        </tr>
+    </table>
+</div>

@@ -34,6 +34,20 @@ require('./configs/ng-admin')(myApp);
 require('./configs/restangular')(myApp);
 require('./configs/keen')(myApp);
 
+/* Dashboard */
+require('./extras/dashboard/userTypes')(myApp);
+require('./extras/dashboard/last10UsersUpdated')(myApp);
+require('./extras/dashboard/last10UsersCreated')(myApp);
+require('./extras/dashboard/UserHomeOffices')(myApp);
+require('./extras/dashboard/remoteAppStages')(myApp);
+require('./extras/dashboard/last10AgentsCreated')(myApp);
+require('./extras/dashboard/last10AgentsUpdated')(myApp);
+require('./extras/dashboard/UserCalendar')(myApp);
+require('./extras/dashboard/AgentCalendar')(myApp);
+require('./extras/dashboard/ApplicationCalendar')(myApp);
+require('./extras/dashboard/OrderCalendar')(myApp);
+require('./extras/dashboard/UsersOnline')(myApp);
+
 /* Extras */
 require('./extras/json/json.js')(myApp);
 

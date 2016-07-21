@@ -1,0 +1,29 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-2">
+                <i class="fa fa-eye fa-2x"></i>
+            </div>
+            <div class="col-xs-10 text-right">
+                <h3 style="padding: 0px; margin-top: 5px; margin-bottom: 0px;">
+                    Last 10 Agents Updated
+                </h3>
+            </div>
+        </div>
+    </div>
+    <table class="table table-striped table-hover table-border">
+        <tr ng-repeat="value in data">
+            <td>
+                {{ value.name }} ({{ value.type }})
+            </td>
+            <td>
+                <span am-time-ago="value.updatedAt"></span>
+            </td>
+            <td>
+                <a class="btn btn-primary" a href="/#/agent/edit/{{ value._id }}">
+                    <i class="fa fa-arrow-right "></i>
+                </a>
+            </td>
+        </tr>
+    </table>
+</div>
