@@ -6,10 +6,17 @@ module.exports = function(myApp) {
             replace: true,
 			scope: {},
             controller: function($scope) {
-                $scope.title = '';
-                Restangular.all('user').customGETLIST('count', { limit: 5, group: 'office' }).then(function(res) {
-                    $scope.data = res.data;
-                });
+                $scope.query = function() {
+                    Restangular.all('user').customGETLIST('count', { limit: 5, group: 'office' }).then(function(res) {
+                        $scope.data = res.data;
+                    });
+                };
+
+                $scope.refresh = function() {
+                    $scope.query();
+                };
+
+                $scope.query();
             },
 			template: require('./section.html')
 		};

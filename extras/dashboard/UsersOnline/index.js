@@ -6,10 +6,17 @@ module.exports = function(myApp) {
             replace: true,
 			scope: {},
             controller: function($scope) {
-                $scope.title = '';
-                Restangular.all('agent').getList({ limit: 5, sortField: 'createdAt', sortDir: 'ASC' }).then(function(res) {
-                    $scope.data = res.data;
-                });
+                $scope.query = function() {
+                    Restangular.all('agent').getList({ limit: 5, sortField: 'createdAt', sortDir: 'ASC' }).then(function(res) {
+                        $scope.data = res.data;
+                    });
+                };
+
+                $scope.refresh = function() {
+                    $scope.query();
+                };
+
+                $scope.query();
             },
 			template: require('./section.html')
 		};

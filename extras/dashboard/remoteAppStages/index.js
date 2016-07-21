@@ -11,6 +11,15 @@ module.exports = function(myApp) {
                     $scope.data = res.data;
                     // console.log('dashboardRemoteAppStages', $scope.data.plain());
                 });
+
+                $scope.query = function() {
+                };
+
+                $scope.refresh = function() {
+                    $scope.query();
+                };
+
+                $scope.query();
             },
 			template: require('./section.html')
 		};
