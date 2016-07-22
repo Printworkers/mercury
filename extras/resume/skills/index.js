@@ -19,16 +19,13 @@ module.exports = function(ngModule) {
 
 			$scope.currentId = $scope.user;
 
-			$DataServices.skill.all().then(function(data) {
+			$DataServices.Skill.all().then(function(data) {
 				$scope.skillGroups = _.groupBy(data, function(num){
 					return num.primary;
 				});
 
 				$scope.primarySkills = _.keys($scope.skillGroups);
 			});
-
-			// $scope.skillGroups = _.groupBy(allSkills, function(num){ return num.primary; });
-			// $scope.primarySkills = _.keys($scope.skillGroups);
 	}]);
 
 	ngModule.directive('semperSkillsTable', [ 'ModalService', function( ModalService) {
@@ -65,16 +62,13 @@ module.exports = function(ngModule) {
 								skill_3_secondary: user.skill_3_secondary || ''
 							};
 
-							$DataServices.skill.all().then(function(data) {
+							$DataServices.Skill.all().then(function(data) {
 								$scope.skillGroups = _.groupBy(data, function(num){
 									return num.primary;
 								});
 
 								$scope.primarySkills = _.keys($scope.skillGroups);
 							});
-
-							// $scope.skillGroups = _.groupBy(allSkills, function(num){ return num.primary; });
-							// $scope.primarySkills = _.keys($scope.skillGroups);
 
 							$scope.save = function() {
 								user.save({ skill_1_primary: 111 }).then(function(data){
