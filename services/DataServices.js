@@ -1,6 +1,6 @@
 module.exports = function(myApp) {
 
-    myApp.factory('$DataServices', [ 'Restangular', function(Restangular) {
+    myApp.factory('$DataServices', [ 'Restangular', '$q', function(Restangular, $q) {
         var Reference = Restangular.service('reference');
         var Education = Restangular.service('education');
         var Work = Restangular.service('work');
@@ -8,6 +8,8 @@ module.exports = function(myApp) {
         var User = Restangular.service('user');
         var Agent = Restangular.service('agent');
         var Queue = Restangular.service('queue');
+        var skill = Restangular.service('skill');
+        var skills_cache = [];
 
         Restangular.extendModel('queue', function(model) {
 
@@ -275,8 +277,21 @@ module.exports = function(myApp) {
                             return data.data ? data.data : data;
                         });
                 }
+            },
+            Skill: {
+                all: function() {
+                    if (!_.isEmpty(skills_cache)) {
+                        var deferred = $q.defer();
+                        deferred.resolve(skills_cache);
+                        return deferred.promise;
+                    }
+
+                    return skill.getList().then(function(data) {
+                        skills_cache = data;
+                        return skills_cache;
+                    });
+                }
             }
         };
     }]);
-
 };

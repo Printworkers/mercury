@@ -1,7 +1,7 @@
 module.exports = function(ngModule) {
 
-	ngModule.controller('SkillTableController', ['$scope', '$DataServices', '$element', 'close', 'allSkills',
-		function($scope, $element, Restangular, close, allSkills) {
+	ngModule.controller('SkillTableController', ['$scope', '$DataServices', '$element', 'close', '$DataServices',
+		function($scope, $element, Restangular, close, $DataServices) {
 
 			var user = $scope.user;
 
@@ -18,8 +18,17 @@ module.exports = function(ngModule) {
 			};
 
 			$scope.currentId = $scope.user;
-			$scope.skillGroups = _.groupBy(allSkills, function(num){ return num.primary; });
-			$scope.primarySkills = _.keys($scope.skillGroups);
+
+			$DataServices.skill.all().then(function(data) {
+				$scope.skillGroups = _.groupBy(data, function(num){
+					return num.primary;
+				});
+
+				$scope.primarySkills = _.keys($scope.skillGroups);
+			});
+
+			// $scope.skillGroups = _.groupBy(allSkills, function(num){ return num.primary; });
+			// $scope.primarySkills = _.keys($scope.skillGroups);
 	}]);
 
 	ngModule.directive('semperSkillsTable', [ 'ModalService', function( ModalService) {
@@ -41,7 +50,7 @@ module.exports = function(ngModule) {
                         inputs: {
                             user: $scope.user
                         },
-						controller: function($scope, user, close, allSkills) {
+						controller: function($scope, user, close, $DataServices) {
                             $scope.use = user;
 
 							$scope.skill = {
@@ -56,8 +65,16 @@ module.exports = function(ngModule) {
 								skill_3_secondary: user.skill_3_secondary || ''
 							};
 
-							$scope.skillGroups = _.groupBy(allSkills, function(num){ return num.primary; });
-							$scope.primarySkills = _.keys($scope.skillGroups);
+							$DataServices.skill.all().then(function(data) {
+								$scope.skillGroups = _.groupBy(data, function(num){
+									return num.primary;
+								});
+
+								$scope.primarySkills = _.keys($scope.skillGroups);
+							});
+
+							// $scope.skillGroups = _.groupBy(allSkills, function(num){ return num.primary; });
+							// $scope.primarySkills = _.keys($scope.skillGroups);
 
 							$scope.save = function() {
 								user.save({ skill_1_primary: 111 }).then(function(data){
