@@ -23,13 +23,17 @@ module.exports = function(ngModule) {
 		{ value: 'handleAdobeSignedForm', label: 'handleAdobeSignedForm' },
 		{ value: 'userStoreFormS3', label: 'userStoreFormS3' },
 		{ value: 'userStoreFormData', label: 'userStoreFormData' },
-		{ value: 'jobImports', label: 'jobImports' },
+
+		/* FM Import Jobs. */
+		{ value: 'importFMJobs', label: 'importFMJobs' },
+		{ value: 'importFMTalent', label: 'importFMTalent' },
+		{ value: 'importFMSkills', label: 'importFMSkills' },
+
 		{ value: 'userSyncSnapShot', label: 'userSyncSnapShot'},
 		{ value: 'createClient', label: 'createClient'},
 		{ value: 'userEducationUpsert', label: 'userEducationUpsert' },
 		{ value: 'userReferenceUpsert', label: 'userReferenceUpsert' },
-		{ value: 'userWorkHistoryUpsert', label: 'userWorkHistoryUpsert' },
-		{ value: 'talentImports', label: 'talentImports' }
+		{ value: 'userWorkHistoryUpsert', label: 'userWorkHistoryUpsert' }
 	];
 
 	var queueStatuses = [

@@ -108,14 +108,13 @@ module.exports = function (nga, user, globallookups) {
 		.title('Create new Queue Job')
 		.description('This provides the ability to create a new job.')
 		.fields([
-			nga.field('queue')
-				.editable(false)
+			nga.field('queue', 'choice')
+				.choices(globallookups.queue.queue)
 				.defaultValue('general')
 				.cssClasses('col-sm-4'),
 			nga.field('name', 'choice')
 				.validation({ required: true })
-				.choices(globallookups.queue.queue)
-				.defaultValue('cron')
+				.choices(globallookups.queue.name)
 				.cssClasses('col-sm-4'),
 			nga.field('status', 'choice')
 				.validation({ required: true })
