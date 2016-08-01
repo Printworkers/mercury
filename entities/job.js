@@ -3,6 +3,30 @@ module.exports = function (nga) {
     var job = nga.entity('job').identifier(nga.field('_id'));
     job.label('Jobs');
 
+    var type_job_choices = [
+        { value: "part", label: "Part Time" },
+        { value: "full", label: "Full Time" },
+        { value: "either", label: "Either" }
+    ];
+
+    var shifts_choice = [
+	    { value: "first", label: "1st Shift"},
+	    { value: "second", label: "2nd Shift"},
+	    { value: "third", label: "3rd Shift"},
+	    { value: "any", label: "Any Shifts"},
+	    { value: "firstAndSecond", label: "1st and 2nd Shifts"},
+	    { value: "firstAndThird", label: "1st and 3rd Shifts"},
+	    { value: "secondAndThird", label: "2nd and 3rd Shifts"},
+	    { value: "cont", label: "Cont Shift"},
+	    { value: "firstAndCont", label: "1st and Cont Shifts"},
+	    { value: "secondAndCont", label: "2nd and Cont Shifts"},
+	    { value: "thirdAndCont", label: "3rd and Cont Shifts"},
+	    { value: "fistSecondAndCont", label: "1st, 2nd and Cont Shifts"},
+	    { value: "firstThirdAndCont", label: "1st, 3rd and Cont Shifts"},
+	    { value: "secondThirdAndCont", label: "2nd, 3rd and Cont Shifts"},
+	    { value: "firstSecondAndThird", label: "1st, 2nd and 3rd Shifts"}
+	];
+
     var homeoOffices = [
         { value: "atlanta", label: "Atlanta", id: '107' },
 	    { value: "baltimore", label: "Baltimore", id: '109' },
@@ -113,11 +137,13 @@ module.exports = function (nga) {
             nga.field('salary_range')
             	.validation({required: true })
             	.cssClasses('col-sm-6'),
-            nga.field('shifts')
+            nga.field('shifts', 'choice')
+                .choices(shifts_choice)
             	.validation({required: true })
             	.cssClasses('col-sm-6'),
-            nga.field('shifts_WorkType')
-            	.validation({required: true })
+            nga.field('type_job', 'choice')
+            	.validation({ required: true })
+                .choices(type_job_choices)
             	.cssClasses('col-sm-6'),
             nga.field('skills')
             	.validation({required: true })

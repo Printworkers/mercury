@@ -24,7 +24,7 @@ module.exports = function(ngModule) {
 					return num.primary;
 				});
 
-				$scope.primarySkills = _.keys($scope.skillGroups);
+				$scope.primarySkills = _.keys($scope.skillGroups).sort();
 			});
 	}]);
 
@@ -67,7 +67,7 @@ module.exports = function(ngModule) {
 									return num.primary;
 								});
 
-								$scope.primarySkills = _.keys($scope.skillGroups);
+								$scope.primarySkills = _.keys($scope.skillGroups).sort();
 							});
 
 							$scope.save = function() {
