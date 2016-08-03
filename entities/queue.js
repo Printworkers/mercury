@@ -6,6 +6,8 @@ module.exports = function (nga, user, globallookups) {
 	queue.listView()
 		.title('Queue Jobs')
 		.perPage(50)
+		.sortField('enqueued')
+		.sortDir('DSC')
 		// .description('The following is a list of Queue Jobs. <total-queue-jobs></total-queue-jobs> <queue-report></queue-report>')
 		.fields([
             nga.field('name'),

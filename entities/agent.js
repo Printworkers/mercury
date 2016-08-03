@@ -4,16 +4,23 @@ module.exports = function (nga, user) {
 
     agent.listView()
     .title('Staff & Job Agents')
+    .sortField('createdAt')
+    .sortDir('DSC')
     .fields([
         nga.field('name'),
         nga.field('address_city').label('City'),
         nga.field('address_state').label('State'),
-        nga.field('fmId')
-        	.label('FM Id'),
         nga.field('type'),
-        nga.field('description'),
         nga.field('status')
         	.label('Status'),
+        nga.field('createdAt', 'date')
+            .label('Created On')
+            .format('MM/dd/yyyy'),
+        nga.field('createdAt')
+            .label('When')
+            .template(function(e) {
+                return moment(e.values.createdAt).fromNow();
+            })
     ]).listActions([
     	'edit',
     	'delete'

@@ -3,6 +3,8 @@ module.exports = function (nga, user, order) {
     var application = nga.entity('application').identifier(nga.field('_id'));
     application.listView()
     .title('Job Applications')
+    .sortField('createdAt')
+    .sortDir('DSC')
     .fields([
         nga.field('title'),
         nga.field('User.username').label('Owner'),
