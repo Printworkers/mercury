@@ -4,6 +4,8 @@ module.exports = function (nga, lookups) {
 
 	user.listView()
 	.title('Users')
+	.sortField('lastLoginAt')
+	.sortDir('DSC')
 	.fields([
 		nga.field('name_first')
 			.label('Full Name')
@@ -17,7 +19,12 @@ module.exports = function (nga, lookups) {
 		nga.field('type'),
 		nga.field('lastLoginAt', 'date')
 			.label('Last Login')
-			.format('MM/dd/yyyy')
+			.format('MM/dd/yyyy'),
+		nga.field('lastLoginAt')
+			.label('When')
+			.template(function(e) {
+				return moment(e.values.lastLoginAt).fromNow();
+			})
 	]).listActions([
 		'<user-manage user="entry"></user-manage>'
 	])
