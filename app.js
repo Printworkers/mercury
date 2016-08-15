@@ -62,6 +62,11 @@ require('./extras/user/forms')(myApp);
 require('./extras/user/manage')(myApp);
 require('./extras/user/user-routes')(myApp);
 
+require('./extras/agent/agent-routes')(myApp);
+require('./extras/agent/details')(myApp);
+require('./extras/agent/manage')(myApp);
+require('./extras/agent/results')(myApp);
+
 /* Talent */
 require('./extras/talent/preview')(myApp);
 require('./extras/talent/sync')(myApp);

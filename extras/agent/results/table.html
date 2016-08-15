@@ -1,0 +1,42 @@
+<div>
+	<h5>
+		Search Results
+
+		<button class="btn pull-right btn-primary btn-sm" ng-click="refresh();" >Search & Refresh</button>
+	</h5>
+	<Br>
+
+	<table class="table table-hover">
+		<tr>
+			<th>
+				Job Id
+			</th>
+			<th>
+				Name
+			</th>
+			<th>
+				City/State
+			</th>
+		</tr>
+		<tr ng-if="results.length == 0">
+			<td colspan="3" align="center">
+				<br>
+				<br>
+				Sorry, no results available.
+				<br>
+				<br>
+			</td>
+		</tr>
+		<tr ng-repeat="job in results">
+			<td>
+				{{ job.id_job }}
+			</td>
+			<td>
+				{{ job.primary }}
+			</td>
+			<td>
+				{{ job.state }}
+			</td>
+		</tr>
+	</table>
+</div>

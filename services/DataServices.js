@@ -8,9 +8,12 @@ module.exports = function(myApp) {
         var User = Restangular.service('user');
         var Agent = Restangular.service('agent');
         var Queue = Restangular.service('queue');
+        var HomeOffice = Restangular.service('homeoffice');
+
         var skill = Restangular.service('skill');
         var skills_cache = [];
-
+        var homeoffice_cache = [];
+        
         Restangular.extendModel('queue', function(model) {
 
             model.save = function(data) {
@@ -48,6 +51,18 @@ module.exports = function(myApp) {
 
             model.fetch = function() {
                 return Restangular.all('agent').get();
+            };
+
+            model.results = function() {
+                return model.customGET('results').then(function(data) {
+                    return data;
+                });
+            };
+
+            model.refresh = function() {
+                return model.customPOST(null, 'refresh').then(function(data) {
+                    return data;
+                });
             };
 
             return model;
@@ -289,6 +304,20 @@ module.exports = function(myApp) {
                     return skill.getList().then(function(data) {
                         skills_cache = data;
                         return skills_cache;
+                    });
+                }
+            },
+            HomeOffice: {
+                all: function() {
+                    if (!_.isEmpty(homeoffice_cache)) {
+                        var deferred = $q.defer();
+                        deferred.resolve(homeoffice_cache);
+                        return deferred.promise;
+                    }
+
+                    return HomeOffice.getList().then(function(data) {
+                        homeoffice_cache = data;
+                        return homeoffice_cache;
                     });
                 }
             }

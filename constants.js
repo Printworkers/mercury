@@ -20,6 +20,7 @@ module.exports = function(ngModule) {
 		{ value: 'emailNewPasscode', label: 'emailNewPasscode' },
 		{ value: 'userDetermineHomeOffice', label: 'userDetermineHomeOffice' },
 		{ value: 'userSignedForm', label: 'userSignedForm' },
+		{ value: 'adobeFormFetchData', label: 'adobeFormFetchData' },
 		{ value: 'handleAdobeSignedForm', label: 'handleAdobeSignedForm' },
 		{ value: 'userStoreFormS3', label: 'userStoreFormS3' },
 		{ value: 'userStoreFormData', label: 'userStoreFormData' },
@@ -803,6 +804,12 @@ module.exports = function(ngModule) {
 	    {value: "accountingPeachTreeMas", label: "Accounting / Peach Tree / Mas 90"}
 	]);
 
+	ngModule.constant('typejobid', [
+	    { value: "full", label: "Full Time" },
+	    { value: "part", label: "Part Time" },
+		{ value: "either", label: "Either" },
+	]);
+
 	ngModule.constant('salaryid', [
 
 	    // Need lookup table values for 4 salary labels. find TODO in the value
@@ -836,22 +843,28 @@ module.exports = function(ngModule) {
 	    {value: "200k - over", label: "200k - over"}
 	]);
 
+	// ngModule.constant('shiftid', [
+	//     {value: "first", label: "1st Shift"},
+	//     {value: "second", label: "2nd Shift"},
+	//     {value: "third", label: "3rd Shift"},
+	//     {value: "any", label: "Any Shifts"},
+	//     {value: "firstAndSecond", label: "1st and 2nd Shifts"},
+	//     {value: "firstAndThird", label: "1st and 3rd Shifts"},
+	//     {value: "secondAndThird", label: "2nd and 3rd Shifts"},
+	//     {value: "cont", label: "Cont Shift"},
+	//     {value: "firstAndCont", label: "1st and Cont Shifts"},
+	//     {value: "secondAndCont", label: "2nd and Cont Shifts"},
+	//     {value: "thirdAndCont", label: "3rd and Cont Shifts"},
+	//     {value: "fistSecondAndCont", label: "1st, 2nd and Cont Shifts"},
+	//     {value: "firstThirdAndCont", label: "1st, 3rd and Cont Shifts"},
+	//     {value: "secondThirdAndCont", label: "2nd, 3rd and Cont Shifts"},
+	//     {value: "firstSecondAndThird", label: "1st, 2nd and 3rd Shifts"}
+	// ]);
+
 	ngModule.constant('shiftid', [
-	    {value: "first", label: "1st Shift"},
-	    {value: "second", label: "2nd Shift"},
-	    {value: "third", label: "3rd Shift"},
-	    {value: "any", label: "Any Shifts"},
-	    {value: "firstAndSecond", label: "1st and 2nd Shifts"},
-	    {value: "firstAndThird", label: "1st and 3rd Shifts"},
-	    {value: "secondAndThird", label: "2nd and 3rd Shifts"},
-	    {value: "cont", label: "Cont Shift"},
-	    {value: "firstAndCont", label: "1st and Cont Shifts"},
-	    {value: "secondAndCont", label: "2nd and Cont Shifts"},
-	    {value: "thirdAndCont", label: "3rd and Cont Shifts"},
-	    {value: "fistSecondAndCont", label: "1st, 2nd and Cont Shifts"},
-	    {value: "firstThirdAndCont", label: "1st, 3rd and Cont Shifts"},
-	    {value: "secondThirdAndCont", label: "2nd, 3rd and Cont Shifts"},
-	    {value: "firstSecondAndThird", label: "1st, 2nd and 3rd Shifts"}
+		{value: "1", label: "1st Shift"},
+		{value: "2", label: "2nd Shift"},
+		{value: "1,2", label: "1st & 2nd Shifts"},
 	]);
 
 	ngModule.constant('homeOffice', [

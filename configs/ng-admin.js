@@ -15,10 +15,9 @@ module.exports = function(myApp) {
 
 		/* create an admin application. */
 		var admin = nga.application('Semper LLC Administrator').baseApiUrl(apiUrl);
-		var homeoffice = require('../entities/homeoffice')(nga);
+		var homeoffice = require('../entities/homeoffice')(nga, lookups);
 		var user = require('../entities/user')(nga, lookups, homeoffice);
 		var agent = require('../entities/agent')(nga, user);
-		var lookup = require('../entities/lookup')(nga);
 		var job = require('../entities/job')(nga);
 		var template = require('../entities/template')(nga, user);
 		var order = require('../entities/order')(nga, user);
@@ -28,7 +27,6 @@ module.exports = function(myApp) {
 		var talent = require('../entities/talent')(nga);
 
 		admin.addEntity(user);
-		admin.addEntity(lookup);
 		admin.addEntity(job);
 		admin.addEntity(template);
 		admin.addEntity(agent);

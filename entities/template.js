@@ -1,12 +1,16 @@
 module.exports = function (nga, user) {
 
 	var keyChoices = [
-		{ value: 'userNewAccount', label: 'User New Account' },
+		{ value: 'userNewJobSeekerAccount', label: 'New Job Seeker Account' },
+		{ value: 'userNewEmployerAccount', label: 'New Job Seeker Account' },
+
 		{ value: 'userUsernameReminder', label: 'User Username Reminder' },
 		{ value: 'userPasswordReminder', label: 'User Password Reminder' },
 		{ value: 'userNewPassCode', label: 'User New Passcode'},
 		// Draft Versions
-		{ value: 'userNewAccount-Draft', label: 'User New Account (Draft)' },
+		{ value: 'userNewJobSeekerAccount-Draft', label: 'New Job Seeker Account (Draft)' },
+		{ value: 'userNewEmployerAccount-Draft', label: 'New Employer Account (Draft)' },
+
 		{ value: 'userUsernameReminder-Draft', label: 'User userName Reminder (Draft)' },
 		{ value: 'userPasswordReminder-Draft', label: 'User Password Reminder (Draft)' },
 		{ value: 'userNewPassCode-Draft', label: 'User New Passcode (Draft)'}
@@ -33,7 +37,7 @@ module.exports = function (nga, user) {
 		'delete',
 		'<send-email template="entry"></send-email>'])
 	.filters([
-		nga.field('q', 'template')
+		nga.field('keywords', 'template')
 			.label('')
 			.pinned(true)
 			.template('<div class="input-group"><input type="text" ng-model="value" placeholder="Search" class="form-control"></input><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span></div>'),
