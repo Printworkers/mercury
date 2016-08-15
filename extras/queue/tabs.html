@@ -44,7 +44,32 @@ $(function(){
 		<b>Queue</b>: {{queue.queue }}<br>
 	</div>
 	<div class="col-md-4">
-		<b>Status</b>: {{ queue.status || 'NA'}}<br>
+		<b>Status</b>:
+
+        <b ng-if="queue.status === 'queued'">
+            <span class="label label-info">
+                {{ queue.status || 'NA'}}
+            </span>
+        </b>
+
+        <b ng-if="queue.status === 'dequeued'">
+            <span class="label label-warning">
+                {{ queue.status || 'NA'}}
+            </span>
+        </b>
+
+        <b ng-if="queue.status === 'failed'">
+            <span class="label label-important">
+                {{ queue.status || 'NA'}}
+            </span>
+        </b>
+
+        <b ng-if="queue.status === 'complete'">
+            <span class="label label-success">
+                {{ queue.status || 'NA'}}
+            </span>
+        </b>
+
 	</div>
 	<div class="col-md-4">
         <b>Enqueued:</b> {{ queue.enqueued | date: 'medium' }}<br>
