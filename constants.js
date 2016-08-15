@@ -15,7 +15,7 @@ module.exports = function(ngModule) {
 		{ value: 'userUpdateEmailStatus', label: 'userUpdateEmailStatus' },
 		// Cron worker Tasks.
 		{ value: 'getJobSeekerStatusDev', label: 'getJobSeekerStatusDev' },
-		
+
 		{ value: 'emailRegistration', label: 'emailRegistration' },
 		{ value: 'emailPasswordReset', label: 'emailPasswordReset' },
 		{ value: 'emailPasswordUsername', label: 'emailPasswordUsername' },
@@ -32,6 +32,7 @@ module.exports = function(ngModule) {
 		{ value: 'importFMJobs', label: 'importFMJobs' },
 		{ value: 'importFMTalent', label: 'importFMTalent' },
 		{ value: 'importFMSkills', label: 'importFMSkills' },
+		{ value: 'importFMHomeOffices', label: 'importFMHomeOffices' },
 
 		{ value: 'userSyncSnapShot', label: 'userSyncSnapShot'},
 		{ value: 'createClient', label: 'createClient'},
