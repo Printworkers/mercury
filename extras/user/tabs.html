@@ -55,6 +55,9 @@ $(function(){
         <div>
 			<b>Office ID</b>: {{user.id_office || 'NA'}} {{ user.office }}
 		</div>
+        <div ng-if="user.type == 'job seeker'">
+            <b>FM Status Dev</b>: {{user.status_dev || 'NA'}}
+        </div>
 	</div>
 </div>
 

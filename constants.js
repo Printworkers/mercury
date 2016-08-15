@@ -14,6 +14,8 @@ module.exports = function(ngModule) {
 		{ value: 'userSignedForm', label: 'userSignedForm' },
 		{ value: 'userUpdateEmailStatus', label: 'userUpdateEmailStatus' },
 		// Cron worker Tasks.
+		{ value: 'getJobSeekerStatusDev', label: 'getJobSeekerStatusDev' },
+		
 		{ value: 'emailRegistration', label: 'emailRegistration' },
 		{ value: 'emailPasswordReset', label: 'emailPasswordReset' },
 		{ value: 'emailPasswordUsername', label: 'emailPasswordUsername' },

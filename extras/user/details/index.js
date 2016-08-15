@@ -15,14 +15,14 @@ module.exports = function (myApp) {
 					source: source,
 					yesno: yesno,
 					status_dev: [
-						{ value: 0, label: 'Pre-Process (Employee No Contact)' },
-						{ value: 1, label: 'In-Process' },
-						{ value: 2, label: 'In-Process' },
-						{ value: 3, label: 'Employee Scheduled' },
-						{ value: 4, label: 'Interviewed and Tested' },
-						{ value: 5, label: 'Reference List' },
-						{ value: 6, label: 'Clear List' },
-						{ value: 7, label: 'Available. Read for Placement' }
+						{ value: 0, label: 'Pre-Process (Employee No Contact) (0)' },
+						{ value: 1, label: 'In-Process (1)' },
+						{ value: 2, label: 'In-Process (2)' },
+						{ value: 3, label: 'Employee Scheduled (3)' },
+						{ value: 4, label: 'Interviewed and Tested (4)' },
+						{ value: 5, label: 'Reference List (5)' },
+						{ value: 6, label: 'Clear List (6)' },
+						{ value: 7, label: 'Available. Read for Placement (7)' }
 					],
 					booleanYesNo: booleanYesNo,
 					ra_app_statuses: [
