@@ -14,6 +14,16 @@ module.exports = function (myApp) {
 					state: usState,
 					source: source,
 					yesno: yesno,
+					status_dev: [
+						{ value: 0, label: 'Pre-Process (Employee No Contact)' },
+						{ value: 1, label: 'In-Process' },
+						{ value: 2, label: 'In-Process' },
+						{ value: 3, label: 'Employee Scheduled' },
+						{ value: 4, label: 'Interviewed and Tested' },
+						{ value: 5, label: 'Reference List' },
+						{ value: 6, label: 'Clear List' },
+						{ value: 7, label: 'Available. Read for Placement' }
+					],
 					booleanYesNo: booleanYesNo,
 					ra_app_statuses: [
 						{ value: 'phase1_open', label: 'Phase 1 Open' },

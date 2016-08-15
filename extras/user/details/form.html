@@ -11,6 +11,7 @@
 		</div>
 	</div>
 
+
 	<div class="row">
 		<div class="col-md-3">
 			<div class="form-group has-feedback" ng-class="{'has-error': form.name_first.$touched && form.name_first.$invalid}">
@@ -83,6 +84,19 @@
 				<label>Phone</label>
 				<input type="tel" name="phone" id="phone" class="form-control" ng-model="user.phone" placeholder="Enter Password">
 				<span ng-if="form.phone.$touched" ng-class="{ 'glyphicon-ok': form.phone.$valid, 'glyphicon-remove': form.phone.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+			</div>
+		</div>
+
+		<div class="col-md-3" ng-if="user.type == 'job seeker'">
+			<div class="form-group has-feedback" ng-class="{'has-error': form.status_dev.$touched && form.status_dev.$invalid}">
+				<label>Status Dev ({{ user.status_dev }})</label>
+				<select name="status_dev" required id="status_dev" class="form-control"
+						ng-model="user.status_dev"
+						placeholder="Select.."
+						ng-options="item.value as item.label for item in lookups.status_dev">
+					<option value="">Select Status Dev</option>
+				</select>
+				<span ng-if="form.status_dev.$touched" ng-class="{ 'glyphicon-ok': form.status_dev.$valid, 'glyphicon-remove': form.status_dev.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
 			</div>
 		</div>
 	</div>
