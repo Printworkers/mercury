@@ -93,6 +93,7 @@ require('./extras/resume/education')(myApp);
 require('./extras/resume/work')(myApp);
 require('./extras/resume/document')(myApp);
 require('./extras/resume/skills')(myApp);
+require('./extras/resume/shortProfile')(myApp);
 require('./extras/resume/objectives')(myApp);
 
 require('./extras/user/agents')(myApp);
