@@ -25,7 +25,8 @@ module.exports = function(myApp) {
                 return Restangular.one('application', this._id).remove();
             };
 
-            model.add = function() {
+            model.add = function(userId) {
+                this.User = userId;
                 return Restangular.all('application').post(this);
             };
 
@@ -304,7 +305,7 @@ module.exports = function(myApp) {
                 }
             },
             Application: {
-                service: User,
+                service: Application,
                 new: function() {
                     var n =  Restangular.one('application');
                     n.isNew = true;
