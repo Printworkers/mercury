@@ -49,9 +49,12 @@
 		<td>
 			<div class="btn-group">
 				<json-viewer class="btn-xs" entry="item"></json-viewer>
-				<a href="/#/application/edit/{{ item._id }}" class="btn btn-xs btn-danger">
+				<a href="/#/application/edit/{{ item._id }}" class="btn btn-xs btn-default">
 					<i class="glyphicon glyphicon-pencil"></i>
 				</a>
+				<button ng-click="delete(item);" class="btn btn-xs btn-danger">
+					<i class="glyphicon glyphicon-trash"></i>
+				</button>
 			</div>
 		</td>
 	</tr>

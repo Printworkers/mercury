@@ -11,6 +11,16 @@ module.exports = function (myApp) {
                 $DataServices.Application.find( $scope.user._id ).then(function(data) {
                     $scope.data = data;
                 });
+
+                /* Query. */
+                $scope.delete = function(item) {
+                    if (confirm('Do you want to delete this queue application?')) {
+                        item.delete().then(function(data) {
+                            var index = $scope.data.indexOf(item);
+                            if (index > -1) $scope.data.splice(index, 1);
+                        });
+                    }
+                };
             },
             template: require('./table.html')
         };

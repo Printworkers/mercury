@@ -24,6 +24,7 @@ module.exports = function(ngModule) {
 		{ value: 'handleAdobeSignedForm', label: 'handleAdobeSignedForm' },
 		{ value: 'userStoreFormS3', label: 'userStoreFormS3' },
 		{ value: 'userStoreFormData', label: 'userStoreFormData' },
+		{ value: 'applicationUpsert', label: 'applicationUpsert' },
 
 		/* FM Import Jobs. */
 		{ value: 'importFMJobs', label: 'importFMJobs' },
