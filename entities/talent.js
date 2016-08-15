@@ -20,7 +20,7 @@ module.exports = function (nga) {
         '<fm-sync-talent talent="entry"></fm-sync-talent>'
     ])
     .filters([
-    	nga.field('q', 'template')
+    	nga.field('keywords', 'template')
             .label('')
             .pinned(true)
             .template('<div class="input-group"><input type="text" ng-model="value" placeholder="Search" class="form-control"></input><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span></div>'),

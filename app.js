@@ -62,6 +62,11 @@ require('./extras/user/forms')(myApp);
 require('./extras/user/manage')(myApp);
 require('./extras/user/user-routes')(myApp);
 
+require('./extras/agent/agent-routes')(myApp);
+require('./extras/agent/details')(myApp);
+require('./extras/agent/manage')(myApp);
+require('./extras/agent/results')(myApp);
+
 /* Talent */
 require('./extras/talent/preview')(myApp);
 require('./extras/talent/sync')(myApp);
@@ -92,6 +97,7 @@ require('./extras/resume/shortProfile')(myApp);
 require('./extras/resume/objectives')(myApp);
 
 require('./extras/user/agents')(myApp);
+require('./extras/user/applications')(myApp);
 
 /* Services. */
 require('./services/DataServices')(myApp);

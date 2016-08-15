@@ -125,6 +125,7 @@ module.exports = function (nga, user, globallookups) {
 				.cssClasses('col-sm-4'),
 			nga.field('params', 'json')
     			.validation({ required: false })
+				.defaultValue({})
     			.cssClasses('col-sm-10')
 		]);
 

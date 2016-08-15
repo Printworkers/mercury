@@ -8,8 +8,34 @@ module.exports = function(myApp) {
         var User = Restangular.service('user');
         var Agent = Restangular.service('agent');
         var Queue = Restangular.service('queue');
+        var HomeOffice = Restangular.service('homeoffice');
+        var Application = Restangular.service('application');
+
         var skill = Restangular.service('skill');
         var skills_cache = [];
+        var homeoffice_cache = [];
+
+        Restangular.extendModel('application', function(model) {
+
+            model.save = function(data) {
+                return this.customPUT(data);
+            };
+
+            model.delete = function() {
+                return Restangular.one('application', this._id).remove();
+            };
+
+            model.add = function(userId) {
+                this.User = userId;
+                return Restangular.all('application').post(this);
+            };
+
+            model.fetch = function() {
+                return Restangular.all('application').get();
+            };
+
+            return model;
+         });
 
         Restangular.extendModel('queue', function(model) {
 
@@ -50,6 +76,18 @@ module.exports = function(myApp) {
                 return Restangular.all('agent').get();
             };
 
+            model.results = function() {
+                return model.customGET('results').then(function(data) {
+                    return data;
+                });
+            };
+
+            model.refresh = function() {
+                return model.customPOST(null, 'refresh').then(function(data) {
+                    return data;
+                });
+            };
+
             return model;
          });
 
@@ -73,6 +111,11 @@ module.exports = function(myApp) {
 
             model.addForm = function(data) {
                 return this.customPOST(data, 'addForm');
+            };
+
+            model.addApplication = function(data) {
+                var data = data.User = model._id;
+                return Restangular.all('application').post(data);
             };
 
             return model;
@@ -261,6 +304,29 @@ module.exports = function(myApp) {
                         });
                 }
             },
+            Application: {
+                service: Application,
+                new: function() {
+                    var n =  Restangular.one('application');
+                    n.isNew = true;
+
+                    return n;
+                },
+                get: function(id) {
+                    return Restangular.one('application', id)
+                        .get()
+                        .then(function(data) {
+                            return data.data ? data.data : data;
+                        });
+                },
+                find: function(User) {
+                    return Restangular.all('application')
+                        .getList({ User: User })
+                        .then(function(data) {
+                            return data.data ? data.data : data;
+                        });
+                }
+            },
             Document: {
                 service: Document,
                 new: function(opts) {
@@ -289,6 +355,20 @@ module.exports = function(myApp) {
                     return skill.getList().then(function(data) {
                         skills_cache = data;
                         return skills_cache;
+                    });
+                }
+            },
+            HomeOffice: {
+                all: function() {
+                    if (!_.isEmpty(homeoffice_cache)) {
+                        var deferred = $q.defer();
+                        deferred.resolve(homeoffice_cache);
+                        return deferred.promise;
+                    }
+
+                    return HomeOffice.getList().then(function(data) {
+                        homeoffice_cache = data;
+                        return homeoffice_cache;
                     });
                 }
             }

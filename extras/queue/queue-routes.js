@@ -5,6 +5,17 @@ module.exports = function (myApp) {
 		$scope.queue = queue;
 		$scope.optionsSuccessMessage = '';
 		$scope.optionsErrorMessage = '';
+
+		$scope.runJob = function() {
+			if (confirm('Do you really want to run this job now?')) {
+				$scope.queue.customPOST(null, 'run').then(function(data) {
+					$scope.queue = data.job;
+					console.log('Queue Job Execution Complete:', data);
+				}, function(err) {
+					console.log('Error in the job', err);
+				});
+			}
+		};
 	};
 
 	var resolve = {

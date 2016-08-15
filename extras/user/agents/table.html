@@ -19,10 +19,22 @@
 			Name
 		</th>
 		<th>
-			Address
+			Type
 		</th>
 		<th>
-			City, State, Zip
+			Office
+		</th>
+		<th>
+			Shifts
+		</th>
+		<th>
+			Skill
+		</th>
+		<th>
+			Job Type
+		</th>
+		<th>
+			Salary
 		</th>
 		<th>
 			Details
@@ -38,12 +50,21 @@
 		</td>
 	</tr>
 	<tr ng-repeat="item in data">
-		<td>{{item.createdAt | date:'medium'}}</td>
-		<td>{{item.first_name}} {{address.last_name}}</td>
-		<td>{{item.address_1}}</td>
-		<td>{{item.address_city}}, {{item.address_state}} {{item.address_zip}}</td>
+		<td>{{ item.createdAt | date:'medium' }}</td>
+		<td>{{ item.name }}</td>
+		<td>{{ item.type }}</td>
+		<td>{{ item.dept_code_name }}</td>
+		<td>{{ item.id_office }}</td>
+		<td>{{ item.shift }}</td>
+		<td>{{ item.type_job }}</td>
+		<td>{{ item.salary }}</td>
 		<td>
-			<json-viewer entry="igem"></json-viewer>
+			<div class="btn-group">
+				<json-viewer class="btn-xs" entry="item"></json-viewer>
+				<button ui-sref="agent-detail({ id: item._id })" class="btn btn-xs btn-danger">
+					<i class="glyphicon glyphicon-pencil"></i>
+				</button>
+			</div>
 		</td>
 	</tr>
 </table>

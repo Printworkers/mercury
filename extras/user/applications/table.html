@@ -1,0 +1,61 @@
+<h4>
+	Job Applications
+</h4>
+
+<p>
+	The following is a list of all the job applications created for this user.
+</p>
+
+<p>
+	<add-application-modal-button user="user"></add-application-modal-button>
+</p>
+
+<table class="table table-striped">
+	<tr>
+		<th>
+			Created
+		</th>
+		<th>
+			Job Id
+		</th>
+		<th>
+			Skills Match?
+		</th>
+		<th>
+			Available For Times
+		</th>
+		<th>
+			Available Immediately
+		</th>
+		<th>
+			Details
+		</th>
+	</tr>
+	<tr ng-if="data.length == 0">
+		<td class="warning" colspan="9" align="center">
+			<br><br>
+			<br>
+			There are no records available.
+			<br><br>
+			<br><br>
+		</td>
+	</tr>
+	<tr ng-repeat="item in data">
+		<td>{{ item.createdAt | date:'medium' }}</td>
+		<td>{{ item.id_job }}</td>
+		<td>{{ item.skillsMatch }}</td>
+		<td>{{ item.availableForTimes }}</td>
+		<td>{{ item.availableImmediately }}</td>
+		<td>
+			<div class="btn-group">
+				<json-viewer class="btn-xs" entry="item"></json-viewer>
+				<a href="/#/application/edit/{{ item._id }}" class="btn btn-xs btn-default">
+					<i class="glyphicon glyphicon-pencil"></i>
+				</a>
+				<button ng-click="delete(item);" class="btn btn-xs btn-danger">
+					<i class="glyphicon glyphicon-trash"></i>
+				</button>
+			</div>
+		</td>
+	</tr>
+</table>

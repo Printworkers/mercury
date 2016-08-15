@@ -63,10 +63,6 @@ module.exports = function (nga, user) {
 				.link('/homeoffice/list')
 				.icon('<span class="fa fa-building fa-fw"></span>'))
 			.addChild(nga.menu()
-				.title('Lookups')
-				.link('/lookup/list')
-				.icon('<span class="fa fa-list-ul fa-fw"></span>'))
-			.addChild(nga.menu()
 				.title('Skills')
 				.link('/skill/list')
 				.icon('<span class="fa fa-briefcase fa-fw"></span>'))
@@ -74,6 +70,6 @@ module.exports = function (nga, user) {
 				.title('Email Templates')
 				.link('/template/list')
 				.icon('<span class="fa fa-envelope fa-fw"></span>'))
-		)
-	;
-}
+		);
+
+};
