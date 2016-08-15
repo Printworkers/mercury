@@ -79,6 +79,11 @@ $(function(){
 					Forms
 				</a>
 			</li>
+            <li role="presentation" ng-show="user.type == 'job seeker'" ng-class="{ 'active': tab == 'applications'}">
+				<a href="#applications" class="tab" aria-controls="applications" role="tab" data-toggle="tab">
+					Applications
+				</a>
+			</li>
 			<li role="presentation" ng-class="{ 'active': tab == 'agents'}">
 				<a href="#agents" class="tab" aria-controls="agents" role="tab" data-toggle="tab">
 					Agents
@@ -89,19 +94,16 @@ $(function(){
 					FileMaker Sync
 				</a>
 			</li>
-
 			<li role="presentation" ng-class="{ 'active': tab == 'filemaker-linker'}">
 				<a href="#filemaker-linker" aria-controls="filemaker" role="tab" data-toggle="tab">
 					FileMaker Linker
 				</a>
 			</li>
-
             <li role="presentation">
                 <a href="#queue" aria-controls="queue" role="tab" data-toggle="tab">
                     Queue
                 </a>
             </li>
-
 			<li role="presentation" ng-class="{ 'active': tab == 'options'}">
 				<a href="#options" aria-controls="options" role="tab" data-toggle="tab">
 					Options
@@ -111,35 +113,30 @@ $(function(){
 
 		<!-- Tab panes -->
 		<div class="tab-content">
-
 			<div role="tabpanel" class="tab-pane" ng-class="{ 'active': tab == 'details'}" id="details">
 				<user-details user="user"></user-details>
 			</div>
-
             <div ng-if="user.type == 'job seeker'" role="tabpanel" class="tab-pane" ng-class="{ 'active': tab == 'resume'}" id="resume">
 				<user-resume user="user"></user-resume>
 			</div>
-
             <div ng-if="user.type == 'job seeker'" role="tabpanel" class="tab-pane" ng-class="{ 'active': tab == 'forms'}" id="forms">
 				<user-forms user="user"></user-forms>
 			</div>
-
             <div role="tabpanel" class="tab-pane" ng-class="{ 'active': tab == 'queue'}" id="queue">
 				<user-queue-table user="user"></user-queue-table>
 			</div>
-
 			<div role="tabpanel" class="tab-pane" ng-class="{ 'active': tab == 'agents'}" id="agents">
 				<user-agents-table user="user"></user-agents-table>
 			</div>
-
+            <div ng-if="user.type == 'job seeker'" role="tabpanel" class="tab-pane" ng-class="{ 'active': tab == 'applications'}" id="applications">
+				<user-applications-table user="user"></user-applications-table>
+			</div>
 			<div role="tabpanel" class="tab-pane" ng-class="{ 'active': tab == 'filemaker'}" id="filemaker">
 				<user-filemaker-details user="user"></user-filemaker-details>
 			</div>
-
 			<div role="tabpanel" class="tab-pane" ng-class="{ 'active': tab == 'filemaker-linker'}" id="filemaker-linker">
 				<user-filemaker-linker user="user"></user-filemaker-linker>
 			</div>
-
 			<div role="tabpanel" class="tab-pane" ng-class="{ 'active': tab == 'options'}" id="options">
 
 					<h4>Account Options</h4>

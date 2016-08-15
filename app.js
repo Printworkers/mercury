@@ -97,6 +97,7 @@ require('./extras/resume/shortProfile')(myApp);
 require('./extras/resume/objectives')(myApp);
 
 require('./extras/user/agents')(myApp);
+require('./extras/user/applications')(myApp);
 
 /* Services. */
 require('./services/DataServices')(myApp);

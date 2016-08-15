@@ -1,0 +1,70 @@
+<h4>
+	Job Applications
+</h4>
+
+<p>
+	The following is a list of all the job applications created for this user.
+</p>
+
+<p>
+	<add-application-modal-button user="user"></add-application-modal-button>
+</p>
+
+<table class="table table-striped">
+	<tr>
+		<th>
+			Created
+		</th>
+		<th>
+			Name
+		</th>
+		<th>
+			Type
+		</th>
+		<th>
+			Office
+		</th>
+		<th>
+			Shifts
+		</th>
+		<th>
+			Skill
+		</th>
+		<th>
+			Job Type
+		</th>
+		<th>
+			Salary
+		</th>
+		<th>
+			Details
+		</th>
+	</tr>
+	<tr ng-if="data.length == 0">
+		<td class="warning" colspan="9" align="center">
+			<br><br>
+			<br>
+			There are no records available.
+			<br><br>
+			<br><br>
+		</td>
+	</tr>
+	<tr ng-repeat="item in data">
+		<td>{{ item.createdAt | date:'medium' }}</td>
+		<td>{{ item.name }}</td>
+		<td>{{ item.type }}</td>
+		<td>{{ item.dept_code_name }}</td>
+		<td>{{ item.id_office }}</td>
+		<td>{{ item.shift }}</td>
+		<td>{{ item.type_job }}</td>
+		<td>{{ item.salary }}</td>
+		<td>
+			<div class="btn-group">
+				<json-viewer class="btn-xs" entry="item"></json-viewer>
+				<button ui-sref="agent-detail({ id: item._id })" class="btn btn-xs btn-danger">
+					<i class="glyphicon glyphicon-pencil"></i>
+				</button>
+			</div>
+		</td>
+	</tr>
+</table>
