@@ -49,9 +49,7 @@ module.exports = function (nga) {
     .title('Jobs')
     .perPage(50)
     .fields([
-        nga.field('name').template(function(data) {
-            return name;
-        }),
+        nga.field('dept_code_name').label('Name'),
         nga.field('state'),
         nga.field('id_job').label('Job Id'),
         nga.field('web_office').label('Office'),
@@ -61,7 +59,7 @@ module.exports = function (nga) {
     	'show',
     	'delete',
     	'<preview-job job="entry"></preview-job>',
-    	'<fm-sync-job job="entry"></fm-sync-job>'
+    	//'<fm-sync-job job="entry"></fm-sync-job>'
     ])
     .filters([
     	nga.field('keywords', 'template')
@@ -94,7 +92,9 @@ module.exports = function (nga) {
     job.editionView()
         .title('Create new Job')
         .fields([
-            nga.field('name').validation({required: true }).cssClasses('col-sm-8'),
+            nga.field('dept_code_name')
+                .validation({required: true })
+                .cssClasses('col-sm-8'),
             nga.field('state')
             	.validation({required: true })
             	.cssClasses('col-sm-6'),
@@ -106,9 +106,6 @@ module.exports = function (nga) {
             	.validation({required: true })
             	.cssClasses('col-sm-6'),
             nga.field('dept_code')
-            	.validation({required: true })
-            	.cssClasses('col-sm-6'),
-            nga.field('dept_code_name')
             	.validation({required: true })
             	.cssClasses('col-sm-6'),
             nga.field('duration')
