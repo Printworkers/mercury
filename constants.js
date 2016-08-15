@@ -50,12 +50,13 @@ module.exports = function(ngModule) {
 		{ value: 'cancelled', label: 'Cancelled' }
 	];
 
+
 	ngModule.constant('globallookups', {
 		queue: {
 			queue: queueQueues,
 			name: queueNames,
 			status: queueStatuses
-		}
+		},
 	});
 
 	ngModule.constant('queueQueues', queueQueues);

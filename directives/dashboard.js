@@ -10,7 +10,7 @@ module.exports = function(myApp) {
 	                $http.get(apiUrl + stat + "/count", {headers: {'x-access-token': localStorage.getItem('semper-admin-token') }}).then(function (response) {
 						$scope[stat] = response.data.count;
 					});
-            	})
+            	});
             	console.log($scope);
             }
         };
