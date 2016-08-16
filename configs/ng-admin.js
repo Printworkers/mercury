@@ -25,6 +25,7 @@ module.exports = function(myApp) {
 		var skill = require('../entities/skill')(nga);
 		var queue = require('../entities/queue')(nga, user, globallookups);
 		var talent = require('../entities/talent')(nga);
+		var emailpreference = require('../entities/emailpreference')(nga, user);
 
 		admin.addEntity(user);
 		admin.addEntity(job);
@@ -36,6 +37,7 @@ module.exports = function(myApp) {
 		admin.addEntity(skill);
 		admin.addEntity(queue);
 		admin.addEntity(talent);
+		admin.addEntity(emailpreference);
 
 		/* Dashboard */
 		admin.dashboard(nga.dashboard()
