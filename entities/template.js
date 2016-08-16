@@ -1,8 +1,10 @@
 module.exports = function (nga, user) {
 
-	var keyChoices = [
+	var templateKeyChoices = [
+		{ value: 'newJobOrder', label: 'New Job Order' },
+
 		{ value: 'userNewJobSeekerAccount', label: 'New Job Seeker Account' },
-		{ value: 'userNewEmployerAccount', label: 'New Job Seeker Account' },
+		{ value: 'userNewEmployerAccount', label: 'New Employer Account' },
 
 		{ value: 'userUsernameReminder', label: 'User Username Reminder' },
 		{ value: 'userPasswordReminder', label: 'User Password Reminder' },
@@ -53,7 +55,7 @@ module.exports = function (nga, user) {
 				.validation({ required: true })
 				.cssClasses('col-sm-8'),
 			nga.field('emailKey', 'choice')
-				.choices(keyChoices)
+				.choices(templateKeyChoices)
 				.label('Email Key')
 				.attributes({ description: 'asdfasdf' })
 				.validation({ required: true })

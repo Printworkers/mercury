@@ -14,6 +14,7 @@ module.exports = function(ngModule) {
 		{ value: 'userSignedForm', label: 'userSignedForm' },
 		{ value: 'userUpdateEmailStatus', label: 'userUpdateEmailStatus' },
 		// Cron worker Tasks.
+		{ value: 'emailJobOrder', label: 'emailJobOrder' },
 		{ value: 'getJobSeekerStatusDev', label: 'getJobSeekerStatusDev' },
 
 		{ value: 'emailRegistration', label: 'emailRegistration' },
@@ -49,12 +50,13 @@ module.exports = function(ngModule) {
 		{ value: 'cancelled', label: 'Cancelled' }
 	];
 
+
 	ngModule.constant('globallookups', {
 		queue: {
 			queue: queueQueues,
 			name: queueNames,
 			status: queueStatuses
-		}
+		},
 	});
 
 	ngModule.constant('queueQueues', queueQueues);
