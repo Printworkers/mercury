@@ -449,10 +449,11 @@ module.exports = function(ngModule) {
 	    {value: "N/A", label: "N/A"}
 	]);
 
-	ngModule.constant('salaryid', [
+	ngModule.constant('salaryidXXX', [
 
 	    // Need lookup table values for 4 salary labels. find TODO in the value
 	    // and replace with values from ben
+		{value: "", label: "<Any Salary>"},
 	    {value: "990383", label: "$8.00 — $10.00/per hour"},
 	    {value: "780015", label: "$10 - $15"},
 	    {value: "780022", label: "$15 - $20"},
@@ -719,6 +720,7 @@ module.exports = function(ngModule) {
 	]);
 
 	ngModule.constant('skillid', [
+		{value: "", label: "<Any Skill>"},
 	    {value: "accounting", label: "Accounting"},
 	    {value: "administrative", label: "Administrative"},
 	    {value: "animator", label: "Animator"},
@@ -816,10 +818,18 @@ module.exports = function(ngModule) {
 		{ value: "either", label: "Either" },
 	]);
 
+	ngModule.constant('calc_work_type', [
+		{ value: "", label: "<Any Work Type>"},
+	    { value: "FT", label: "Full Time" },
+	    { value: "PT", label: "Part Time" },
+		{ value: "Either", label: "Either" },
+	]);
+
 	ngModule.constant('salaryid', [
 
 	    // Need lookup table values for 4 salary labels. find TODO in the value
 	    // and replace with values from ben
+		{ value: "", label: "<Any Salary>"},
 	    {value: "$8.00 — $10.00/per hour", label: "$8.00 — $10.00/per hour"},
 	    {value: "$10 - $15", label: "$10 - $15"},
 	    {value: "$15 - $20", label: "$15 - $20"},
@@ -868,6 +878,7 @@ module.exports = function(ngModule) {
 	// ]);
 
 	ngModule.constant('shiftid', [
+		{value: "", label: "<Any Shift>"},
 		{value: "1", label: "1st Shift"},
 		{value: "2", label: "2nd Shift"},
 		{value: "1,2", label: "1st & 2nd Shifts"},

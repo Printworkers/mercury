@@ -8,7 +8,7 @@ module.exports = function (myApp) {
 			scope: {
 				agent: '='
 			},
-			controller: function($scope, globallookups, salaryid, shiftid, typejobid) {
+			controller: function($scope, globallookups, salaryid, shiftid, typejobid, calc_work_type) {
 
 				$scope.agent = $scope.agent;
 				$scope.globallookups = globallookups;
@@ -16,15 +16,17 @@ module.exports = function (myApp) {
 				$scope.lookups = {
 					salary: salaryid,
 					shift: shiftid,
-					typejob: typejobid
+					work: calc_work_type
 				};
 
 				$DataServices.Skill.all().then(function(data) {
 					$scope.lookups.skills = data;
+					$scope.lookups.skills.unshift({ label: '<Any Skill>', value: '' });
 				});
 
 				$DataServices.HomeOffice.all().then(function(data) {
 					$scope.lookups.homeoffice = data;
+					$scope.lookups.homeoffice.unshift({ name_office: '<Any Office>', id_office: '' });
 				});
 
 				$scope.save = function() {

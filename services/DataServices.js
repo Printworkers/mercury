@@ -88,6 +88,13 @@ module.exports = function(myApp) {
                 });
             };
 
+            model.purge = function() {
+                return model.customPOST(null, 'purge').then(function(data) {
+                    return data;
+                });
+            };
+
+
             return model;
          });
 
@@ -286,6 +293,7 @@ module.exports = function(myApp) {
                 new: function() {
                     var n =  Restangular.one('agent');
                     n.isNew = true;
+                    n.type = 'job';
 
                     return n;
                 },

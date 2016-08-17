@@ -16,7 +16,7 @@ module.exports = function (myApp) {
         };
     });
 
-    myApp.directive('addAgentModalButton', function($DataServices, $SchemaModal) {
+    myApp.directive('addAgentModalButton', function($DataServices, $SchemaModal, salaryid, shiftid, skillid) {
         'use strict';
         return {
             restrict: 'E',
@@ -26,24 +26,22 @@ module.exports = function (myApp) {
             },
             controller: function($scope) {
 
-                $scope.open = function() {
+                var salaryTitleMap = {};
+                _.each(salaryid, function(obj) {
+                    salaryTitleMap[obj.label] = obj.label;
+                });
 
-                    // type				: { type : String, default: 'job', trim : true },
-                	// name				: { type : String, default: '', trim : true },
-                	// expirationDate		: { type : String, default: '', trim : true },
-                	// email				: { type : String, default: '', trim : true },
-                	// homeOffice			: { type : String, default: '', trim : true },
-                	// skill				: { type : String, default: '', trim : true },
-                	// worktype			: { type : String, default: '', trim : true },
-                	// shift				: { type : String, default: '', trim : true },
-                	// salary				: { type : String, default: '', trim : true },
-                	// address_city		: { type : String, default: '', trim : true },
-                	// address_zip			: { type : String, default: '', trim : true },
-                	// address_state		: { type : String, default: '', trim : true },
-                	// address_country		: { type : String, default: '', trim : true },
-                	// contactInfo			: { type : String, default: '', trim : true },
-                	// postingFlag			: { type : Boolean, default: false, trim : true },
-                	// status 				: { type : String, default: 'open' },
+                var skillTitleMap = {};
+                _.each(skillid, function(obj) {
+                    skillTitleMap[obj.label] = obj.label;
+                });
+
+                var shiftTitleMap = {};
+                _.each(shiftid, function(obj) {
+                    shiftTitleMap[obj.label] = obj.label;
+                });
+
+                $scope.open = function() {
 
                     var schema = {
                         type: 'object',
@@ -51,16 +49,12 @@ module.exports = function (myApp) {
                           type: {
                               type: 'string',
                               title: 'Type',
-                              // enum: ['staff', 'job'],
-                            //   titleMap: [
-                            //       { value: "Andersson", name: "Andersson" },
-                            //       { value: "Johansson", name: "Johansson" },
-                            //       { value: "other", name: "Something else..."}
-                            //     ]
+                              required: true
                           },
                           name: {
                             type: 'string',
-                            title: 'Name of Agent'
+                            title: 'Name of Agent',
+                            required: true
                           },
                           expirationDate: {
                               type: 'string',
@@ -68,47 +62,90 @@ module.exports = function (myApp) {
                           },
                           salary: {
                               type: 'string',
-                              title: 'Salary'
+                              title: 'Salary',
                           },
-                          worktype: {
+                          work: {
                               type: 'string',
-                              title: 'Work type'
+                              title: 'Work Type'
                           },
-                          address_zip: {
+                          shift: {
                               type: 'string',
-                              title: 'Address Zip'
+                              title: 'Shift'
                           },
-                          status: {
+                          skill: {
                               type: 'string',
-                              title: 'Status'
+                              title: 'Skill'
                           }
                         },
                         required: [ '*' ]
                       };
 
+
                     var form = [
-                        '*',
+                        {
+                            key: 'name',
+                            type: 'text',
+                            placeholder: 'Enter a name'
+                        },
+                        {
+                            key: 'expirationDate',
+                            type: 'text',
+                            placeholder: 'Enter an Expiration Date'
+                        },
+                        {
+                            key: 'type',
+                            type: 'select',
+                            placeholder: 'Enter a name',
+                            titleMap: {
+                              "job": "Job",
+                              "staff": "Staff",
+                            }
+                        },
+                        {
+                            key: 'salary',
+                            type: 'select',
+                            placeholder: 'Enter a salary',
+                            titleMap: salaryTitleMap
+                        },
+                        {
+                            key: 'shift',
+                            type: 'select',
+                            placeholder: 'Select a shift',
+                            titleMap: shiftTitleMap
+                        },
+                        {
+                            key: 'skill',
+                            type: 'select',
+                            placeholder: 'Select a Skill',
+                            titleMap: skillTitleMap
+                        },
+                        {
+                            key: 'work',
+                            type: 'select',
+                            placeholder: 'Select a Job Type',
+                            titleMap: {
+                              "FT": "Full Time",
+                              "PT": "Part Time",
+                              "": "Any"
+                            }
+                        },
                         {
                           type: 'submit',
                           title: 'Submit'
                         }
                     ];
 
-                    var submit = function(form, data, close) {
-                        // $scope.user.addForm(data).then(function(result) {
-                        //     // Close the modal.
-                        alert('dddd');
+                    var submit = function(form, agent, close) {
+                        agent.User = $scope.user._id;
 
+                        agent.add().then(function(result) {
                              close();
-                        // });
+                        });
                     };
+
 
                     $SchemaModal.open('Add Agent', $DataServices.Agent.new(), schema, form, submit);
                 };
-
-                // $DataServices.Agent.find( $scope.user._id).then(function(data) {
-                //     $scope.data = data;
-                // });
             },
             template: '<button ng-click="open();" class="btn btn-default">Add Agent</button>'
         };

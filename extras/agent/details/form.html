@@ -19,43 +19,43 @@
 		</div>
 
 		<div class="col-md-6">
-			<div class="form-group has-feedback" ng-class="{'has-error': form.id_office.$touched && form.id_office.$invalid}">
-				<label>Home Office ({{ agent.id_office }})</label>
-				<select name="id_office" required id="id_office" class="form-control"
-						ng-model="agent.id_office"
+			<div class="form-group has-feedback" ng-class="{'has-error': form.office.$touched && form.office.$invalid}">
+				<label>Home Office ({{ agent.office  || 'Any' }})</label>
+				<select name="office" id="office" class="form-control"
+						ng-model="agent.office"
 						placeholder="Select.."
 						ng-options="item.id_office as item.name_office for item in lookups.homeoffice ">
 					<option value="">Select Home Office</option>
 				</select>
-				<span ng-if="form.id_office.$touched" ng-class="{ 'glyphicon-ok': form.id_office.$valid, 'glyphicon-remove': form.id_office.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+				<span ng-if="form.office.$touched" ng-class="{ 'glyphicon-ok': form.office.$valid, 'glyphicon-remove': form.office.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
 			</div>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col-md-6">
-			<div class="form-group has-feedback" ng-class="{'has-error': form.agent.$touched && form.agent.$invalid}">
-				<label>Major Skill  ({{ agent.dept_code_name }})</label>
-				<select name="dept_code_name" required id="dept_code_name" class="form-control"
-						ng-model="agent.dept_code_name"
+			<div class="form-group has-feedback" ng-class="{'has-error': form.skill.$touched && form.skill.$invalid}">
+				<label>Major Skill  ({{ agent.skill  || 'Any' }})</label>
+				<select name="skill" id="skill" class="form-control"
+						ng-model="agent.skill"
 						placeholder="Select.."
 						ng-options="item.primary as item.primary for item in lookups.skills | orderBy:primary:desc ">
 					<option value="">Select Major Skill</option>
 				</select>
-				<span ng-if="form.agent.$touched" ng-class="{ 'glyphicon-ok': form.agent.$valid, 'glyphicon-remove': form.agent.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+				<span ng-if="form.skill.$touched" ng-class="{ 'glyphicon-ok': form.skill.$valid, 'glyphicon-remove': form.skill.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
 			</div>
 		</div>
 
 		<div class="col-md-6">
 			<div class="form-group has-feedback" ng-class="{'has-error': form.type_job.$touched && form.type_job.$invalid}">
-				<label>Type  ({{ agent.type_job }})</label>
-				<select name="type_job" id="type_job" class="form-control"
-						ng-model="agent.type_job"
+				<label>Type  ({{ agent.work || 'Any' }})</label>
+				<select name="work" id="work" class="form-control"
+						ng-model="agent.work"
 						placeholder="Select.."
-						ng-options="item.value as item.label for item in lookups.typejob">
+						ng-options="item.value as item.label for item in lookups.work">
 					<option value="">Select Work Type</option>
 				</select>
-				<span ng-if="form.type_job.$touched" ng-class="{ 'glyphicon-ok': form.type_job.$valid, 'glyphicon-remove': form.type_job.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+				<span ng-if="form.work.$touched" ng-class="{ 'glyphicon-ok': form.work.$valid, 'glyphicon-remove': form.work.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
 			</div>
 		</div>
 	</div>
@@ -63,20 +63,20 @@
 	<div class="row">
 		<div class="col-md-6">
 			<div class="form-group has-feedback" ng-class="{'has-error': form.salary.$touched && form.salary.$invalid}">
-				<label>Salary  ({{ agent.salary }})</label>
-				<select name="salary" required id="salary" class="form-control"
+				<label>Salary  ({{ agent.salary || 'Any' }})</label>
+				<select name="salary" id="salary" class="form-control"
 						ng-model="agent.salary"
 						placeholder="Select.."
-						ng-options="item.label as item.label for item in lookups.salary">
+						ng-options="item.value as item.label for item in lookups.salary">
 					<option value="">Select Salary</option>
 				</select>
-				<span ng-if="form.agent.$touched" ng-class="{ 'glyphicon-ok': form.salary.$valid, 'glyphicon-remove': form.salary.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+				<span ng-if="form.salary.$touched" ng-class="{ 'glyphicon-ok': form.salary.$valid, 'glyphicon-remove': form.salary.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
 			</div>
 		</div>
 		<div class="col-md-6">
 			<div class="form-group has-feedback" ng-class="{'has-error': form.shift.$touched && form.shift.$invalid}">
-				<label>Shift  ({{ agent.shift }})</label>
-				<select name="shift" required id="shift" class="form-control"
+				<label>Shift  ({{ agent.shift || 'Any' }})</label>
+				<select name="shift" id="shift" class="form-control"
 						ng-model="agent.shift"
 						placeholder="Select.."
 						ng-options="item.value as item.label for item in lookups.shift">

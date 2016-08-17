@@ -52,13 +52,10 @@ module.exports = function (nga, user) {
                 .targetEntity(user)
                 .targetField(nga.field('name_first')),
             // No Required Fields.
-            nga.field('address_city').label('City').validation({ required: false }).cssClasses('col-sm-4'),
-            nga.field('address_country').label('Country').validation({ required: false }).cssClasses('col-sm-4'),
             nga.field('ExpirationDate').validation({ required: false }).cssClasses('col-sm-4'),
             nga.field('salary').validation({ required: false }).cssClasses('col-sm-4'),
             nga.field('skill').validation({ required: false }).cssClasses('col-sm-4'),
-            nga.field('worktype').validation({ required: false }).cssClasses('col-sm-4'),
-            nga.field('address_state').label('State').validation({ required: false }).cssClasses('col-sm-4'),
+            nga.field('work').validation({ required: false }).cssClasses('col-sm-4'),
             nga.field('shift').validation({ required: false }).cssClasses('col-sm-4')
         ]);
 

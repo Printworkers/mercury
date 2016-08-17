@@ -1,25 +1,48 @@
 <div>
-	<h5>
+	<h4>
 		Search Results
-
-		<button class="btn pull-right btn-primary btn-sm" ng-click="refresh();" >Search & Refresh</button>
-	</h5>
+		<div class="btn-group pull-right">
+			<button class="btn btn-default btn-sm" ng-click="refresh();" >Search & Refresh</button>
+			&nbsp;
+			<button class="btn btn-danger btn-sm" ng-click="purge();" >Purge</button>
+		</div>
+	</h4>
 	<Br>
 
-	<table class="table table-hover">
+	<b>Agent Criteria</b>:
+
+	<b>Office:</b> {{ agent.office }},
+	<b>Skill:</b> {{ agent.skill }},
+	<b>Shift:</b> {{ agent.shift || '--' }},
+	<b>Salary:</b> {{ agent.salary || '--' }},
+	<b>Work:</b> {{ agent.work }}
+
+	<br>
+	<br>
+
+	<table ng-if="agent.type === 'job'" class="table table-hover">
 		<tr>
 			<th>
 				Job Id
 			</th>
 			<th>
-				Name
+				Skill
 			</th>
 			<th>
-				City/State
+				Work
+			</th>
+			<th>
+				Shift
+			</th>
+			<th>
+				Office
+			</th>
+			<th>
+				Salary
 			</th>
 		</tr>
 		<tr ng-if="results.length == 0">
-			<td colspan="3" align="center">
+			<td colspan="6" align="center">
 				<br>
 				<br>
 				Sorry, no results available.
@@ -32,11 +55,73 @@
 				{{ job.id_job }}
 			</td>
 			<td>
-				{{ job.primary }}
+				{{ job.dept_code_name }}
 			</td>
 			<td>
-				{{ job.state }}
+				{{ job.calc_work_type }}
+			</td>
+			<td>
+				{{ job.shifts }}
+			</td>
+			<td>
+				{{ job.web_office }}
+			</td>
+			<td>
+				{{ job.rate_range }}
 			</td>
 		</tr>
 	</table>
+
+	<table ng-if="agent.type === 'staff'" class="table table-hover">
+		<tr>
+			<th>
+				Talent Id
+			</th>
+			<th>
+				Skill
+			</th>
+			<th>
+				Work
+			</th>
+			<th>
+				Shift
+			</th>
+			<th>
+				Office
+			</th>
+			<th>
+				Salary
+			</th>
+		</tr>
+		<tr ng-if="results.length == 0">
+			<td colspan="6" align="center">
+				<br>
+				<br>
+				Sorry, no results available.
+				<br>
+				<br>
+			</td>
+		</tr>
+		<tr ng-repeat="staff in results">
+			<td>
+				{{ staff.id_employee }}
+			</td>
+			<td>
+				{{ staff.skill_primary }}
+			</td>
+			<td>
+				--
+			</td>
+			<td>
+				{{ staff.shifts }}
+			</td>
+			<td>
+				{{ staff.id_office }}
+			</td>
+			<td>
+				--
+			</td>
+		</tr>
+	</table>
+
 </div>

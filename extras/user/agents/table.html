@@ -31,7 +31,7 @@
 			Skill
 		</th>
 		<th>
-			Job Type
+			Work
 		</th>
 		<th>
 			Salary
@@ -41,7 +41,7 @@
 		</th>
 	</tr>
 	<tr ng-if="data.length == 0">
-		<td class="warning" colspan="5" align="center">
+		<td class="warning" colspan="9" align="center">
 			<br><br>
 			<br>
 			There are no records available.
@@ -52,12 +52,12 @@
 	<tr ng-repeat="item in data">
 		<td>{{ item.createdAt | date:'medium' }}</td>
 		<td>{{ item.name }}</td>
-		<td>{{ item.type }}</td>
-		<td>{{ item.dept_code_name }}</td>
-		<td>{{ item.id_office }}</td>
-		<td>{{ item.shift }}</td>
-		<td>{{ item.type_job }}</td>
-		<td>{{ item.salary }}</td>
+		<td>{{ item.type || '*' }}</td>
+		<td>{{ item.skill || '*'}}</td>
+		<td>{{ item.id_office || '*'}}</td>
+		<td>{{ item.shift || '*'}}</td>
+		<td>{{ item.work || '*'}}</td>
+		<td>{{ item.salary || '*'}}</td>
 		<td>
 			<div class="btn-group">
 				<json-viewer class="btn-xs" entry="item"></json-viewer>
