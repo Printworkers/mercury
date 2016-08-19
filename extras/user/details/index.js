@@ -28,6 +28,7 @@ module.exports = function (myApp) {
 					ra_stage_status: [
 						{ value: 'open', label: 'Open' },
 						{ value: 'closed', label: 'Closed' },
+						{ value: 'processing', label: 'Processing' }
 					],
 					userTypes: [
 						{ value: 'job seeker', label: 'Job Seeker' },
