@@ -25,15 +25,9 @@ module.exports = function (myApp) {
 						{ value: 7, label: 'Available. Read for Placement (7)' }
 					],
 					booleanYesNo: booleanYesNo,
-					ra_app_statuses: [
-						{ value: 'phase1_open', label: 'Phase 1 Open' },
-						{ value: 'phase1_pending', label: 'Phase 1 Processing' },
-						{ value: 'phase1_signing', label: 'Phase 1 Signing' },
-						{ value: 'phase1_complete', label: 'Phase 1 Complete' },
-						{ value: 'phase2_open', label: 'Phase 2 Open (Elegibility)' },
-						{ value: 'phase2_pending', label: 'Phase 2 Processing (Elegibility)' },
-						{ value: 'phase2_signing', label: 'Phase 2 Signing' },
-						{ value: 'closed', label: 'Closed' }
+					ra_stage_status: [
+						{ value: 'open', label: 'Open' },
+						{ value: 'closed', label: 'Closed' },
 					],
 					userTypes: [
 						{ value: 'job seeker', label: 'Job Seeker' },

@@ -163,6 +163,45 @@
 		</div>
 	</div>
 
+	<hr ng-if="user.type === 'job seeker'">
+
+	<div ng-if="user.type === 'job seeker'" class="row">
+		<div class="col-md-3">
+			<div class="form-group has-feedback" ng-class="{'has-error': form.ra_stage_1.$touched && form.ra_stage_1.$invalid }">
+				<label for="ra_stage_1">RA Stage 1</label>
+				<select class="form-control" name="ra_stage_1" id="ra_stage_1"
+						ng-model="user.ra_stage_1"
+						ng-options="item.value as item.label for item in lookups.ra_stage_status"
+						>
+				</select>
+
+				<span ng-if="form.ra_stage_1.$touched" ng-class="{ 'glyphicon-ok': form.ra_stage_1.$valid, 'glyphicon-remove': form.ra_stage_1.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="form-group has-feedback" ng-class="{'has-error': form.ra_stage_2.$touched && form.ra_stage_2.$invalid }">
+				<label for="ra_stage_2">RA Stage 2</label>
+				<select class="form-control" name="ra_stage_2" id="ra_stage_2"
+						ng-model="user.ra_stage_2"
+						ng-options="item.value as item.label for item in lookups.ra_stage_status"
+						>
+				</select>
+
+				<span ng-if="form.ra_stage_2.$touched" ng-class="{ 'glyphicon-ok': form.ra_stage_2.$valid, 'glyphicon-remove': form.ra_stage_2.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+			</div>
+		</div>
+
+		<div class="col-md-3">
+			<div class="form-group has-feedback" ng-class="{'has-error': form.id_employee.$touched && form.id_employee.$invalid }">
+				<label for="id_employee">FM Employee Id</label>
+				<input type="text" name="id_employee" ng-disabled="true" id="id_employee" class="form-control" ng-model="user.id_employee" placeholder="Filemaker Employee Id">
+				<span ng-if="form.id_employee.$touched" ng-class="{ 'glyphicon-ok': form.id_employee.$valid, 'glyphicon-remove': form.id_employee.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+			</div>
+		</div>
+	</div>
+
+	<hr ng-if="user.type === 'job seeker'">
+	
 	<div ng-if="user.type === 'job seeker'" class="row">
 		<div class="col-md-12">
 			<div class="form-group has-feedback" ng-class="{'has-error': form.web_profile.$touched && form.web_profile.$invalid }">
@@ -332,28 +371,6 @@
 					<option value="">Select Availability</option>
 				</select>
 				<span ng-if="form.flag_available_immediately.$touched" ng-class="{ 'glyphicon-ok': form.flag_available_immediately.$valid, 'glyphicon-remove': form.flag_available_immediately.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
-			</div>
-		</div>
-	</div>
-
-	<div ng-if="user.type === 'job seeker'" class="row">
-		<div class="col-md-6">
-			<div class="form-group has-feedback" ng-class="{'has-error': form.ra_status.$touched && form.ra_status.$invalid }">
-				<label for="ra_phase_2_status">Remote App Status</label>
-				<select class="form-control" name="ra_status" id="ra_status"
-						ng-model="user.ra_status"
-						ng-options="item.value as item.label for item in lookups.ra_app_statuses"
-						>
-				</select>
-
-				<span ng-if="form.ra_status.$touched" ng-class="{ 'glyphicon-ok': form.ra_status.$valid, 'glyphicon-remove': form.ra_status.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
-			</div>
-		</div>
-		<div class="col-md-3">
-			<div class="form-group has-feedback" ng-class="{'has-error': form.id_employee.$touched && form.id_employee.$invalid }">
-				<label for="id_employee">FM Employee Id</label>
-				<input type="text" name="id_employee" ng-disabled="true" id="id_employee" class="form-control" ng-model="user.id_employee" placeholder="Filemaker Employee Id">
-				<span ng-if="form.id_employee.$touched" ng-class="{ 'glyphicon-ok': form.id_employee.$valid, 'glyphicon-remove': form.id_employee.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
 			</div>
 		</div>
 	</div>
