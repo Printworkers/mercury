@@ -20,7 +20,11 @@ module.exports = function (myApp) {
 				};
 
 				$DataServices.Skill.all().then(function(data) {
-					$scope.lookups.skills = data;
+					$scope.lookups.skills = _.map(data, function(d) {
+						d.label = d.primary;
+						d.value = d.primary;
+						return d;
+					});
 					$scope.lookups.skills.unshift({ label: '<Any Skill>', value: '' });
 				});
 

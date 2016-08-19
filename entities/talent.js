@@ -9,7 +9,7 @@ module.exports = function (nga) {
     .fields([
         nga.field('name_first'),
         nga.field('name_last'),
-        nga.field('address_city'),
+        nga.field('dept_primary_name').label('Skill'),
         nga.field('address_state'),
         nga.field('id_employee').label('Employee Id'),
         nga.field('office').label('Office'),
@@ -34,8 +34,10 @@ module.exports = function (nga) {
             nga.field('address_city').cssClasses('col-sm-8'),
             nga.field('address_state').cssClasses('col-sm-8'),
             nga.field('email').cssClasses('col-sm-8'),
-            nga.field('primary_skill').cssClasses('col-sm-8'),
+            nga.field('shifts').cssClasses('col-sm-8'),
+            nga.field('skill_primary').label('Primary Skill').cssClasses('col-sm-8'),
             nga.field('id_office').cssClasses('col-sm-8'),
+            nga.field('office').cssClasses('col-sm-8'),
             nga.field('id_employee').cssClasses('col-sm-8'),
             nga.field('web_profile').cssClasses('col-sm-8')
            ]);
