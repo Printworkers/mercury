@@ -9,13 +9,17 @@ module.exports = function (nga, user) {
 		{ value: 'userUsernameReminder', label: 'User Username Reminder' },
 		{ value: 'userPasswordReminder', label: 'User Password Reminder' },
 		{ value: 'userNewPassCode', label: 'User New Passcode'},
+
+		{ value: 'agentResultsEmail', label: 'Agent Results Email'},
+
 		// Draft Versions
 		{ value: 'userNewJobSeekerAccount-Draft', label: 'New Job Seeker Account (Draft)' },
 		{ value: 'userNewEmployerAccount-Draft', label: 'New Employer Account (Draft)' },
 
 		{ value: 'userUsernameReminder-Draft', label: 'User userName Reminder (Draft)' },
 		{ value: 'userPasswordReminder-Draft', label: 'User Password Reminder (Draft)' },
-		{ value: 'userNewPassCode-Draft', label: 'User New Passcode (Draft)'}
+		{ value: 'userNewPassCode-Draft', label: 'User New Passcode (Draft)'},
+		{ value: 'agentResultsEmail-Draft', label: 'Agent Results Email (Draft)'}
 	];
 
 	/* emailTemplate */

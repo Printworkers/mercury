@@ -9,6 +9,7 @@ module.exports = function(ngModule) {
 
 	var queueNames = [
 		// Standard Worker tasks.
+		{ value: 'agentMatching', label: 'agentMatching' },
 		{ value: 'userCreate', label: 'userCreate' },
 		{ value: 'userPatch', label: 'userPatch' },
 		{ value: 'userSignedForm', label: 'userSignedForm' },
