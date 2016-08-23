@@ -55,6 +55,8 @@ require('./extras/json/json.js')(myApp);
 require('./extras/user/fmLinker')(myApp);
 require('./extras/user/fmSync')(myApp);
 require('./extras/user/queue')(myApp);
+require('./extras/user/login')(myApp);
+require('./extras/user/log')(myApp);
 require('./extras/user/password')(myApp);
 require('./extras/user/username')(myApp);
 require('./extras/user/details')(myApp);

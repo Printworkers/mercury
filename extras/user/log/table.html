@@ -1,0 +1,83 @@
+<h4>
+	Queue Log Events for this User
+
+	<button ng-click="fetch();" class="pull-right btn btn-default btn-sm">
+		Refresh
+	</button>
+</h4>
+
+<p>
+	The following is a list of all the queue events for this user.
+</p>
+
+<table class="table table-striped">
+	<tr>
+		<th>
+			Queue
+		</th>
+		<th>
+			Enqueued
+		</th>
+		<th>
+			Done
+		</th>
+		<th>
+			Stats
+		</th>
+		<th>
+			Status
+		</th>
+		<th>
+			&nbsp;
+		</th>
+	</tr>
+	<tr ng-if="data.length == 0">
+		<td class="warning" colspan="6" align="center">
+			<br><br>
+			<br>
+			There are no records available.
+			<br><br>
+			<br><br>
+		</td>
+	</tr>
+	<tr ng-repeat="item in data | orderBy:'-enqueued'">
+		<td>
+			{{item.name}}
+		</td>
+		<td>
+			{{item.enqueued | date:'short'}}
+		</td>
+		<td>
+			{{item.ended | date:'short'}}
+		</td>
+		<td>
+			...
+		</td>
+		<td>
+			<span class="label label-success" ng-if="item.status === 'queued'">
+				{{ item.status }}
+			</span>
+
+			<span class="label label-danger" ng-if="item.status === 'failed'">
+				{{ item.status }}
+			</span>
+
+			<span class="label label-default" ng-if="item.status === 'dequeued'">
+				{{item.status}}
+			</span>
+
+			<span class="label label-primary" ng-if="item.status === 'complete'">
+				{{item.status}}
+			</span>
+		</td>
+		<td>
+			<div class="btn-group pull-right">
+				<json-viewer entry="item" class="btn-sm"></json-viewer>
+
+				<button ng-click="delete(item);" class="btn btn-sm btn-danger">
+					<i class="glyphicon glyphicon-trash"></i>
+				</button>
+			</div>
+		</td>
+	</tr>
+</table>

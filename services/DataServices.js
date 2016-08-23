@@ -8,6 +8,7 @@ module.exports = function(myApp) {
         var User = Restangular.service('user');
         var Agent = Restangular.service('agent');
         var Queue = Restangular.service('queue');
+        var QueueLog = Restangular.service('queuelog');
         var HomeOffice = Restangular.service('homeoffice');
         var Application = Restangular.service('application');
 
@@ -379,6 +380,15 @@ module.exports = function(myApp) {
                         return homeoffice_cache;
                     });
                 }
+            },
+            QueueLog: {
+                find: function(User) {
+                    return Restangular.all('queuelog')
+                        .getList({ userId: User })
+                        .then(function(data) {
+                            return data.data ? data.data : data;
+                        });
+                },
             }
         };
     }]);

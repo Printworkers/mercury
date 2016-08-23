@@ -40,7 +40,9 @@ module.exports = function(ngModule) {
 		{ value: 'createClient', label: 'createClient'},
 		{ value: 'userEducationUpsert', label: 'userEducationUpsert' },
 		{ value: 'userReferenceUpsert', label: 'userReferenceUpsert' },
-		{ value: 'userWorkHistoryUpsert', label: 'userWorkHistoryUpsert' }
+		{ value: 'userWorkHistoryUpsert', label: 'userWorkHistoryUpsert' },
+
+		{ value: 'archiveCompletedQueueJobs', label: 'archiveCompletedQueueJobs' }
 	];
 
 	var queueStatuses = [
