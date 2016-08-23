@@ -14,10 +14,10 @@ module.exports = function (myApp) {
 				scope.login = function () {
 					if (confirm('Do you want to login as this user?')) {
 						/* Call the user and get a token. */
-						console.log(scope.user());
 						var user = scope.user();
 
 						user.getToken().then(function(result) {
+							var result = result.data ? result.data : result;
 							window.open('http://app.semperllc.com/#/?token=' + result.token);
 						});
 					}

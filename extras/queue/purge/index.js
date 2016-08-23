@@ -7,9 +7,7 @@ module.exports = function (myApp) {
 				queue: '&'
 			},
 			controller: function ($scope, $DataServices) {
-
 				$scope.purge = function() {
-                    console.log('sss', $DataServices);
 				  if (confirm('Do you want to purge all completed tasks?')) {
                       $DataServices.Queue.purgeAllCompleted().then(function(result) {
                           alert('The tasks has been created.');
