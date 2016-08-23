@@ -235,6 +235,14 @@ module.exports = function(myApp) {
                             return data.data ? data.data : data;
                         });
                 },
+                purgeAllCompleted: function() {
+                    var n =  Restangular.one('queue');
+                    n.name = 'archiveCompletedQueueJobs';
+                    n.params = {};
+                    n.queue = 'general';
+
+                    return n.post();
+                },
                 get: function(id) {
                     return Restangular.one('queue', id)
                         .get()

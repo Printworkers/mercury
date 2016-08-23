@@ -9,6 +9,7 @@ module.exports = function (nga, user, globallookups) {
 		.sortField('enqueued')
 		.sortDir('DSC')
 		// .description('The following is a list of Queue Jobs. <total-queue-jobs></total-queue-jobs> <queue-report></queue-report>')
+		.description('The following is a list of Queue Jobs. <queue-purge-completed-tasks></queue-purge-completed-tasks>')
 		.fields([
             nga.field('name'),
 			nga.field('params.userId').label('User'),
