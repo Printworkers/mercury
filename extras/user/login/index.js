@@ -12,8 +12,12 @@ module.exports = function (myApp) {
 				scope.className = scope.class || 'btn-xs';
 
 				scope.login = function () {
-					// $location.path('/user/details/' + id);
-					alert('sdf');
+					if (confirm('Do you want to login as this user?')) {
+						/* Call the user and get a token. */
+						scope.user().getToken().then(function(result) {
+							window.open('http://app.semperllc.com/#/?token=' + result.token);
+						});
+					}
 				};
 			},
 			template: '<button class="btn btn-success {{className}}" ng-click="login()"><i class="glyphicon glyphicon-pencil"></i> Login as User</button>'

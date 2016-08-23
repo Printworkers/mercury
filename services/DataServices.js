@@ -121,6 +121,10 @@ module.exports = function(myApp) {
                 return this.customPOST(data, 'addForm');
             };
 
+            model.getToken = function() {
+                return this.customPOST(null, 'getToken');
+            };
+
             model.addApplication = function(data) {
                 var data = data.User = model._id;
                 return Restangular.all('application').post(data);
