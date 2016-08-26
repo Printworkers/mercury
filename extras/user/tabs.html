@@ -50,7 +50,8 @@ $(function(){
 			<b>Employee Id</b>: {{user.id_employee || 'NA'}}
 		</div>
         <div ng-if="user.type == 'employer'">
-			<b>Client Id</b>: {{user.id_client || 'NA'}}
+			<b>Client Id</b>: {{user.id_client || 'NA'}}<br>
+            <b>Legacy Id</b>: {{user.legacyId || 'NA'}}
 		</div>
 	</div>
 	<div class="col-md-4">
