@@ -24,7 +24,10 @@ module.exports = function (nga, user) {
             nga.field('availableForTimes').label('Times?'),
             nga.field('availableImmediately').label('Available?'),
             nga.field('skillsMatch').label('Skills Match?'),
-            nga.field('status').label('Status')
+            nga.field('status').label('Status'),
+            nga.field('createdAt', 'date')
+    			.label('Created')
+    			.format('MM/dd/yyyy')
         ]).listActions(['edit', 'delete'])
         .filters([
         	nga.field('keywords', 'template')
