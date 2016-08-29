@@ -11,6 +11,9 @@ module.exports = function (nga, user) {
             nga.field('User.username').label('Owner'),
             nga.field('status').label('Status')
         ]).listActions(['edit', 'delete'])
+        .exportFields([
+            nga.field('email'),
+        ])
         .filters([
         	nga.field('keywords', 'template')
                 .label('')

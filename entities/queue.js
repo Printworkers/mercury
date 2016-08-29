@@ -12,7 +12,15 @@ module.exports = function (nga, user, globallookups) {
 		.description('The following is a list of Queue Jobs. <queue-purge-completed-tasks></queue-purge-completed-tasks>')
 		.fields([
             nga.field('name'),
-			nga.field('params.userId').label('User'),
+			nga.field('params.userId')
+				.label('User')
+				.template(function(e) {
+					if (e.values['params.userId']) {
+						return '<a class="btn" href="#/user/details/' + e.values['params.userId'] + '">' + e.values['params.userId'] + '</a>';
+					} else {
+						return 'NA';
+					}
+				}),
 			nga.field('status')
 				.template(function(e) {
 					var className = 'label-default';
