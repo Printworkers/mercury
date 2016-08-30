@@ -32,7 +32,7 @@ module.exports = function(myApp) {
                             $scope.data = {
                                 to: 'stephan.smith.bc93@gmail.com',
                                 // user: '',
-                                data: JSON.stringify(fields)
+                                data: JSON.stringify($scope.template.fields)
                             };
 
                             $scope.sendEmail = function() {

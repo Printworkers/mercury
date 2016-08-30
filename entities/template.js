@@ -68,26 +68,27 @@ module.exports = function (nga, user) {
 				.label('Subject')
 				.validation({ required: true })
 				.cssClasses('col-sm-8'),
-			nga.field('html', 'wysiwyg')
-				.attributes({ placeholder: 'Enter an HTML template' })
-				.validation({required: true }),
-			nga.field('type')
-				.validation({ required: true })
-				.attributes({ placeholder: 'Enter a type' })
-				.cssClasses('col-sm-4'),
 			nga.field('from', 'email')
 				.validation({ required: true })
 				.attributes({ placeholder: 'From Email' })
 				.cssClasses('col-sm-4'),
+			nga.field('html', 'text')
+				.attributes({ placeholder: 'Enter an HTML template', rows: 10 })
+				.cssClasses('col-sm-9')
+				.validation({required: true }),
+			// nga.field('type')
+			// 	.validation({ required: true })
+			// 	.attributes({ placeholder: 'Enter a type' })
+			// 	.cssClasses('col-sm-4'),
 			nga.field('fields', 'json')
 				.validation({ required: false })
-				.attributes({ placeholder: 'Enter fields for the email template' })
+				.attributes({ placeholder: 'Enter fields for the email template', rows: 3 })
 				.cssClasses('col-sm-8')
 		]);
 
 	template
 		.editionView()
-		.description('Use this to edit an existing email template.')
+		.description('Use this to edit an existing email template. <send-email template="entry"></send-email>')
 		.fields(template.creationView().fields());
 
 	return template;

@@ -17,6 +17,14 @@ module.exports = function (nga, lookups) {
 		nga.field('id')
 			.label('id_employee'),
 		nga.field('type'),
+		nga.field('createdAt', 'date')
+			.label('Registered')
+			.format('MM/dd/yyyy'),
+		nga.field('createdAt')
+			.label('When')
+			.template(function(e) {
+				return moment(e.values.createdAt).fromNow();
+			}),
 		nga.field('lastLoginAt', 'date')
 			.label('Last Login')
 			.format('MM/dd/yyyy'),
