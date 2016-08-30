@@ -11,7 +11,6 @@ module.exports = function(myApp) {
 						$scope[stat] = response.data.count;
 					});
             	});
-            	console.log($scope);
             }
         };
     });
