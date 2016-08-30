@@ -48,6 +48,7 @@ require('./extras/dashboard/ApplicationCalendar')(myApp);
 require('./extras/dashboard/OrderCalendar')(myApp);
 require('./extras/dashboard/UsersOnline')(myApp);
 require('./extras/dashboard/UserCreatedAt')(myApp);
+require('./extras/dashboard/UserRemoteApp')(myApp);
 
 /* Extras */
 require('./extras/json/json.js')(myApp);

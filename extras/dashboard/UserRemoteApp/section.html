@@ -1,0 +1,30 @@
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-2">
+                <i class="fa fa-users fa-2x"></i>
+            </div>
+            <div class="col-xs-10 text-right">
+                <h3 style="padding: 0px; margin-top: 5px; margin-bottom: 0px;">
+                    Remote App Statuses
+                    <i ng-click="refresh();" class="fa fa-refresh fa-1x pull-right" aria-hidden="true"></i>
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-striped table-hover table-border">
+        <tr ng-if="error">
+            <td>{{ error }}</td>
+        </tr>
+        <tr ng-repeat="(key, data) in data">
+            <td>
+                {{ data.label }}
+            </td>
+            <td width="10%">
+                {{ data.count | number:0 }}
+            </td>
+        </tr>
+    </table>
+</div>
