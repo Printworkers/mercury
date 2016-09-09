@@ -30,7 +30,7 @@ $(function(){
 				List
 			</a>
 
-            <a href="#/user/details/{{ agent.User }}/agents" class="btn btn-default btn-sm">
+            <a href="#/user/details/{{ agent.User._id }}/agents" ng-show="agent.User != null" class="btn btn-success btn-sm">
 				Go To User
 			</a>
 		</div>
@@ -47,6 +47,16 @@ $(function(){
 	</div>
 	<div class="col-md-4">
         <b>Type:</b> {{ agent.type }}
+	</div>
+</div>
+
+<div ng-if="agent.User" class="row">
+	<div class="col-md-4">
+		<b>Owner</b>: {{ agent.User.name_first }} {{ agent.User.name_last }}<br>
+	</div>
+	<div class="col-md-8">
+		<b>Status</b>: {{ agent.User.type || 'NA'}}<br>
+        <b>Username:</b> {{ agent.User.username }}
 	</div>
 </div>
 
