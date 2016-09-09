@@ -8,6 +8,14 @@ module.exports = function (nga, user) {
     .sortDir('DSC')
     .fields([
         nga.field('name'),
+        nga.field('User')
+            .label('User')
+            .template(function(entry) {
+                if (entry) return 'NA';
+                var name = entry.values['User.name_first'] + ' ' + entry.values['User.name_last'];
+                var id = entry.values['User._id'];
+                return '<a href="/#/user/details/'+id+'">' + name + '</a>';
+            }),
         nga.field('address_city').label('City'),
         nga.field('address_state').label('State'),
         nga.field('type'),
