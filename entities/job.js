@@ -53,7 +53,12 @@ module.exports = function (nga) {
         nga.field('state'),
         nga.field('id_job').label('Job Id'),
         nga.field('web_office').label('Office'),
-        nga.field('duration').label('Duration')
+        nga.field('duration').label('Duration'),
+        nga.field('createdAt')
+            .label('Imported')
+            .template(function(e) {
+                return moment(e.values.createdAt).fromNow();
+            })
     ]).listActions([
     	'edit',
     	'show',

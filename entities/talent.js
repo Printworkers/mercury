@@ -13,6 +13,11 @@ module.exports = function (nga) {
         nga.field('address_state'),
         nga.field('id_employee').label('Employee Id'),
         nga.field('office').label('Office'),
+        nga.field('createdAt')
+            .label('Imported')
+            .template(function(e) {
+                return moment(e.values.createdAt).fromNow();
+            })
     ]).listActions([
     	'show',
     	'delete',
