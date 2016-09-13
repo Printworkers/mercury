@@ -8,9 +8,15 @@ module.exports = function (nga, user) {
 	.sortDir('DSC')
 	.fields([
 		nga.field('dept_code').label('Dept Code'),
+		nga.field('createdAt')
+			.label('Imported')
+			.template(function(e) {
+				return moment(e.values.createdAt).fromNow();
+			}),
 		nga.field('primary')
 			.label('Primary Skill'),
 		nga.field('secondary')
+			.cssClasses('col-sm-4')
 			.label('Secondary Skills'),
 	]).listActions([
 		'edit', 'show'

@@ -13,7 +13,12 @@ module.exports = function (nga, lookups) {
         nga.field('id_office').label('Id'),
         nga.field('phone_main').label('Phone'),
         nga.field('city'),
-        nga.field('state')
+        nga.field('state'),
+        nga.field('createdAt')
+            .label('Imported')
+            .template(function(e) {
+                return moment(e.values.createdAt).fromNow();
+            })
     ]).listActions(['edit', 'delete'])
     .filters([
     	nga.field('keywords', 'template')
