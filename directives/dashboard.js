@@ -5,7 +5,7 @@ module.exports = function(myApp) {
         return {
             templateUrl: 'dashboard.html',
             controller: function($scope, apiUrl, $http) {
-            	var stats = ['agent', 'application', 'homeOffice', 'job', 'order', 'work', 'education', 'document', 'user', 'lookup', 'template', 'skill'];
+            	var stats = ['agent', 'application', 'homeoffice', 'job', 'order', 'work', 'education', 'document', 'user', 'template', 'skill'];
             	_.map(stats, function(stat) {
 	                $http.get(apiUrl + stat + "/count", {headers: {'x-access-token': localStorage.getItem('semper-admin-token') }}).then(function (response) {
 						$scope[stat] = response.data.count;
