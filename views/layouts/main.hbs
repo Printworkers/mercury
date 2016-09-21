@@ -4,16 +4,12 @@
 		<title>Semper Administrator</title>
 		<link rel="stylesheet" href="node_modules/ng-admin/build/ng-admin.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-		<script type="text/javascript">
-				if (!localStorage.getItem('semper-admin-token')) {
-					window.location.href = './login.html';
-				}
+		<link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Open+Sans:600italic,400,300,600,700' type='text/css'>
 
-				// window.apiUrl = 'http://localhost:7001/'
-		</script>
 	</head>
 	<body ng-app="myApp">
-		<div ui-view></div>
+		{{{ body }}}
+
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>

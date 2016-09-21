@@ -7,6 +7,9 @@
 	<a class="navbar-brand" href="#" ng-click="appController.displayHome()">Semper LLC Administrator</a>
 </div>
 <ul class="nav navbar-top-links navbar-right hidden-xs">
+	<li>
+		<h6>Using: {{ apiDomain }}</h6>
+	</li>
 	<li dropdown>
 		<a dropdown-toggle href="#" aria-expanded="true" ng-controller="username">
 			<i class="fa fa-user fa-lg"></i>&nbsp;{{ user.name_first || user.username }}&nbsp;<i class="fa fa-caret-down"></i>
