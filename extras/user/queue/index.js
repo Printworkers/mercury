@@ -30,22 +30,33 @@ module.exports = function (myApp) {
                     $state.go('queue-detail', { entity: 'queue', id: item._id });
                 };
 
+                $scope.cleanUp = function() {
+                    var completed = _.where($scope.data, { status: 'complete' });
+                    if (completed.length === 0) return alert('There are no comleted jobs to archive.');
+
+                    if (confirm('You want to archive the ' + completed.length + ' completed tasks for this account?')) {
+                        completed.forEach(function(job) {
+                            job.remove();
+                        });
+
+                        $timeout(fetch, 1000);
+                    }
+                };
+
                 $scope.reQueueFails = function() {
                     var fails = _.where($scope.data, { status: 'failed' });
                     if (fails.length === 0) return alert('There are no failed jobs to queue again.');
 
                     if (confirm('You want to requeue the ' + fails.length + ' failed tasks for this account?')) {
-                        var fails = _.sortBy(fails, function(job){ return +moment(job.delay).unix(); });
+                        fails = _.sortBy(fails, function(job){ return +moment(job.delay).unix(); });
 
                         fails.forEach(function(job) {
                             job.patch({ status: 'queued'}).then(function(data) {
                                 job = data;
                             });
-
-                            console.log('got date', job.name, job.status, moment(job.enqueued).format('HH:MM ss'));
                         });
 
-                        $timeout(fetch, 1000);;
+                        $timeout(fetch, 1000);
                     }
                 };
 
