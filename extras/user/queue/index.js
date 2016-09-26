@@ -1,6 +1,6 @@
 module.exports = function (myApp) {
 
-    myApp.directive('userQueueTable', function($DataServices, $location, $state) {
+    myApp.directive('userQueueTable', function($DataServices, $location, $state, $timeout) {
         'use strict';
         return {
             restrict: 'E',
@@ -28,6 +28,25 @@ module.exports = function (myApp) {
 
                 $scope.edit = function(item) {
                     $state.go('queue-detail', { entity: 'queue', id: item._id });
+                };
+
+                $scope.reQueueFails = function() {
+                    var fails = _.where($scope.data, { status: 'failed' });
+                    if (fails.length === 0) return alert('There are no failed jobs to queue again.');
+
+                    if (confirm('You want to requeue the ' + fails.length + ' failed tasks for this account?')) {
+                        var fails = _.sortBy(fails, function(job){ return +moment(job.delay).unix(); });
+
+                        fails.forEach(function(job) {
+                            job.patch({ status: 'queued'}).then(function(data) {
+                                job = data;
+                            });
+
+                            console.log('got date', job.name, job.status, moment(job.enqueued).format('HH:MM ss'));
+                        });
+
+                        $timeout(fetch, 1000);;
+                    }
                 };
 
                 fetch();

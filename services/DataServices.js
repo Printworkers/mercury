@@ -230,7 +230,7 @@ module.exports = function(myApp) {
                 },
                 find: function(User) {
                     return Restangular.all('queue')
-                        .getList({ userId: User })
+                        .getList({ userId: User, sortField: 'enqueued', sortDir: 'ASC' })
                         .then(function(data) {
                             return data.data ? data.data : data;
                         });

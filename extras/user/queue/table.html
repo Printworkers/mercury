@@ -1,9 +1,16 @@
 <h4>
 	Queue Events for this User
 
-	<button ng-click="fetch();" class="pull-right btn btn-default btn-sm">
-		Refresh
-	</button>
+	<div class="btn-group pull-right">
+		<button ng-click="fetch();" class="btn btn-default btn-sm">
+			Refresh
+		</button>
+
+		<button ng-click="reQueueFails();" class="btn btn-danger btn-sm">
+			Requeue Fails
+		</button>
+	</div>
+
 </h4>
 
 <p>
@@ -46,6 +53,8 @@
 		</td>
 		<td>
 			{{item.enqueued | date:'short'}}
+
+			(<span am-time-ago="item.delay"></span>)
 		</td>
 		<td>
 			{{item.ended | date:'short'}}
