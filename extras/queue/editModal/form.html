@@ -1,0 +1,47 @@
+<div class="modal fade">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="close(false)" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Queue Edit</h4>
+      </div>
+      <div class="modal-body">
+      	<form>
+
+            <form name="form" novalidate>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group has-feedback" ng-class="{'has-error': form.status.$touched && form.status.$invalid}">
+                            <label>Status</label>
+                            <select name="status" required id="status" class="form-control"
+                                    ng-model="queue.status"
+                                    placeholder="Select.."
+                                    ng-options="item.value as item.label for item in queueStatuses">
+                                <option value="">Select Status</option>
+                            </select>
+                            <span ng-if="form.status.$touched" ng-class="{ 'glyphicon-ok': form.status.$valid, 'glyphicon-remove': form.status.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+            			<div class="form-group has-feedback" ng-class="{'has-error': form.params.$touched && form.params.$invalid }">
+            				<label for="params">Params</label>
+            				<textarea type="text" name="params" id="params" rows="15" class="form-control" ng-model="jsonString" placeholder="Enter Params"></textarea>
+            				<span ng-if="form.params.$touched" ng-class="{ 'glyphicon-ok': form.params.$valid, 'glyphicon-remove': form.params.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            {{ jsonStatus }}
+                        </div>
+            		</div>
+                </div>
+            </form>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" ng-click="close(true)" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" ng-click="save()" class="btn btn-primary" data-dismiss="modal">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

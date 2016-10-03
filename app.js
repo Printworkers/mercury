@@ -84,6 +84,7 @@ require('./extras/queue/manage')(myApp);
 require('./extras/queue/queue-routes')(myApp);
 require('./extras/queue/details')(myApp);
 require('./extras/queue/purge')(myApp);
+require('./extras/queue/editModal')(myApp);
 
 /* Template. */
 require('./extras/template/sendEmail')(myApp);

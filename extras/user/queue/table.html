@@ -87,15 +87,21 @@
 			<div class="btn-group pull-right">
 				<json-viewer entry="item" class="btn-sm"></json-viewer>
 
-				<button ng-click="edit(item);" class="btn btn-sm btn-default">
+				<!-- <button ng-click="edit(item);" class="btn btn-sm btn-default">
 					<i class="glyphicon glyphicon-pencil"></i>
-				</button>
+				</button> -->
 
 				<button ng-click="delete(item);" class="btn btn-sm btn-danger">
 					<i class="glyphicon glyphicon-trash"></i>
 				</button>
 
-				<re-queue-job-btn entry="item"></re-queue-job-btn>
+			    <queue-edit-modal queue="item" class="btn btn-sm btn-default"></queue-edit-modal>
+
+				<a href="/#/queue/details/{{ item._id }}" class="btn btn-sm btn-default">
+					<i class="glyphicon glyphicon-chevron-right"></i>
+				</a>
+
+				<!-- <re-queue-job-btn entry="item"></re-queue-job-btn> -->
 			</div>
 		</td>
 	</tr>
