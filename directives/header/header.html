@@ -12,6 +12,19 @@
 	</li>
 	<li dropdown>
 		<a dropdown-toggle href="#" aria-expanded="true" ng-controller="username">
+			<i class="fa fa-link fa-lg"></i>&nbsp;Links&nbsp;<i class="fa fa-caret-down"></i>
+		</a>
+		<ul class="dropdown-menu" >
+			<li><a href="https://semper-ui-staging.herokuapp.com" target="_blank">Staging UI</a></li>
+			<li><a href="https://www.semperll.com/app" target="_blank">Production UI</a></li>
+			<li><a href="https://app.semperll.com" target="_blank">Sandbox UI</a></li>
+			<li class="divider"></li>
+			<li><a href="https://semper-admin-staging.herokuapp.com/" target="_blank">Staging Admin UI</a></li>
+			<li><a href="https://admin.semperll.com" target="_blank">Production Admin UI</a></li>
+		</ul>
+	</li>
+	<li dropdown>
+		<a dropdown-toggle href="#" aria-expanded="true" ng-controller="username">
 			<i class="fa fa-user fa-lg"></i>&nbsp;{{ user.name_first || user.username }}&nbsp;<i class="fa fa-caret-down"></i>
 		</a>
 		<ul class="dropdown-menu dropdown-user" role="menu">
