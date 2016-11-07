@@ -16,18 +16,28 @@ module.exports = function (myApp) {
 				$scope.searchTerm = '';
 				$scope.searchField = 'email';
 
+				$scope.searchParams = {
+					firstname: '',
+					lastname: '',
+					email: $scope.user.email,
+					phone: ''
+				};
+
+				$scope.setDefaults = function() {
+					$scope.searchParams = {
+						firstname: $scope.user.name_first,
+						lastname: $scope.user.name_last,
+						email: $scope.user.email,
+						phone: $scope.user.phone
+					};
+				};
+
+
 				if ($scope.user.name_first) {
 					$scope.searchTerm = $scope.user.email;
 				}
 
-				$scope.$watch('searchTerm', function(newValue, oldValue) {
-					if (newValue !== oldValue) {
-						$scope.search();
-						buildUrl();
-					}
-				});
-
-				$scope.$watch('searchField', function(newValue, oldValue) {
+				$scope.$watch('searchParams', function(newValue, oldValue) {
 					if (newValue !== oldValue) {
 						$scope.search();
 						buildUrl();
@@ -36,17 +46,18 @@ module.exports = function (myApp) {
 
 				var buildUrl = function() {
 					var urlBase = FMApiUrl + '/user_find_multi.php';
-					$scope.url = urlBase + '?' + $scope.searchField + '=' + $scope.searchTerm + '&limit=50';
+					var parts = [];
+					var obj = $scope.searchParams;
+				    for (var i in obj) {
+				        if (obj.hasOwnProperty(i) && obj[i] !== '') {
+				            parts.push(encodeURIComponent(i) + "=" + encodeURIComponent(obj[i]));
+				        }
+				    }
+				    var query = parts.join("&");
 
+					$scope.url = urlBase + '?' + query + '&limit=50';
 					return $scope.url;
 				};
-
-				$scope.seachFieldOpts = [
-					{ value: 'email', label: 'Email' },
-					{ value: 'name_first', label: 'First Name' },
-					{ value: 'name_last', label: 'Last Name' },
-					{ value: 'phone', label: 'Phone Number' }
-				];
 
 				$scope.search = _.debounce(function() {
 					$scope.searching = true;

@@ -13,22 +13,34 @@
 	</div>
 </div>
 
-<div class="row">
-	<div class="col-md-4">
-		<select type="text" class="form-control" ng-options="item.value as item.label for item in seachFieldOpts" ng-model="searchField" name="searchField" placeholder="Search for..."></select>
+<form class="form-horizontal">
+  <div class="form-group">
+    <label for="inputEmail3" class="col-md-2 control-label">Email</label>
+    <div class="col-md-4">
+      <input type="email" ng-model="searchParams.email" class="form-control" id="firstname" placeholder="First Name">
+    </div>
+	<label for="phone" class="col-sm-2 control-label">Phone</label>
+	<div class="col-sm-4">
+	  <input type="text" ng-model="searchParams.phone" class="form-control" id="phone" placeholder="Enter Phone Number">
 	</div>
-
-	<div class="col-md-6">
-		<div class="input-group">
-				<input type="text" class="form-control" ng-model="searchTerm" value="@test.com" placeholder="Search for...">
-				<span class="input-group-btn">
-					<button ng-click="search()" class="btn btn-default" type="button">Go!</button>
-				</span>
-			</div>
-		</div>
-
-	</div>
-</div>
+  </div>
+  <div class="form-group">
+	<label for="firstname" class="col-sm-2 control-label">First Name</label>
+  	<div class="col-sm-4">
+  	  <input type="text" ng-model="searchParams.firstname" class="form-control" id="firstname" placeholder="Enter First Name">
+  	</div>
+    <label for="lastname" class="col-sm-2 control-label">Last Name</label>
+    <div class="col-sm-4">
+      <input type="text" ng-model="searchParams.lastname" class="form-control" id="lastname" placeholder="Enter Last Name">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button ng-click="search()" class="btn btn-default">Search</button>
+	  <button ng-click="setDefaults()" class="btn btn-default">Set User Defaults</button>
+    </div>
+  </div>
+</form>
 
 <div ng-if="message" class="row">
 	<div class="col-md-12">
@@ -112,10 +124,13 @@
 	</div>
 </div>
 
-<button class="btn btn-default" ng-click="createUser()">Create Usr</button>
+<!-- <button class="btn btn-default" ng-click="createUser()">Create Usr</button>
+<br> -->
+
+<Br>
 <br>
 
-<div class="row">
+<div class="row" ng-if="url">
 	<div class="col-md-12">
 		<b>Url:</b> <a href="{{url}}" target="_data">{{url}}</a>
 	</div>
