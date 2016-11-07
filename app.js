@@ -80,6 +80,7 @@ require('./extras/job/sync')(myApp);
 require('./extras/job/preview')(myApp);
 
 /* Queue */
+require('./extras/queue/run')(myApp);
 require('./extras/queue/manage')(myApp);
 require('./extras/queue/queue-routes')(myApp);
 require('./extras/queue/details')(myApp);

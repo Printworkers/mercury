@@ -243,6 +243,25 @@ module.exports = function(myApp) {
 
                     return n.post();
                 },
+                run: function(id) {
+                    var deferred = $q.defer();
+
+                    Restangular.one('queue', id)
+                        .get()
+                        .then(function(data) {
+                            var obj = data.data;
+
+                            obj.customPOST(null, 'run').then(function(res) {
+                                console.log('Got post done', res);
+                                deferred.resolve('Ran the Tasks');
+                            }, function(err) {
+                            	console.log('Error in the job', err);
+                                deferred.reject(err);
+                            });
+                        });
+
+                    return deferred.promise;
+                },
                 get: function(id) {
                     return Restangular.one('queue', id)
                         .get()

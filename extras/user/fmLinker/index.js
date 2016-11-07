@@ -20,7 +20,9 @@ module.exports = function (myApp) {
 					firstname: '',
 					lastname: '',
 					email: $scope.user.email,
-					phone: ''
+					phone: '',
+					address_city: '',
+					adress_state: ''
 				};
 
 				$scope.setDefaults = function() {
@@ -28,7 +30,9 @@ module.exports = function (myApp) {
 						firstname: $scope.user.name_first,
 						lastname: $scope.user.name_last,
 						email: $scope.user.email,
-						phone: $scope.user.phone
+						phone: $scope.user.phone,
+						city: $scope.user.address_city,
+						state: $scope.user.address_state
 					};
 				};
 
@@ -95,7 +99,6 @@ module.exports = function (myApp) {
 
 				$scope.useFMId = function(id) {
 					if (confirm('Do you want to link this web user to this FileMaker Employee?')) {
-                        console.log('patch', { id_employee: id.toString() });
 
                         $scope.user.patch({ id_employee: id.toString() }).then(function(data) {
 							$scope.user = data;

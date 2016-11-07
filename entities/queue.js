@@ -56,7 +56,8 @@ module.exports = function (nga, user, globallookups) {
 		]).listActions([
 			// 'edit',
 			// '<re-queue-job-btn entry="entry"></re-queue-job-btn>',
-			'<queue-manage queue="entry"></queue-manage>'
+			'<queue-manage queue="entry"></queue-manage>',
+			'<queue-run queue="entry"></queue-run>'
 		])
 		.filters([
 			nga.field('status', 'choice')

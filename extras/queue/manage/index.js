@@ -12,7 +12,7 @@ module.exports = function (myApp) {
 					$location.path('/queue/details/' + id);
 				};
 			},
-			template: '<button class="btn btn-success btn-xs" ng-click="open()"><i class="glyphicon glyphicon-pensil"></i> Manage</button>'
+			template: '<button class="btn btn-success btn-xs" ng-click="open()"><i class="glyphicon glyphicon-pencil"></i> Manage</button>'
 		};
 	}]);
 

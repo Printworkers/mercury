@@ -29,6 +29,12 @@ $(function(){
 				<span class="glyphicon glyphicon-list" aria-hidden="true"></span>&nbsp;
 				List
 			</a>
+
+            <a href="/#/queue/delete/{{ queue._id }}" class="btn btn-danger btn-sm">
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;
+                Delete
+            </a>
+
             <a ng-if="queue.params.userId" href="/#/user/details/{{ queue.params.userId }}" class="btn btn-default btn-sm">
                 <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>&nbsp;
                 Goto User
