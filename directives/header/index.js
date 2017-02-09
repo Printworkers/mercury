@@ -2,7 +2,7 @@ module.exports = function(myApp) {
     myApp.directive('header', function() {
         return {
             template: require('./header.html'),
-            controller: function($scope, Restangular, apiUrl) {
+            controller: ['$scope', 'Restangular', 'apiUrl', function($scope, Restangular, apiUrl) {
 
                 $scope.apiDomain = apiUrl.replace('https://', '').replace('/', '');
 
@@ -16,7 +16,8 @@ module.exports = function(myApp) {
                         window.location = '/';
                     }
                 };
-            }
+                
+            }]
         };
     });
 };

@@ -18,7 +18,7 @@ module.exports = function (myApp) {
 
 						user.getToken().then(function(result) {
 							var result = result.data ? result.data : result;
-							window.open('http://www.semperllc.com/app/#/?token=' + result.token);
+							window.open('http://www.semperllc.com/app/#!/?token=' + result.token);
 						});
 					}
 				};
