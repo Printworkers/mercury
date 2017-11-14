@@ -30,7 +30,7 @@
 					</div>
 
 					<div class="row">
-						<div class="col-md-4">
+						<!-- <div class="col-md-4">
 							<div class="form-group has-feedback" ng-class="{'has-error': form.payrate_start.$touched == true && form.payrate_start.$valid == false}">
 								<label for="payrate_start">Starting Pay Rate *</label>
 								<input type="test" id="payrate_start" class="col-md-4 form-control" placeholder="Enter $/hr" name="payrate_start" ng-model="model.payrate_start" required />
@@ -41,24 +41,21 @@
 								<label for="payrate_end">Ending Pay Rate *</label>
 								<input type="text" id="payrate_end" class="col-md-4 form-control"  placeholder="Enter $/hr" name="payrate_end" ng-model="model.payrate_end" required />
 							</div>
-						</div>
+						</div> -->
 						<div class="col-md-4">
 							<div class="form-group has-feedback" ng-class="{'has-error': form.phone.$touched == true && form.phone.$valid == false}">
 								<label for="phone">Phone *</label>
 								<input type="test" id="phone" class="col-md-4 form-control" maxlength="14" mask="(999) 999-9999" clean="true" placeholder="(###) ###-####" name="phone" ng-model="model.phone" required />
 							</div>
 						</div>
-					</div>
 
-					<br />
-					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-4">
 							<div class="form-group has-feedback" ng-class="{'has-error': form.dateRange.$touched == true && form.dateRange.$valid == false}">
 								<label for="dateRange">From</label>
 								<input type="date" id="exampleInput" class="col-md-4 form-control" name="input" ng-model="model.date_start" placeholder="yyyy-MM-dd" min="1930-01-01" ngRequired required />&nbsp;
 							</div>
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-4">
 							<div class="form-group has-feedback" ng-class="{'has-error': form.dateRange.$touched == true && form.dateRange.$valid == false}">
 								<label for="dateRange">To</label>
 								<input type="date" id="exampleInput" name="input" class="col-md-4 form-control" ng-model="model.date_end" placeholder="yyyy-MM-dd" min="1930-01-01" required ngRequired />
