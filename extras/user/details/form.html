@@ -201,7 +201,7 @@
 	</div>
 
 	<hr ng-if="user.type === 'job seeker'">
-	
+
 	<div ng-if="user.type === 'job seeker'" class="row">
 		<div class="col-md-12">
 			<div class="form-group has-feedback" ng-class="{'has-error': form.web_profile.$touched && form.web_profile.$invalid }">
@@ -223,14 +223,7 @@
 		<div class="col-md-3">
 			<div class="form-group has-feedback" ng-class="{'has-error': form.source.$touched && form.source.$invalid }">
 				<label for="source">Source</label>
-				<select class="form-control" name="source" id="source"
-						ng-model="user.source"
-						ng-options="item.value as item.label for item in lookups.source"
-						>
-					<option value="">Select Source</option>
-				</select>
-
-				<span ng-if="form.source.$touched" ng-class="{ 'glyphicon-ok': form.source.$valid, 'glyphicon-remove': form.source.$invalid }" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+				{{ user.source }}
 			</div>
 		</div>
 		<div class="col-md-3">
