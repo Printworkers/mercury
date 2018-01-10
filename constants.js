@@ -42,6 +42,8 @@ module.exports = function(ngModule) {
 		{ value: 'userReferenceUpsert', label: 'userReferenceUpsert' },
 		{ value: 'userWorkHistoryUpsert', label: 'userWorkHistoryUpsert' },
 
+		{ value: 'importFMHEmpSources', label: 'importFMHEmpSources' },
+
 		{ value: 'archiveCompletedQueueJobs', label: 'archiveCompletedQueueJobs' }
 	];
 
