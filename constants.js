@@ -30,20 +30,18 @@ module.exports = function(ngModule) {
 		{ value: 'userStoreFormData', label: 'userStoreFormData' },
 		{ value: 'applicationUpsert', label: 'applicationUpsert' },
 
-		/* FM Import Jobs. */
+		/* FM Import Tasks. */
 		{ value: 'importFMJobs', label: 'importFMJobs' },
 		{ value: 'importFMTalent', label: 'importFMTalent' },
 		{ value: 'importFMSkills', label: 'importFMSkills' },
 		{ value: 'importFMHomeOffices', label: 'importFMHomeOffices' },
+		{ value: 'importFMSources', label: 'importFMSources' },
 
 		{ value: 'userSyncSnapShot', label: 'userSyncSnapShot'},
 		{ value: 'createClient', label: 'createClient'},
 		{ value: 'userEducationUpsert', label: 'userEducationUpsert' },
 		{ value: 'userReferenceUpsert', label: 'userReferenceUpsert' },
 		{ value: 'userWorkHistoryUpsert', label: 'userWorkHistoryUpsert' },
-
-		{ value: 'importFMHEmpSources', label: 'importFMHEmpSources' },
-
 		{ value: 'archiveCompletedQueueJobs', label: 'archiveCompletedQueueJobs' }
 	];
 
