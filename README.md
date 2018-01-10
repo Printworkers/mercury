@@ -18,4 +18,7 @@ This project is based upon the ng-admin project on github.
 
 https://github.com/marmelab/ng-admin
 
-
+### Deployment (READ ME NOW)
+This code uses a bundle file. Which needs to be manually uodated using the `npm js` command.
+Commit the code repo so its available on launch. The bundle will not build on its own,
+as the server runs in heroku. 
