@@ -59,9 +59,9 @@ module.exports = function (nga, user) {
 				.attributes({ placeholder: 'Enter Primary Skill' })
 				.cssClasses('col-sm-4'),
 			nga.field('secondary', 'json')
-				.validation({ required: true })
+				// .validation({ required: true })
 				.attributes({ placeholder: 'Enter Secondary Skill' })
-				.cssClasses('col-sm-4'),
+				.cssClasses('col-sm-8'),
 		]);
 
 	skill.editionView()
@@ -76,7 +76,6 @@ module.exports = function (nga, user) {
 				.attributes({ placeholder: 'Enter Primary Skill' })
 				.cssClasses('col-sm-4'),
 			nga.field('secondary', 'json')
-				.validation({ required: true })
 				.attributes({ placeholder: 'Enter Secondary Skill' })
 				.cssClasses('col-sm-8')
 		);

@@ -142,14 +142,16 @@ module.exports = function(myApp) {
     myApp.directive('dashboard', function() {
         return {
             templateUrl: 'dashboard.html',
-            controller: function($scope, apiUrl, $http) {
+            controller: ['$scope', 'apiUrl', '$http', function($scope, apiUrl, $http) {
+
             	var stats = ['agent', 'application', 'homeoffice', 'job', 'order', 'work', 'education', 'document', 'user', 'template', 'skill'];
             	_.map(stats, function(stat) {
 	                $http.get(apiUrl + stat + "/count", {headers: {'x-access-token': localStorage.getItem('semper-admin-token') }}).then(function (response) {
 						$scope[stat] = response.data.count;
 					});
             	});
-            }
+                
+            }]
         };
     });
 };
@@ -714,7 +716,8 @@ module.exports = function (nga, user, globallookups) {
 		]).listActions([
 			// 'edit',
 			// '<re-queue-job-btn entry="entry"></re-queue-job-btn>',
-			'<queue-manage queue="entry"></queue-manage>'
+			'<queue-manage queue="entry"></queue-manage>',
+			'<queue-run queue="entry"></queue-run>'
 		])
 		.filters([
 			nga.field('status', 'choice')
@@ -905,10 +908,10 @@ module.exports = function (nga, user) {
 				.validation({ required: true })
 				.attributes({ placeholder: 'Enter Primary Skill' })
 				.cssClasses('col-sm-4'),
-			nga.field('secondary', 'json')
-				.validation({ required: true })
-				.attributes({ placeholder: 'Enter Secondary Skill' })
-				.cssClasses('col-sm-8')
+			// nga.field('secondary')
+			// 	.validation({ required: true })
+			// 	.attributes({ placeholder: 'Enter Secondary Skill' })
+			// 	.cssClasses('col-sm-8')
 		);
 
 	return skill;
@@ -1481,6 +1484,25 @@ module.exports = function(myApp) {
                     n.queue = 'general';
 
                     return n.post();
+                },
+                run: function(id) {
+                    var deferred = $q.defer();
+
+                    Restangular.one('queue', id)
+                        .get()
+                        .then(function(data) {
+                            var obj = data.data;
+
+                            obj.customPOST(null, 'run').then(function(res) {
+                                console.log('Got post done', res);
+                                deferred.resolve('Ran the Tasks');
+                            }, function(err) {
+                            	console.log('Error in the job', err);
+                                deferred.reject(err);
+                            });
+                        });
+
+                    return deferred.promise;
                 },
                 get: function(id) {
                     return Restangular.one('queue', id)

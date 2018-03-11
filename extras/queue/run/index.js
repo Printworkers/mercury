@@ -10,7 +10,7 @@ module.exports = function (myApp) {
 				var id = scope.queue().values._id;
 				scope.status = scope.queue().values.status;
 
-				scope.showClass = scope.status === 'complete' ? 'hide' : '';
+				scope.showClass	 = scope.status === 'complete' ? 'hide' : '';
 
 				scope.execute = function() {
 					if (confirm('Do you really want to run this job now?')) {
