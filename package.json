@@ -17,7 +17,7 @@
     "express": "^4.13.3",
     "express-handlebars": "^3.0.0",
     "express-sslify": "^1.0.1",
-    "lodash": "~3.10.0",
+    "lodash": "~4.17.20",
     "moment": "^2.14.1",
     "ng-admin": "^0.9.1",
     "require": "^2.4.20",
