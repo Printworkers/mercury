@@ -1,0 +1,9 @@
+<script type="text/javascript">
+        if (!localStorage.getItem('semper-admin-token')) {
+            window.location.href = '/login';
+        }
+
+        window.apiUrl = '{{ apiUrl }}';
+</script>
+
+<div ui-view></div>

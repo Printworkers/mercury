@@ -4,6 +4,19 @@ has been turned off until its ready for real data and production.
 
     http://semper-admin.herokuapp.com
 
+### Layout
+Note, there are two difference package.json files. The first
+is for the Herok express app, and the second is for the RequireJS
+Browserify Angular App. This was done to allow the heroku app
+to run node 20. The folder with the app is designed to enable 
+a docker setup that will use a node 10 environment to build 
+the legacy app.
+
+The docker app is not designed to run in prodcution, its 
+just there for a container that will support the legacy 
+version of node and python 2, needed by the `gulp-sass' 
+package and the gulp processes.
+
 ### Install
 Use the following to install the required packages.
 
