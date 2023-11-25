@@ -21,27 +21,29 @@ var browserSync = require('browser-sync').create();
 var template = require('gulp-template');
 
 // Lint Task
-gulp.task('lint', function() {
-    return gulp.src(['*/*.js', '!dist/*.js'])
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'));
+gulp.task('lint', function () {
+  return gulp.src(['*/*.js', '!dist/*.js'])
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
 });
 
 // Compile Our Sass
-gulp.task('sass', function() {
-    return gulp.src('scss/*.scss')
-        .pipe(sass())
-        .pipe(gulp.dest('css'));
+gulp.task('sass', function () {
+  console.log('Running: sass');
+  return gulp.src('scss/*.scss')
+    .pipe(sass())
+    .pipe(gulp.dest('css'));
 });
 
 // Concatenate & Minify JS
-gulp.task('scripts', function() {
-    return gulp.src(['*/*.js', '!dist/*.js'])
-        .pipe(concat('all.js'))
-        .pipe(gulp.dest('dist'))
-        .pipe(rename('all.min.js'))
-        .pipe(uglify())
-        .pipe(gulp.dest('dist'));
+gulp.task('scripts', function () {
+  console.log('Running: scripts');
+  return gulp.src(['*/*.js', '!dist/*.js'])
+    .pipe(concat('all.js'))
+    .pipe(gulp.dest('dist'))
+    .pipe(rename('all.min.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('start', function () {
@@ -51,13 +53,13 @@ gulp.task('start', function () {
 });
 
 // Watch Files For Changes
-gulp.task('watch', function() {
-    gulp.watch(['*/*.js', '!dist/*.js'], ['lint', 'scripts']);
-    gulp.watch('scss/*.scss', ['sass']);
+gulp.task('watch', function () {
+  gulp.watch(['*/*.js', '!dist/*.js'], ['lint', 'scripts']);
+  gulp.watch('scss/*.scss', ['sass']);
 });
 
 // Default Task
-gulp.task('default', ['lint', 'sass', 'scripts','js', 'watch', 'start']);
+gulp.task('default', ['lint', 'sass', 'scripts', 'js', 'watch', 'start']);
 
 // gulp.task('indexTpl', () =>
 //     gulp.src('templates/index.html')
@@ -72,17 +74,17 @@ gulp.task('js-watch', ['js'], browserSync.reload);
 // use default task to launch Browsersync and watch JS files
 gulp.task('serve', ['js'], function () {
 
-    // Serve files from the root of this project
-    browserSync.init({
-        server: {
-            baseDir: "./"
-        }
-    });
+  // Serve files from the root of this project
+  browserSync.init({
+    server: {
+      baseDir: "./"
+    }
+  });
 
-    // add browserSync.reload to the tasks array to make
-    // all browsers reload after tasks are complete.
+  // add browserSync.reload to the tasks array to make
+  // all browsers reload after tasks are complete.
 
-    gulp.watch("dist/*.js", ['js-watch']);
+  gulp.watch("dist/*.js", ['js-watch']);
 });
 
 // add custom browserify options here
@@ -94,7 +96,7 @@ var opts = assign({}, watchify.args, customOpts);
 var b = watchify(browserify(opts));
 
 b.transform(stringify({
-	extensions: ['.html'], minify: true
+  extensions: ['.html'], minify: true
 }));
 
 gulp.task('js', bundle); // so you can run `gulp js` to build the file
@@ -111,7 +113,7 @@ function bundle() {
     // optional, remove if you dont want sourcemaps
     .pipe(sourcemaps.init({ loadMaps: true })) // loads map from browserify file
     .pipe(uglify({ mangle: false }).on('error', gutil.log))
-       // Add transformation tasks to the pipeline here.
+    // Add transformation tasks to the pipeline here.
     .pipe(sourcemaps.write('./')) // writes .map file
     .pipe(gulp.dest('./dist'));
 }

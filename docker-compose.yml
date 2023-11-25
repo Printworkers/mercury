@@ -1,0 +1,9 @@
+services:
+  web:
+    build: .
+    container_name: node-19-env
+    command: node server.js
+    ports:
+      - "9001:9001"
+    # volumes:
+    #   - ./:/app
