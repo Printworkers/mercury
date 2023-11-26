@@ -71,3 +71,14 @@ Use this to build the image, with the cache turned off.
 
 Use this to run and bash into the container.
 ```  docker run -it node-10-semper /bin/bash ```
+
+To do a proper build:
+1. Cd into the /app folder.
+2. Run the docker build to create the image
+``` docker build -t node-10-server . ```
+3. Run the docker in interative mode 
+``` docker run -v ./dist:/app/dist -it node-10-server /bin/bash ```
+4. Inside the docker run the gulp.
+``` gulp js script sass ```
+5. Exit the Docker image and commit the code.
+6. Push to production.

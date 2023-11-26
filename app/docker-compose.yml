@@ -2,7 +2,7 @@ services:
   web:
     build: .
     container_name: node-19-env
-    command: node server.js
+    command: gulp js
     ports:
       - "9001:9001"
     volumes:

@@ -31,7 +31,7 @@
     "angular-modal-service": "^0.6.10",
     "browser-sync": "^2.11.1",
     "browserify": "^13.0.0",
-    "gulp": "^3.9.0",
+    "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
     "gulp-jshint": "^2.0.0",
     "gulp-nodemon": "^2.0.6",
