@@ -113,3 +113,5 @@ require('./services/Modal')(myApp);
 /* Filters. */
 require('./filters/tel.js')(myApp);
 require('./filters/titlecase.js')(myApp);
+
+console.log('Rebuild')
